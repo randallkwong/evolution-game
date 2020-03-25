@@ -19,11 +19,10 @@ public class Species {
 	boolean hasClimbing;
 
 	public Species() {
-		
 		this.population = 1;
 		this.bodySize = 1;
-		this.isCarnivore = false;
-		
+		this.isCarnivore = false;	
 	}
+	
 	
 }

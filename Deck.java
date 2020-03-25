@@ -52,8 +52,6 @@ public class Deck {
 		}
 	
 	
-		
-	
 	}
 
 	public ArrayList<Card> getGameDeck() {
