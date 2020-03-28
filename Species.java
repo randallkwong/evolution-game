@@ -21,16 +21,42 @@ public class Species {
 	// The current number of trait cards on this species. A species can not have more than 3 trait cards;
 	int numofTraits;
 
-	public Species() {
-		this.population = 1;
-		this.bodySize = 1;
-		this.isCarnivore = false;
-		this.currentFoodConsumed = 0;
-		this.hasFatTissue = false;
-		this.hasClimbing = false;
-		this.numofTraits = 0;
+	public Species(int Population, int BodySize, int FoodConsumed, boolean Carnivore, boolean FatTissue, boolean Climbing, int Traits) {
+		population = Population;
+		bodySize = BodySize;
+		currentFoodConsumed = FoodConsumed;
+		isCarnivore = Carnivore;
+		hasFatTissue = FatTissue;
+		hasClimbing = Climbing;
+		numofTraits = Traits;
 	}
 	
+	public int getPopulation() {
+		return population;
+	}
 	
+	public int getBodysize() {
+		return bodySize;
+	}
+	
+	public int getTraitcard() {
+		return numofTraits;
+	}
+	
+	public int getFoodConsumed() {
+		return currentFoodConsumed;
+	}
+	
+	public boolean getFatTissue() {
+		return hasFatTissue;
+	}
+	
+	public boolean getCarnivore() {
+		return isCarnivore;
+	}
+	
+	public boolean getClimbing() {
+		return hasClimbing;
+	}
 	
 }
