@@ -17,12 +17,20 @@ public class Species {
 	boolean isCarnivore;
 	boolean hasFatTissue;
 	boolean hasClimbing;
+	
+	// The current number of trait cards on this species. A species can not have more than 3 trait cards;
+	int numofTraits;
 
 	public Species() {
 		this.population = 1;
 		this.bodySize = 1;
-		this.isCarnivore = false;	
+		this.isCarnivore = false;
+		this.currentFoodConsumed = 0;
+		this.hasFatTissue = false;
+		this.hasClimbing = false;
+		this.numofTraits = 0;
 	}
+	
 	
 	
 }
