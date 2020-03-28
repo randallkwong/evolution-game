@@ -16,4 +16,7 @@ public class WateringHole {
 		this.currentFoodAvailable = currentFoodAvailable;
 	}
 	
+	public void displayWH() {
+		System.out.println("Current Watering Hole plant food number is " + currentFoodAvailable);
+	}
 }
