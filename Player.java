@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Player {
 
@@ -10,6 +11,8 @@ public class Player {
 	// The player's score.
 	int score;
 	
+	ArrayList<Card> hand = new ArrayList<Card>();
+	
 	public Player(int playerNumberInput) {
 		
 		this.playerNumber = playerNumberInput;
@@ -17,5 +20,29 @@ public class Player {
 		this.score = 0;
 		
 	}
+	
+	public void drawCards(int numberOfCardsToDraw, Deck deck) {
+		
+		ArrayList<Card> tempHand = getHand();
+		
+		// Draws cards and adds them to the player's hand.
+		for(int i = 0; i < numberOfCardsToDraw; i++) {
+			Card cardDrawn = deck.drawCard();
+			tempHand.add(cardDrawn);
+		}
+		
+		setHand(tempHand);
+		
+	}
+
+	public ArrayList<Card> getHand() {
+		return this.hand;
+	}
+
+	public void setHand(ArrayList<Card> hand) {
+		this.hand = hand;
+	}
+	
+	
 	
 }

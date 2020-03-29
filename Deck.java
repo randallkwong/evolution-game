@@ -54,6 +54,14 @@ public class Deck {
 	
 	}
 
+	public Card drawCard() {
+		
+		Card currentCard = getGameDeck().get(0);
+		getGameDeck().remove(0);
+		return currentCard;
+		
+	}
+	
 	public ArrayList<Card> getGameDeck() {
 		return this.gameDeck;
 	}
