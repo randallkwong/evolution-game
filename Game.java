@@ -2,7 +2,69 @@ import java.util.Scanner;
 
 public class Game {
 	
+	public void playPhaseThree(Player currentPlayer, Hand currentPlayersHand, SpeciesBoard currentPlayersSpeciesBoard, Scanner scan) {
+
+		while(currentPlayer.getPhaseThreeStatus() == 0)
+		{
+			
+			currentPlayer.phaseThreeStart();
+			
+			currentPlayersHand.displayHand();
+		
+			int endTurnOrPlay = scan.nextInt();
+			
+			if(endTurnOrPlay == 1 || currentPlayersHand.getHandSize() == 0) {
+				currentPlayer.endPhaseThree();
+				System.out.println("End of Play Card phase for Player 1");
+
+				System.out.println("Player 1 board");
+				currentPlayersSpeciesBoard.displaySpeciesBoard();
+
+			}
+			else {
+			
+			System.out.println("Player 1, which card would you like to select?");
+			int selectedCardIndex = scan.nextInt();
+			System.out.println("Player 1, what would you like to do with your card " + selectedCardIndex + " ?");
+			System.out.println("Press 1 to create a new species on the left; Press 2 to create new species on the right, Press 3 to increase body size, Press 4 to increase population size");			
+			
+			// Handle user actions
+
+				int input3 = scan.nextInt();
+				
+				if (input3 == 1) {
+					currentPlayersSpeciesBoard.addNewSpeciestoLeft();
+				}
+				else if (input3 == 2) {
+					currentPlayersSpeciesBoard.addNewSpeciestoRight();
+				}
+				else if (input3 == 3) {
+					System.out.println("Which species would you like to increase bodysize for?");
+					int input4 = scan.nextInt();
+					currentPlayersSpeciesBoard.updateBodySize(input4);
+				}
+				else if (input3 == 4) {
+					System.out.println("Which species would you like to increase the population for?");
+					int input5 = scan.nextInt();
+					currentPlayersSpeciesBoard.updatePopulation(input5);
+				}
+				
+				// Remove card
+				currentPlayersHand.removeCardfromHand(selectedCardIndex);
+				
+				currentPlayersSpeciesBoard.displaySpeciesBoard();
+				System.out.println("");
+			}
+			
+		}	
+		
+		
+	}
+	
 	public static void main(String[] args) {
+		
+		Game currentGame = new Game();
+		
 		WateringHole wateringHole = new WateringHole();
 		
 		// Create and shuffle deck
@@ -49,60 +111,10 @@ public class Game {
 		
 		
 		// Phase 3 - Play Cards
+
+		currentGame.playPhaseThree(playerOne, handforPlayer1, SpeciesBoard1, scan);
 		
-		while(playerOne.getPhaseThreeStatus() == 0)
-		{
-			
-			playerOne.phaseThreeStart();
-			
-			handforPlayer1.displayHand();
-		
-			int endTurnOrPlay = scan.nextInt();
-			
-			if(endTurnOrPlay == 1 || handforPlayer1.getHandSize() == 0) {
-				playerOne.endPhaseThree();
-				System.out.println("End of Play Card phase for Player 1");
 
-				System.out.println("Player 1 board");
-				SpeciesBoard1.displaySpeciesBoard();
-
-			}
-			else {
-			
-			System.out.println("Player 1, which card would you like to select?");
-			int selectedCardIndex = scan.nextInt();
-			System.out.println("Player 1, what would you like to do with your card " + selectedCardIndex + " ?");
-			System.out.println("Press 1 to create a new species on the left; Press 2 to create new species on the right, Press 3 to increase body size, Press 4 to increase population size");			
-			
-			// Handle user actions
-
-				int input3 = scan.nextInt();
-				
-				if (input3 == 1) {
-					SpeciesBoard1.addNewSpeciestoLeft();
-				}
-				else if (input3 == 2) {
-					SpeciesBoard1.addNewSpeciestoRight();
-				}
-				else if (input3 == 3) {
-					System.out.println("Which species would you like to increase bodysize for?");
-					int input4 = scan.nextInt();
-					SpeciesBoard1.updateBodySize(input4);
-				}
-				else if (input3 == 4) {
-					System.out.println("Which species would you like to increase the population for?");
-					int input5 = scan.nextInt();
-					SpeciesBoard1.updatePopulation(input5);
-				}
-				
-				// Remove card
-				handforPlayer1.removeCardfromHand(selectedCardIndex);
-				
-				SpeciesBoard1.displaySpeciesBoard();
-				System.out.println("");
-			}
-			
-		}
 		
 /*	TODO(RW): Update Player 2's turn actions to align with Player 1's above.
 
