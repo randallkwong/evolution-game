@@ -71,6 +71,7 @@ public class Game {
 				SpeciesBoard1.updatePopulation(input5);
 			}
 			SpeciesBoard1.displaySpeciesBoard();
+			System.out.println("");
 		}
 		
 		System.out.println("End of Play Card phase for Player 1");
@@ -98,6 +99,7 @@ public class Game {
 				SpeciesBoard2.updatePopulation(input5);
 			}
 			SpeciesBoard2.displaySpeciesBoard();
+			System.out.println("");
 		}
 		
 		System.out.println("End of Play Card phase for Player 2");
@@ -108,6 +110,7 @@ public class Game {
 		
 		// Reveal the food cards in watering hole
 		
+		System.out.println("");
 		System.out.println("Feeding starts!");
 		wateringHole.displayWH();
 		
