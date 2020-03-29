@@ -11,15 +11,22 @@ public class Player {
 	// The player's score.
 	int score;
 	
+	int numberOfSpeciesInPlay;
+	
 	ArrayList<Card> hand = new ArrayList<Card>();
+	
+	ArrayList<Species> activeSpecies = new ArrayList<Species>();
 	
 	public Player(int playerNumberInput) {
 		
 		this.playerNumber = playerNumberInput;
 		this.foodPoints = 0;
 		this.score = 0;
+		this.numberOfSpeciesInPlay = 0;
 		
 	}
+
+	
 	
 	public void drawCards(int numberOfCardsToDraw, Deck deck) {
 		
