@@ -1,6 +1,8 @@
 import java.util.Scanner;
+import java.util.HashMap;
 
 public class Game {
+	
 	
 	public void playPhaseThree(Player currentPlayer, Hand currentPlayersHand, SpeciesBoard currentPlayersSpeciesBoard, Scanner scan) {
 
@@ -65,6 +67,54 @@ public class Game {
 		
 	}
 	
+	public void feedingPhase(int i, Player currentPlayer, SpeciesBoard currentPlayersSpeciesBoard, WateringHole wateringHole, Scanner scan) {
+		
+		if((i == currentPlayer.getPlayerNumber())&&(currentPlayer.getIsFeeding() == 1)) {
+
+			String currentPlayerName = "Player " + currentPlayer.getPlayerNumber();
+			
+			// Prompt player one to feed
+			System.out.println(currentPlayerName + ": Which species would you like to feed?");
+			System.out.println("Enter 0 to skip one feeding");
+			System.out.println("Enter -1 to skip all feeding");
+			
+			currentPlayersSpeciesBoard.displaySpeciesBoard();
+			
+			int speciesToFeed = scan.nextInt();
+			
+			if(speciesToFeed == -1) {
+				currentPlayer.isDoneFeeding();
+			}
+			else 
+			{
+				if (speciesToFeed == 0) {
+				System.out.println(currentPlayerName + " skips one round of feeding");
+				}
+				else {	
+					// TODO: Refactor species boards to belong to players.
+					if((currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed).getFoodConsumed() < currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed).getPopulation()) && (wateringHole.getCurrentFoodAvailable() > 0)) {
+						currentPlayersSpeciesBoard.updateFoodConsumed(speciesToFeed);
+						currentPlayersSpeciesBoard.displaySpeciesBoard();
+						
+						// Decrement available food in the watering hole.
+						wateringHole.decrementFoodAvailable(1);
+						wateringHole.displayWH();
+						
+					} else
+					{
+						System.out.println("You cannot feed Species " + speciesToFeed);
+					}						
+					
+					
+				}
+				
+			}
+				
+		}		
+		
+		
+	}
+	
 	public static void main(String[] args) {
 		
 		Game currentGame = new Game();
@@ -82,6 +132,7 @@ public class Game {
 		Player playerOne = new Player(1);
 		Player playerTwo = new Player(2);
 
+		
 		// Deal starting hand (4 cards each).
 		System.out.print("Drawing cards for Player 1: ");
 		Hand handforPlayer1 = new Hand(4,deck);
@@ -122,21 +173,48 @@ public class Game {
 		// Player Two plays Phase Three.
 		currentGame.playPhaseThree(playerTwo, handforPlayer2, SpeciesBoard2, scan);
 
+		// Reveal Trait Cards
+		
 		
 		// Phase 4 - Feeding
 		
-		// Reveal the food cards in watering hole
+		playerOne.isReadyToFeed();
+		playerTwo.isReadyToFeed();
 		
-		System.out.println("");
-		System.out.println("Feeding starts!");
+		// Long Neck and Fertile handled first
+
 		wateringHole.displayWH();
 		
-		// TODO: feeding species
+		// Regular feeding loop
 		
-		// Turn actions loop
+		System.out.println("Feeding starts!");
+		System.out.println("");
+		
+		while(playerOne.getIsFeeding() + playerTwo.getIsFeeding() != 0) {
+			
+			// Loop through players and allow them the opportunity to feed.
+			// Alternate between players.
+			for(int i = 1; i < 3; i++) {
+			
+				// Player One feeds species.
+				currentGame.feedingPhase(i, playerOne, SpeciesBoard1, wateringHole, scan);
+				
+				// Player Two feeds species.
+				currentGame.feedingPhase(i, playerTwo, SpeciesBoard2, wateringHole, scan);
+
+				}
+
+			}
+			
+		System.out.println("End of feeding loop");			
+		
+		// Move food tokens to food bag.
 		
 		
-	}
+		}
+
+		
+		
 }
 	
 	

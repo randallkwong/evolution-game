@@ -18,6 +18,9 @@ public class Player {
 	// a player value of 0 indicates their turn continues.
 	int endPhaseThree;
 	
+	// Keeps track of whether a player is still feeding in Phase 4.
+	int isFeeding;
+	
 	//ArrayList<Card> hand = new ArrayList<Card>();
 	
 	//ArrayList<Species> activeSpecies = new ArrayList<Species>();
@@ -44,6 +47,22 @@ public class Player {
 
 	public void endPhaseThree() {
 		this.endPhaseThree = 1;
+	}
+
+	public int getPlayerNumber() {
+		return this.playerNumber;
+	}
+
+	public int getIsFeeding() {
+		return this.isFeeding;
+	}
+
+	public void isReadyToFeed() {
+		this.isFeeding = 1;
+	}	
+	
+	public void isDoneFeeding() {
+		this.isFeeding = 0;
 	}
 
 	

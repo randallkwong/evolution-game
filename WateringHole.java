@@ -13,6 +13,10 @@ public class WateringHole {
 		return currentFoodAvailable;
 	}
 
+	public void decrementFoodAvailable(int foodConsumed) {
+		this.currentFoodAvailable = this.currentFoodAvailable - foodConsumed;
+	}
+	
 	public void setCurrentFoodAvailable(int currentFoodAvailable) {
 		this.currentFoodAvailable = currentFoodAvailable;
 	}

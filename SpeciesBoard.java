@@ -67,7 +67,18 @@ public class SpeciesBoard {
 		newPlayerBoard.put(pos,newSpecies);
 	}
 	
-	
+	public void updateFoodConsumed(int pos) {
+		Species value = newPlayerBoard.get(pos);
+		int BodySize = value.getBodysize();
+		int population = value.getPopulation();
+		int foodconsumed = value.getFoodConsumed() + 1;
+		boolean carnivore = value.getCarnivore();
+		boolean fatTissue = value.getFatTissue();
+		boolean climbing = value.getClimbing();
+		int numoftraitcards = value.getTraitcard();
+		Species newSpecies = new Species(population,BodySize,foodconsumed,carnivore,fatTissue,climbing,numoftraitcards);
+		newPlayerBoard.put(pos,newSpecies);
+	}
 	
 	
 	public void updateTraitCard(int pos, String cardName) {
