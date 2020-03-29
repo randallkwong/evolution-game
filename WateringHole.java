@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class WateringHole {
 
@@ -16,7 +17,11 @@ public class WateringHole {
 		this.currentFoodAvailable = currentFoodAvailable;
 	}
 	
+	public void updateCurrentFoodAvailable(int newFood) {
+		currentFoodAvailable = currentFoodAvailable + newFood;
+	}
+	
 	public void displayWH() {
-		System.out.println("Current Watering Hole plant food number is " + currentFoodAvailable);
+		System.out.println("Current Watering Hole has " + currentFoodAvailable + " plant food");
 	}
 }

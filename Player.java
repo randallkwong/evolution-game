@@ -13,9 +13,9 @@ public class Player {
 	
 	int numberOfSpeciesInPlay;
 	
-	ArrayList<Card> hand = new ArrayList<Card>();
+	//ArrayList<Card> hand = new ArrayList<Card>();
 	
-	ArrayList<Species> activeSpecies = new ArrayList<Species>();
+	//ArrayList<Species> activeSpecies = new ArrayList<Species>();
 	
 	public Player(int playerNumberInput) {
 		
@@ -28,27 +28,6 @@ public class Player {
 
 	
 	
-	public void drawCards(int numberOfCardsToDraw, Deck deck) {
-		
-		ArrayList<Card> tempHand = getHand();
-		
-		// Draws cards and adds them to the player's hand.
-		for(int i = 0; i < numberOfCardsToDraw; i++) {
-			Card cardDrawn = deck.drawCard();
-			tempHand.add(cardDrawn);
-		}
-		
-		setHand(tempHand);
-		
-	}
-
-	public ArrayList<Card> getHand() {
-		return this.hand;
-	}
-
-	public void setHand(ArrayList<Card> hand) {
-		this.hand = hand;
-	}
 	
 	
 	

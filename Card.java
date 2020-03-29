@@ -10,7 +10,9 @@ public class Card {
 				
 	}
 
-
+	public int getCardValue() {
+		return foodValue;
+	}
 	
 	
 }
