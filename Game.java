@@ -4,6 +4,8 @@ public class Game {
 	
 	public void playPhaseThree(Player currentPlayer, Hand currentPlayersHand, SpeciesBoard currentPlayersSpeciesBoard, Scanner scan) {
 
+		String currentPlayerName = "Player " + currentPlayer.getPlayerNumber();
+		
 		while(currentPlayer.getPhaseThreeStatus() == 0)
 		{
 			
@@ -15,17 +17,17 @@ public class Game {
 			
 			if(endTurnOrPlay == 1 || currentPlayersHand.getHandSize() == 0) {
 				currentPlayer.endPhaseThree();
-				System.out.println("End of Play Card phase for Player 1");
+				System.out.println("End of Play Card phase for " + currentPlayerName);
 
-				System.out.println("Player 1 board");
+				System.out.println(currentPlayerName + " board");
 				currentPlayersSpeciesBoard.displaySpeciesBoard();
 
 			}
 			else {
 			
-			System.out.println("Player 1, which card would you like to select?");
+			System.out.println(currentPlayerName + ", which card would you like to select?");
 			int selectedCardIndex = scan.nextInt();
-			System.out.println("Player 1, what would you like to do with your card " + selectedCardIndex + " ?");
+			System.out.println(currentPlayerName + ", what would you like to do with your card " + selectedCardIndex + " ?");
 			System.out.println("Press 1 to create a new species on the left; Press 2 to create new species on the right, Press 3 to increase body size, Press 4 to increase population size");			
 			
 			// Handle user actions
@@ -48,6 +50,8 @@ public class Game {
 					int input5 = scan.nextInt();
 					currentPlayersSpeciesBoard.updatePopulation(input5);
 				}
+				
+				// TODO: Play trait card
 				
 				// Remove card
 				currentPlayersHand.removeCardfromHand(selectedCardIndex);
@@ -112,45 +116,13 @@ public class Game {
 		
 		// Phase 3 - Play Cards
 
+		// Player One plays Phase Three.
 		currentGame.playPhaseThree(playerOne, handforPlayer1, SpeciesBoard1, scan);
 		
+		// Player Two plays Phase Three.
+		currentGame.playPhaseThree(playerTwo, handforPlayer2, SpeciesBoard2, scan);
 
 		
-/*	TODO(RW): Update Player 2's turn actions to align with Player 1's above.
-
-		while(playerTwo.getPhaseThreeStatus() == 0)
-		{
-		
-			for (int i = 1; i < handforPlayer2.getHandSize()+1; i++) {
-				System.out.println("Player 2, what would you like to do with your card " + i + " ?");
-				System.out.println("Press 1 to create a new species on the left; Press 2 to create new species on the right, Press 3 to increase body size, Press 4 to increase population size");
-				int input3 = scan.nextInt();
-				
-				if (input3 == 1) {
-					SpeciesBoard2.addNewSpeciestoLeft();
-				}
-				else if (input3 == 2) {
-					SpeciesBoard2.addNewSpeciestoRight();
-				}
-				else if (input3 == 3) {
-					System.out.println("Which species would you like to increase bodysize for?");
-					int input4 = scan.nextInt();
-					SpeciesBoard2.updateBodySize(input4);
-				}
-				else if (input3 == 4) {
-					System.out.println("Which species would you like to increase the poluation for?");
-					int input5 = scan.nextInt();
-					SpeciesBoard2.updatePopulation(input5);
-				}
-				SpeciesBoard2.displaySpeciesBoard();
-				System.out.println("");
-			}
-		
-		}
-		// TODO: Play a trait 
-		
-		System.out.println("End of Play Card phase for Player 2");
-*/		
 		// Phase 4 - Feeding
 		
 		// Reveal the food cards in watering hole
