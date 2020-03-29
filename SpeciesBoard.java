@@ -43,6 +43,7 @@ public class SpeciesBoard {
 	 */
 	public void updateBodySize(int pos) {
 		Species value = newPlayerBoard.get(pos);
+		int isAlive = value.getIsAlive();
 		int BodySize = value.getBodysize() + 1;
 		int population = value.getPopulation();
 		int foodconsumed = value.getFoodConsumed();
@@ -56,7 +57,7 @@ public class SpeciesBoard {
 	
 	public void updatePopulation(int pos, int amountChanged) {
 		Species value = newPlayerBoard.get(pos);
-		int isAlive = 1;
+		int isAlive = value.getIsAlive();
 		int BodySize = value.getBodysize();
 		int population = value.getPopulation() + amountChanged;
 		if(population <= 0) {
@@ -73,6 +74,7 @@ public class SpeciesBoard {
 	
 	public void updateFoodConsumed(int pos) {
 		Species value = newPlayerBoard.get(pos);
+		int isAlive = value.getIsAlive();
 		int BodySize = value.getBodysize();
 		int population = value.getPopulation();
 		int foodconsumed = value.getFoodConsumed() + 1;
@@ -87,6 +89,7 @@ public class SpeciesBoard {
 	
 	public void updateTraitCard(int pos, String cardName) {
 		Species value = newPlayerBoard.get(pos);
+		int isAlive = value.getIsAlive();
 		int BodySize = value.getBodysize();
 		int population = value.getPopulation();
 		int foodconsumed = value.getFoodConsumed();

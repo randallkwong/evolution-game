@@ -44,6 +44,12 @@ public class Species {
 		
 	}
 	
+	
+	public int getIsAlive() {
+		return isAlive;
+	}
+
+
 	public int getPopulation() {
 		return population;
 	}
@@ -75,5 +81,7 @@ public class Species {
 	public int getFoodCapacity() {
 		return foodCapacity;
 	}
+	
+	
 	
 }
