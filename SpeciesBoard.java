@@ -28,7 +28,7 @@ public class SpeciesBoard {
 	
 	
 	public void displaySpeciesBoard() {
-		System.out.println( newPlayerBoard.size() + " species on the board." );
+		System.out.println(newPlayerBoard.size() + " species on the board." );
 		
 		for (Integer key : newPlayerBoard.keySet()) {
 			System.out.print("Species " + key + " - ");
@@ -50,7 +50,7 @@ public class SpeciesBoard {
 		boolean fatTissue = value.getFatTissue();
 		boolean climbing = value.getClimbing();
 		int numoftraitcards = value.getTraitcard();
-		Species newSpecies = new Species(BodySize,population,foodconsumed,carnivore,fatTissue,climbing,numoftraitcards);
+		Species newSpecies = new Species(population,BodySize,foodconsumed,carnivore,fatTissue,climbing,numoftraitcards);
 		newPlayerBoard.put(pos,newSpecies);
 	}
 	
@@ -63,9 +63,12 @@ public class SpeciesBoard {
 		boolean fatTissue = value.getFatTissue();
 		boolean climbing = value.getClimbing();
 		int numoftraitcards = value.getTraitcard();
-		Species newSpecies = new Species(BodySize,population,foodconsumed,carnivore,fatTissue,climbing,numoftraitcards);
+		Species newSpecies = new Species(population,BodySize,foodconsumed,carnivore,fatTissue,climbing,numoftraitcards);
 		newPlayerBoard.put(pos,newSpecies);
 	}
+	
+	
+	
 	
 	public void updateTraitCard(int pos, String cardName) {
 		Species value = newPlayerBoard.get(pos);

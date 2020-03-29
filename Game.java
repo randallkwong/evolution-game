@@ -66,7 +66,7 @@ public class Game {
 				SpeciesBoard1.updateBodySize(input4);
 			}
 			else if (input3 == 4) {
-				System.out.println("Which species would you like to increase bodysize for?");
+				System.out.println("Which species would you like to increase the population for?");
 				int input5 = scan.nextInt();
 				SpeciesBoard1.updatePopulation(input5);
 			}
@@ -94,7 +94,7 @@ public class Game {
 				SpeciesBoard2.updateBodySize(input4);
 			}
 			else if (input3 == 4) {
-				System.out.println("Which species would you like to increase bodysize for?");
+				System.out.println("Which species would you like to increase the poluation for?");
 				int input5 = scan.nextInt();
 				SpeciesBoard2.updatePopulation(input5);
 			}
@@ -102,9 +102,9 @@ public class Game {
 			System.out.println("");
 		}
 		
-		System.out.println("End of Play Card phase for Player 2");
-		
 		// TODO: Play a trait 
+		
+		System.out.println("End of Play Card phase for Player 2");
 		
 		// Phase 4 - Feeding
 		
