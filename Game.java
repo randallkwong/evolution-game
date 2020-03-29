@@ -124,15 +124,18 @@ public class Game {
 	
 	public void starveSpecies(Player currentPlayer, SpeciesBoard currentPlayersSpeciesBoard) {
 		
-		System.out.println("Handle species that starved if any");
+		String currentPlayerName = "Player " + currentPlayer.getPlayerNumber();
+		
+		System.out.println("Handle " + currentPlayerName + " species that starved if any");
 		
 		for (Integer key : currentPlayersSpeciesBoard.newPlayerBoard.keySet()) {
 			System.out.print("Species " + key + " - ");
 			Species value = currentPlayersSpeciesBoard.newPlayerBoard.get(key);
-			System.out.println("Body Size: " + value.getBodysize() + ", " + "Population: " + value.getPopulation() + ", " + "Food Consumed: " + value.getFoodConsumed());
+			System.out.println("Is Alive: " + value.getIsAlive() + ", Body Size: " + value.getBodysize() + ", " + "Population: " + value.getPopulation() + ", " + "Food Consumed: " + value.getFoodConsumed());
 			int foodDeficit = (value.getPopulation() - value.getFoodConsumed()) * -1;
 			currentPlayersSpeciesBoard.updatePopulation(key, foodDeficit);
-			System.out.println("Body Size: " + value.getBodysize() + ", " + "Population: " + value.getPopulation() + ", " + "Food Consumed: " + value.getFoodConsumed());
+			value = currentPlayersSpeciesBoard.newPlayerBoard.get(key);
+			System.out.println("Is Alive: " + value.getIsAlive() + ", Body Size: " + value.getBodysize() + ", " + "Population: " + value.getPopulation() + ", " + "Food Consumed: " + value.getFoodConsumed());
 		}
 		
 	}
@@ -176,12 +179,16 @@ public class Game {
 			
 			// Phase 2 - Each player selects food for the watering hole 
 			Scanner scan = new Scanner(System.in);
+			System.out.println("Player 1 Hand:");
+			handforPlayer1.displayHand();
 			System.out.println("Player 1, which card would you like to select for the watering hole?");
 			int input = scan.nextInt();
 			int plantfoodNum1 = handforPlayer1.getValuefromCard(input);
 			wateringHole.updateCurrentFoodAvailable(plantfoodNum1);
 			handforPlayer1.removeCardfromHand(input);
 			
+			System.out.println("Player 2 Hand:");
+			handforPlayer2.displayHand();
 			System.out.println("Player 2, which card would you like to select for the watering hole?");
 			int input2 = scan.nextInt();
 			int plantfoodNum2 = handforPlayer2.getValuefromCard(input2);
