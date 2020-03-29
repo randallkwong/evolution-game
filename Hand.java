@@ -18,6 +18,16 @@ public class Hand {
 		System.out.println("");
 	}
 	
+	public void removeCardfromHand(int CardNum) {
+		hand.remove(CardNum -1);
+		System.out.println("Change of hand. New hand is:");
+		displayHand();
+	}
+	
+	public int getHandSize() {
+		return hand.size();
+	}
+	
 	public int getValuefromCard(int CardNum) {
 		return hand.get(CardNum-1).getCardValue();
 	}

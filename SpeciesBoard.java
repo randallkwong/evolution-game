@@ -28,10 +28,10 @@ public class SpeciesBoard {
 	
 	
 	public void displaySpeciesBoard() {
-		System.out.println("There are currently " + newPlayerBoard.size() + " species on the board." );
+		System.out.println( newPlayerBoard.size() + " species on the board." );
 		
 		for (Integer key : newPlayerBoard.keySet()) {
-			System.out.println("Stats for species #" + key);
+			System.out.print("Species " + key + " - ");
 			Species value = newPlayerBoard.get(key);
 			System.out.println("Body Size: " + value.getBodysize() + ", " + "Population: " + value.getPopulation() + ", " + "Food Consumed: " + value.getFoodConsumed());
 		}
