@@ -22,8 +22,7 @@ public class Player {
 		this.playerNumber = playerNumberInput;
 		this.foodPoints = 0;
 		this.score = 0;
-		this.numberOfSpeciesInPlay = 0;
-		
+		this.numberOfSpeciesInPlay = 0;		
 	}
 
 	

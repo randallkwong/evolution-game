@@ -34,10 +34,10 @@ public class Game {
 		
 		System.out.println("Player 2, which card would you like to select for the watering hole?");
 		int input2 = scan.nextInt();
-		int plantfoodNum2 = handforPlayer2.getValuefromCard(input);
+		int plantfoodNum2 = handforPlayer2.getValuefromCard(input2);
 		wateringHole.updateCurrentFoodAvailable(plantfoodNum2);
 		
-		wateringHole.displayWH();
+		//wateringHole.displayWH();
 		
 		
 		
