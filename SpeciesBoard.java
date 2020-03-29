@@ -10,7 +10,7 @@ public class SpeciesBoard {
 	}
 	
 	//add a new species to the player board
-	public void addNewSpecies() {
+	public void addNewSpeciestoRight() {
 		int currentNumofSpecies = newPlayerBoard.size();
 		Species newSpecies = new Species(1,1,0,false,false,false,0);
 		newPlayerBoard.put(currentNumofSpecies+1, newSpecies);
