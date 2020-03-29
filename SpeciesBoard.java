@@ -2,19 +2,30 @@ import java.util.HashMap;
 
 public class SpeciesBoard {
 	HashMap <Integer, Species> newPlayerBoard;
+	Species newSpecies = new Species(1,1,0,false,false,false,0);
 	
 	public SpeciesBoard(){
 		newPlayerBoard = new HashMap <Integer, Species>();
-		Species newSpecies = new Species(1,1,0,false,false,false,0);
 		newPlayerBoard.put(1,newSpecies);
 	}
 	
-	//add a new species to the player board
+	//add a new species to the player board on the right hand side
 	public void addNewSpeciestoRight() {
 		int currentNumofSpecies = newPlayerBoard.size();
-		Species newSpecies = new Species(1,1,0,false,false,false,0);
 		newPlayerBoard.put(currentNumofSpecies+1, newSpecies);
 	}
+	
+	
+	//add a new species to the player board on the left hand side
+	public void addNewSpeciestoLeft() {
+		for (int i = newPlayerBoard.size(); i > 0; i--) {
+			Species tmp = newPlayerBoard.get(i);
+			newPlayerBoard.put(i+1,tmp);
+		}
+		newPlayerBoard.put(1,newSpecies);
+	}
+	
+	
 	
 	public void displaySpeciesBoard() {
 		System.out.println("There are currently " + newPlayerBoard.size() + " species on the board." );
