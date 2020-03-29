@@ -69,6 +69,8 @@ public class Game {
 	
 	public void feedingPhase(int i, Player currentPlayer, SpeciesBoard currentPlayersSpeciesBoard, WateringHole wateringHole, Scanner scan) {
 		
+		// TODO: Add logic to check if user wants to feed carnivorous species off the species board.
+		
 		if((i == currentPlayer.getPlayerNumber())&&(currentPlayer.getIsFeeding() == 1)) {
 
 			String currentPlayerName = "Player " + currentPlayer.getPlayerNumber();
@@ -209,6 +211,8 @@ public class Game {
 		System.out.println("End of feeding loop");			
 		
 		// Move food tokens to food bag.
+		
+		// Species that starve lose population or die.
 		
 		
 		}
