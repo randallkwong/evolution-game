@@ -3,6 +3,11 @@ import java.util.HashMap;
 
 public class Game {
 	
+	boolean gameIsNotFinished;
+	
+	public Game() {
+		this.gameIsNotFinished = false;
+	}
 	
 	public void playPhaseThree(Player currentPlayer, Hand currentPlayersHand, SpeciesBoard currentPlayersSpeciesBoard, Scanner scan) {
 
@@ -50,7 +55,7 @@ public class Game {
 				else if (input3 == 4) {
 					System.out.println("Which species would you like to increase the population for?");
 					int input5 = scan.nextInt();
-					currentPlayersSpeciesBoard.updatePopulation(input5);
+					currentPlayersSpeciesBoard.updatePopulation(input5, 1);
 				}
 				
 				// TODO: Play trait card
@@ -117,6 +122,21 @@ public class Game {
 		
 	}
 	
+	public void starveSpecies(Player currentPlayer, SpeciesBoard currentPlayersSpeciesBoard) {
+		
+		System.out.println("Handle species that starved if any");
+		
+		for (Integer key : currentPlayersSpeciesBoard.newPlayerBoard.keySet()) {
+			System.out.print("Species " + key + " - ");
+			Species value = currentPlayersSpeciesBoard.newPlayerBoard.get(key);
+			System.out.println("Body Size: " + value.getBodysize() + ", " + "Population: " + value.getPopulation() + ", " + "Food Consumed: " + value.getFoodConsumed());
+			int foodDeficit = (value.getPopulation() - value.getFoodConsumed()) * -1;
+			currentPlayersSpeciesBoard.updatePopulation(key, foodDeficit);
+			System.out.println("Body Size: " + value.getBodysize() + ", " + "Population: " + value.getPopulation() + ", " + "Food Consumed: " + value.getFoodConsumed());
+		}
+		
+	}
+	
 	public static void main(String[] args) {
 		
 		Game currentGame = new Game();
@@ -134,6 +154,7 @@ public class Game {
 		Player playerOne = new Player(1);
 		Player playerTwo = new Player(2);
 
+		// TODO: Generalize drawing cards beyond the first hand dealt.
 		
 		// Deal starting hand (4 cards each).
 		System.out.print("Drawing cards for Player 1: ");
@@ -151,73 +172,81 @@ public class Game {
 		System.out.print("Player 2 Board: ");
 		SpeciesBoard2.displaySpeciesBoard();
 		
-		// Phase 2 - Each player selects food for the watering hole 
-		Scanner scan = new Scanner(System.in);
-		System.out.println("Player 1, which card would you like to select for the watering hole?");
-		int input = scan.nextInt();
-		int plantfoodNum1 = handforPlayer1.getValuefromCard(input);
-		wateringHole.updateCurrentFoodAvailable(plantfoodNum1);
-		handforPlayer1.removeCardfromHand(input);
-		
-		System.out.println("Player 2, which card would you like to select for the watering hole?");
-		int input2 = scan.nextInt();
-		int plantfoodNum2 = handforPlayer2.getValuefromCard(input2);
-		wateringHole.updateCurrentFoodAvailable(plantfoodNum2);
-		handforPlayer2.removeCardfromHand(input2);
-		
-		
-		
-		// Phase 3 - Play Cards
-
-		// Player One plays Phase Three.
-		currentGame.playPhaseThree(playerOne, handforPlayer1, SpeciesBoard1, scan);
-		
-		// Player Two plays Phase Three.
-		currentGame.playPhaseThree(playerTwo, handforPlayer2, SpeciesBoard2, scan);
-
-		// Reveal Trait Cards
-		
-		
-		// Phase 4 - Feeding
-		
-		playerOne.isReadyToFeed();
-		playerTwo.isReadyToFeed();
-		
-		// Long Neck and Fertile handled first
-
-		wateringHole.displayWH();
-		
-		// Regular feeding loop
-		
-		System.out.println("Feeding starts!");
-		System.out.println("");
-		
-		while(playerOne.getIsFeeding() + playerTwo.getIsFeeding() != 0) {
+		while(currentGame.gameIsNotFinished == false) {
 			
-			// Loop through players and allow them the opportunity to feed.
-			// Alternate between players.
-			for(int i = 1; i < 3; i++) {
+			// Phase 2 - Each player selects food for the watering hole 
+			Scanner scan = new Scanner(System.in);
+			System.out.println("Player 1, which card would you like to select for the watering hole?");
+			int input = scan.nextInt();
+			int plantfoodNum1 = handforPlayer1.getValuefromCard(input);
+			wateringHole.updateCurrentFoodAvailable(plantfoodNum1);
+			handforPlayer1.removeCardfromHand(input);
 			
-				// Player One feeds species.
-				currentGame.feedingPhase(i, playerOne, SpeciesBoard1, wateringHole, scan);
+			System.out.println("Player 2, which card would you like to select for the watering hole?");
+			int input2 = scan.nextInt();
+			int plantfoodNum2 = handforPlayer2.getValuefromCard(input2);
+			wateringHole.updateCurrentFoodAvailable(plantfoodNum2);
+			handforPlayer2.removeCardfromHand(input2);
+			
+			
+			
+			// Phase 3 - Play Cards
+	
+			// Player One plays Phase Three.
+			currentGame.playPhaseThree(playerOne, handforPlayer1, SpeciesBoard1, scan);
+			
+			// Player Two plays Phase Three.
+			currentGame.playPhaseThree(playerTwo, handforPlayer2, SpeciesBoard2, scan);
+	
+			// Reveal Trait Cards
+			
+			
+			// Phase 4 - Feeding
+			
+			playerOne.isReadyToFeed();
+			playerTwo.isReadyToFeed();
+			
+			// Long Neck and Fertile handled first
+	
+			wateringHole.displayWH();
+			
+			// Regular feeding loop
+			
+			System.out.println("Feeding starts!");
+			System.out.println("");
+			
+			while(playerOne.getIsFeeding() + playerTwo.getIsFeeding() != 0) {
 				
-				// Player Two feeds species.
-				currentGame.feedingPhase(i, playerTwo, SpeciesBoard2, wateringHole, scan);
-
+				// Loop through players and allow them the opportunity to feed.
+				// Alternate between players.
+				for(int i = 1; i < 3; i++) {
+				
+					// Player One feeds species.
+					currentGame.feedingPhase(i, playerOne, SpeciesBoard1, wateringHole, scan);
+					
+					// Player Two feeds species.
+					currentGame.feedingPhase(i, playerTwo, SpeciesBoard2, wateringHole, scan);
+	
+					}
+	
 				}
-
-			}
+				
+			System.out.println("End of feeding loop");			
 			
-		System.out.println("End of feeding loop");			
-		
-		// Move food tokens to food bag.
-		
-		// Species that starve lose population or die.
-		
-		
-		}
+			// Handles starving species that lose population or die.
+			currentGame.starveSpecies(playerOne, SpeciesBoard1);
+			currentGame.starveSpecies(playerTwo, SpeciesBoard2);
+			
+			// Move food tokens to food bag.
+			
+			// Remove species that died.
+			
 
-		
+			System.out.println("The loop will restart to selecting cards for the watering hole now");
+			}
+
+	// End of game is not finished loop
+	}
 		
 }
 	

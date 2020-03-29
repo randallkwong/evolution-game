@@ -2,7 +2,7 @@ import java.util.HashMap;
 
 public class SpeciesBoard {
 	HashMap <Integer, Species> newPlayerBoard;
-	Species newSpecies = new Species(1,1,0,false,false,false,0);
+	Species newSpecies = new Species(1,1,1,0,false,false,false,0);
 	
 	public SpeciesBoard(){
 		newPlayerBoard = new HashMap <Integer, Species>();
@@ -50,20 +50,24 @@ public class SpeciesBoard {
 		boolean fatTissue = value.getFatTissue();
 		boolean climbing = value.getClimbing();
 		int numoftraitcards = value.getTraitcard();
-		Species newSpecies = new Species(population,BodySize,foodconsumed,carnivore,fatTissue,climbing,numoftraitcards);
+		Species newSpecies = new Species(isAlive, population,BodySize,foodconsumed,carnivore,fatTissue,climbing,numoftraitcards);
 		newPlayerBoard.put(pos,newSpecies);
 	}
 	
-	public void updatePopulation(int pos) {
+	public void updatePopulation(int pos, int amountChanged) {
 		Species value = newPlayerBoard.get(pos);
+		int isAlive = 1;
 		int BodySize = value.getBodysize();
-		int population = value.getPopulation() + 1;
+		int population = value.getPopulation() + amountChanged;
+		if(population <= 0) {
+			isAlive = 0;
+		}
 		int foodconsumed = value.getFoodConsumed();
 		boolean carnivore = value.getCarnivore();
 		boolean fatTissue = value.getFatTissue();
 		boolean climbing = value.getClimbing();
 		int numoftraitcards = value.getTraitcard();
-		Species newSpecies = new Species(population,BodySize,foodconsumed,carnivore,fatTissue,climbing,numoftraitcards);
+		Species newSpecies = new Species(isAlive, population,BodySize,foodconsumed,carnivore,fatTissue,climbing,numoftraitcards);
 		newPlayerBoard.put(pos,newSpecies);
 	}
 	
@@ -76,7 +80,7 @@ public class SpeciesBoard {
 		boolean fatTissue = value.getFatTissue();
 		boolean climbing = value.getClimbing();
 		int numoftraitcards = value.getTraitcard();
-		Species newSpecies = new Species(population,BodySize,foodconsumed,carnivore,fatTissue,climbing,numoftraitcards);
+		Species newSpecies = new Species(isAlive, population,BodySize,foodconsumed,carnivore,fatTissue,climbing,numoftraitcards);
 		newPlayerBoard.put(pos,newSpecies);
 	}
 	
@@ -101,7 +105,7 @@ public class SpeciesBoard {
 			fatTissue = true;
 		}
 		
-		Species newSpecies = new Species(BodySize,population,foodconsumed,carnivore,fatTissue,climbing,numoftraitcards);
+		Species newSpecies = new Species(isAlive, BodySize,population,foodconsumed,carnivore,fatTissue,climbing,numoftraitcards);
 		newPlayerBoard.put(pos,newSpecies);
 	}
 }

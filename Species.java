@@ -1,6 +1,9 @@
 
 public class Species {
 
+	// Indicates whether the species is currently living.
+	int isAlive;
+	
 	// The population of a species.
 	int population;
 	
@@ -21,7 +24,8 @@ public class Species {
 	// The current number of trait cards on this species. A species can not have more than 3 trait cards;
 	int numberOfTraits;
 
-	public Species(int Population, int BodySize, int FoodConsumed, boolean Carnivore, boolean FatTissue, boolean Climbing, int Traits) {
+	public Species(int isAlive, int Population, int BodySize, int FoodConsumed, boolean Carnivore, boolean FatTissue, boolean Climbing, int Traits) {
+		this.isAlive = isAlive;
 		population = Population;
 		bodySize = BodySize;
 		currentFoodConsumed = FoodConsumed;
