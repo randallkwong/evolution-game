@@ -29,6 +29,15 @@ public class Species {
 		hasFatTissue = FatTissue;
 		hasClimbing = Climbing;
 		numberOfTraits = Traits;
+		
+		if(hasFatTissue == false) {
+			foodCapacity = Population;
+		}
+		else {
+			// TODO: Food stored by fat tissue must be subtracted.
+			foodCapacity = Population + BodySize;
+		}
+		
 	}
 	
 	public int getPopulation() {
@@ -57,6 +66,10 @@ public class Species {
 	
 	public boolean getClimbing() {
 		return hasClimbing;
+	}
+
+	public int getFoodCapacity() {
+		return foodCapacity;
 	}
 	
 }

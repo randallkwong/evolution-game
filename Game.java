@@ -94,7 +94,7 @@ public class Game {
 				}
 				else {	
 					// TODO: Refactor species boards to belong to players.
-					if((currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed).getFoodConsumed() < currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed).getPopulation()) && (wateringHole.getCurrentFoodAvailable() > 0)) {
+					if((currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed).getFoodConsumed() < currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed).getFoodCapacity()) && (wateringHole.getCurrentFoodAvailable() > 0)) {
 						currentPlayersSpeciesBoard.updateFoodConsumed(speciesToFeed);
 						currentPlayersSpeciesBoard.displaySpeciesBoard();
 						
