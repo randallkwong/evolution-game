@@ -25,7 +25,11 @@ public class SpeciesBoard {
 		newPlayerBoard.put(1,newSpecies);
 	}
 	
-	
+	public int numberOfSpeciesInPlay() {
+				
+		return newPlayerBoard.size();
+		
+	}
 	
 	public void displaySpeciesBoard() {
 		System.out.println(newPlayerBoard.size() + " species on the board." );

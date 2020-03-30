@@ -157,14 +157,9 @@ public class Game {
 		Player playerOne = new Player(1);
 		Player playerTwo = new Player(2);
 
-		// TODO: Generalize drawing cards beyond the first hand dealt.
-		
-		// Deal starting hand (4 cards each).
-		System.out.print("Drawing cards for Player 1: ");
-		Hand handforPlayer1 = new Hand(4,deck);
-		
-		System.out.print("Drawing cards for Player 2: ");
-		Hand handforPlayer2 = new Hand(4,deck);
+		// Create starting hands.
+		Hand handforPlayer1 = new Hand();
+		Hand handforPlayer2 = new Hand();
 		
 		// Create starting game species board
 		SpeciesBoard SpeciesBoard1 = new SpeciesBoard();
@@ -177,8 +172,21 @@ public class Game {
 		
 		while(currentGame.gameIsNotFinished == false) {
 			
-			// Phase 2 - Each player selects food for the watering hole 
+
 			Scanner scan = new Scanner(System.in);
+			
+			// Draw cards (Starting hand is 4 cards each).
+			// Players draw one card for each species they have on the board
+			// plus three additional cards.
+			System.out.print("Drawing cards for Player 1: ");
+			handforPlayer1.drawCards(SpeciesBoard1.numberOfSpeciesInPlay() + 3, deck);
+			handforPlayer1.displayHand();
+			
+			System.out.print("Drawing cards for Player 2: ");
+			handforPlayer2.drawCards(SpeciesBoard2.numberOfSpeciesInPlay() + 3,deck);
+			handforPlayer2.displayHand();
+
+			// Phase 2 - Each player selects food for the watering hole 
 			System.out.println("Player 1 Hand:");
 			handforPlayer1.displayHand();
 			System.out.println("Player 1, which card would you like to select for the watering hole?");

@@ -3,17 +3,36 @@ import java.util.ArrayList;
 public class Hand {
 	ArrayList<Card> hand = new ArrayList<Card>();
 	
-	public Hand(int numberOfCardsToDraw, Deck deck) {
-		for (int i = 0; i < numberOfCardsToDraw; i++) {
-			Card cardDrawn = deck.drawCard();
-			hand.add(cardDrawn);
-		}
-		displayHand();
+	public Hand() {
+		
 	}
 
+	public void drawCards(int numberOfCardsToDraw, Deck deck) {	
+
+		ArrayList<Card> tempHand = getHand();	
+
+		// Draws cards and adds them to the player's hand.	
+		for(int i = 0; i < numberOfCardsToDraw; i++) {	
+			Card cardDrawn = deck.drawCard();	
+			tempHand.add(cardDrawn);	
+		}	
+
+		setHand(tempHand);	
+
+	}
+	
+	public ArrayList<Card> getHand() {	
+		return this.hand;
+	}
+	
+	public void setHand(ArrayList<Card> hand) {	
+		this.hand = hand;	
+	}
+	
 	public void displayHand() {
-		for (Card i: hand) {
-			System.out.print(i.getCardValue() + ",");
+		System.out.println();
+		for (int i = 0; i < hand.size(); i++) {
+			System.out.println("Card[" + (i+1) + "]: " + hand.get(i).getCardValue() + ", " + hand.get(i).getTrait());
 		}
 		System.out.println("");
 	}

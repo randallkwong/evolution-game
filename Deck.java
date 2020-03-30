@@ -31,8 +31,8 @@ public class Deck {
 			String trait = currentCardColumns[0];
 			int foodValue = Integer.parseInt(currentCardColumns[1]);
 			
-			// TODO: Add trait to card creation.
-			Card currentCard = new Card(foodValue);
+			// Creates a card from its food value and trait.
+			Card currentCard = new Card(foodValue, trait);
 
 			// Add the card to the deck.
 			deckBuilder.add(currentCard);
