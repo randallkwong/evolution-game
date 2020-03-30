@@ -49,6 +49,10 @@ public class Player {
 		this.endPhaseThree = 1;
 	}
 
+	public void readyForPhaseThree() {
+		this.endPhaseThree = 0;
+	}
+	
 	public int getPlayerNumber() {
 		return this.playerNumber;
 	}
@@ -65,7 +69,17 @@ public class Player {
 		this.isFeeding = 0;
 	}
 
-	
+	public int getFoodPoints() {
+		return foodPoints;
+	}
+
+	public void setFoodPoints(int foodPoints) {
+		this.foodPoints = foodPoints;
+	}
+
+	public void addFoodPoints(int foodPointsToAdd) {
+		this.foodPoints = this.foodPoints + foodPointsToAdd;
+	}
 	
 	
 	

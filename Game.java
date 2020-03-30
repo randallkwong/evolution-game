@@ -28,6 +28,7 @@ public class Game {
 
 				System.out.println(currentPlayerName + " board");
 				currentPlayersSpeciesBoard.displaySpeciesBoard();
+				System.out.println();
 
 			}
 			else {
@@ -80,7 +81,12 @@ public class Game {
 
 			String currentPlayerName = "Player " + currentPlayer.getPlayerNumber();
 			
-			// Prompt player one to feed
+			// Variable to break loop.
+			boolean ableToContinue = false;
+			
+			while(ableToContinue == false) {
+
+			// Prompt the player to feed. If the selected species to feed is invalid, re-prompt the user for input.
 			System.out.println(currentPlayerName + ": Which species would you like to feed?");
 			System.out.println("Enter 0 to skip one feeding");
 			System.out.println("Enter -1 to skip all feeding");
@@ -88,16 +94,19 @@ public class Game {
 			currentPlayersSpeciesBoard.displaySpeciesBoard();
 			
 			int speciesToFeed = scan.nextInt();
-			
+				
 			if(speciesToFeed == -1) {
 				currentPlayer.isDoneFeeding();
+				ableToContinue = true;
 			}
 			else 
 			{
 				if (speciesToFeed == 0) {
 				System.out.println(currentPlayerName + " skips one round of feeding");
+				ableToContinue = true;
 				}
-				else {	
+				else {
+					
 					// TODO: Refactor species boards to belong to players.
 					if((currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed).getFoodConsumed() < currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed).getFoodCapacity()) && (wateringHole.getCurrentFoodAvailable() > 0)) {
 						currentPlayersSpeciesBoard.updateFoodConsumed(speciesToFeed);
@@ -107,18 +116,45 @@ public class Game {
 						wateringHole.decrementFoodAvailable(1);
 						wateringHole.displayWH();
 						
+						ableToContinue = true;
+						
 					} else
 					{
 						System.out.println("You cannot feed Species " + speciesToFeed);
 					}						
 					
-					
 				}
 				
+			}
+			
+			// Next player can continue
 			}
 				
 		}		
 		
+		
+	}
+	
+	public void moveConsumedFoodToFoodBag(Player currentPlayer, SpeciesBoard currentPlayersSpeciesBoard) {
+		
+		String currentPlayerName = "Player " + currentPlayer.getPlayerNumber();
+		
+		System.out.println(currentPlayerName + " tally up food points");
+		for (Integer key : currentPlayersSpeciesBoard.newPlayerBoard.keySet()) {
+			System.out.print("Species " + key + " - ");
+			Species value = currentPlayersSpeciesBoard.newPlayerBoard.get(key);
+			int foodPointsToAdd = value.getFoodConsumed();
+			System.out.println("Food Consumed: " + value.getFoodConsumed());
+			
+			// Add consume food to player's food bag.
+			currentPlayer.addFoodPoints(foodPointsToAdd);
+			
+			// Reset food consumed for current species.
+			currentPlayersSpeciesBoard.moveFoodConsumed(key, foodPointsToAdd);
+			
+		}
+		
+		System.out.println(currentPlayerName + " has " + currentPlayer.getFoodPoints() + " food points");
 		
 	}
 	
@@ -206,6 +242,10 @@ public class Game {
 			
 			
 			// Phase 3 - Play Cards
+			
+			// Ready the players.
+			playerOne.readyForPhaseThree();
+			playerTwo.readyForPhaseThree();
 	
 			// Player One plays Phase Three.
 			currentGame.playPhaseThree(playerOne, handforPlayer1, SpeciesBoard1, scan);
@@ -253,6 +293,8 @@ public class Game {
 			currentGame.starveSpecies(playerTwo, SpeciesBoard2);
 			
 			// Move food tokens to food bag.
+			currentGame.moveConsumedFoodToFoodBag(playerOne, SpeciesBoard1);
+			currentGame.moveConsumedFoodToFoodBag(playerTwo, SpeciesBoard2);
 			
 			// Remove species that died.
 			
