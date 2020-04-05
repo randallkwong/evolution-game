@@ -43,8 +43,9 @@ public class Game {
 				
 					System.out.println(currentPlayerName + ", which card would you like to select?");
 					int selectedCardIndex = scan.nextInt();
+					String currentCardTrait = currentPlayersHand.hand.get(selectedCardIndex-1).getTrait();
 					System.out.println(currentPlayerName + ", what would you like to do with your card " + selectedCardIndex + " ?");
-					System.out.println("Press 1 to create a new species on the left; Press 2 to create new species on the right, Press 3 to increase body size, Press 4 to increase population size");			
+					System.out.println("Press 1 to create a new species on the left; Press 2 to create new species on the right, Press 3 to increase body size, Press 4 to increase population size, Press 5 to attach " + currentCardTrait);
 					
 					// Handle user actions
 		
@@ -66,6 +67,12 @@ public class Game {
 							int input5 = scan.nextInt();
 							currentPlayersSpeciesBoard.updatePopulation(input5, 1);
 						}
+						else if (input3 == 5) {
+							System.out.println("Which species would you like to attach " + currentCardTrait + "?");
+							int playTraitOnSpeciesIndex = scan.nextInt();
+// TODO							currentPlayersSpeciesBoard.someFunction(playTraitOnSpeciesIndex, currentCardTrait);
+						}
+
 						
 						// TODO: Play trait card
 						
