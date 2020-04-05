@@ -34,10 +34,18 @@ public class Species {
 		bodySize = BodySize;
 		currentFoodConsumed = FoodConsumed;
 		isCarnivore = Carnivore;
+		// TODO: get rid of Fat Tissue variable in Species constructor and Species methods.
 		hasFatTissue = FatTissue;
 		hasClimbing = Climbing;
 		numberOfTraits = Traits;
 		attachedTraitCards = AttachedTraitCards;
+		
+		hasFatTissue = false;
+		for(int i = 0; i < AttachedTraitCards.size(); i++) {
+			if(AttachedTraitCards.get(i).equals("Fat Tissue")){
+				hasFatTissue = true;
+			}
+		}
 		
 		if(hasFatTissue == false) {
 			foodCapacity = Population;
