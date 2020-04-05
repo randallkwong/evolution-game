@@ -164,7 +164,7 @@ public class SpeciesBoard {
 			int indexOfTraitsToDiscard = scan.nextInt();
 			String traitToRemove = traitsArray.get((indexOfTraitsToDiscard -1));
 			traitsArray.remove((indexOfTraitsToDiscard-1));
-			System.out.println(traitToRemove + "was replaced");
+			System.out.println(traitToRemove + " was replaced");
 			
 			traitsArray.add(cardName);
 			
