@@ -42,6 +42,17 @@ public class SpeciesBoard {
 	}
 	
 	
+	// remove species that has goes to extinction due to population size = 0
+	public void extinctSpeciesBoard() {
+		for (Integer key: newPlayerBoard.keySet()) {
+			Species values = newPlayerBoard.get(key);
+			if (values.getPopulation() == 0) {
+				newPlayerBoard.remove(key);
+			}
+		}
+	}
+	
+	
 	/*
 	 * input position of the species
 	 */

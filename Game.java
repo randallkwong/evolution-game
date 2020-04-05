@@ -182,7 +182,9 @@ public class Game {
 			value = currentPlayersSpeciesBoard.newPlayerBoard.get(key);
 			System.out.println("Is Alive: " + value.getIsAlive() + ", Body Size: " + value.getBodysize() + ", " + "Population: " + value.getPopulation() + ", " + "Food Consumed: " + value.getFoodConsumed());
 		}
-		
+		currentPlayersSpeciesBoard.extinctSpeciesBoard();
+		System.out.println("Display player board after extinction");
+		currentPlayersSpeciesBoard.displaySpeciesBoard();
 	}
 	
 	public static void main(String[] args) {
@@ -279,7 +281,7 @@ public class Game {
 			System.out.println("Feeding starts!");
 			System.out.println("");
 			
-			while(playerOne.getIsFeeding() + playerTwo.getIsFeeding() != 0) {
+			while((playerOne.getIsFeeding() + playerTwo.getIsFeeding())!= 0) {
 				
 				// Loop through players and allow them the opportunity to feed.
 				// Alternate between players.
