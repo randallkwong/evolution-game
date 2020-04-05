@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Species {
 
@@ -21,10 +23,12 @@ public class Species {
 	boolean hasFatTissue;
 	boolean hasClimbing;
 	
+	ArrayList<String> attachedTraitCards;
+	
 	// The current number of trait cards on this species. A species can not have more than 3 trait cards;
 	int numberOfTraits;
 
-	public Species(int isAlive, int Population, int BodySize, int FoodConsumed, boolean Carnivore, boolean FatTissue, boolean Climbing, int Traits) {
+	public Species(int isAlive, int Population, int BodySize, int FoodConsumed, boolean Carnivore, boolean FatTissue, boolean Climbing, int Traits, ArrayList<String> AttachedTraitCards) {
 		this.isAlive = isAlive;
 		population = Population;
 		bodySize = BodySize;
@@ -33,6 +37,7 @@ public class Species {
 		hasFatTissue = FatTissue;
 		hasClimbing = Climbing;
 		numberOfTraits = Traits;
+		attachedTraitCards = AttachedTraitCards;
 		
 		if(hasFatTissue == false) {
 			foodCapacity = Population;
@@ -82,6 +87,12 @@ public class Species {
 		return foodCapacity;
 	}
 	
-	
+	public ArrayList<String> getAttachedTraitCards() {
+		return attachedTraitCards;
+	}
+
+	public void setAttachedTraitCards(ArrayList<String> attachedTraitCards) {
+		this.attachedTraitCards = attachedTraitCards;
+	}
 	
 }
