@@ -39,8 +39,12 @@ public class Hand {
 	
 	public void removeCardfromHand(int CardNum) {
 		hand.remove(CardNum -1);
-		System.out.println("Change of hand. New hand is:");
-		displayHand();
+		//add the logic to check for empty hand.
+		int size = getHandSize();
+		if (size != 0) {
+			System.out.println("Change of hand. New hand is:");
+			displayHand();
+		}
 	}
 	
 	public int getHandSize() {

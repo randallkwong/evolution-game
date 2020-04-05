@@ -16,59 +16,68 @@ public class Game {
 		while(currentPlayer.getPhaseThreeStatus() == 0)
 		{
 			
-			currentPlayer.phaseThreeStart();
-			
-			currentPlayersHand.displayHand();
-		
-			int endTurnOrPlay = scan.nextInt();
-			
-			if(endTurnOrPlay == 1 || currentPlayersHand.getHandSize() == 0) {
+			if (currentPlayersHand.getHandSize() == 0) {
 				currentPlayer.endPhaseThree();
 				System.out.println("End of Play Card phase for " + currentPlayerName);
 
 				System.out.println(currentPlayerName + " board");
 				currentPlayersSpeciesBoard.displaySpeciesBoard();
 				System.out.println();
-
 			}
 			else {
+				currentPlayer.phaseThreeStart();
+				currentPlayersHand.displayHand();
 			
-			System.out.println(currentPlayerName + ", which card would you like to select?");
-			int selectedCardIndex = scan.nextInt();
-			System.out.println(currentPlayerName + ", what would you like to do with your card " + selectedCardIndex + " ?");
-			System.out.println("Press 1 to create a new species on the left; Press 2 to create new species on the right, Press 3 to increase body size, Press 4 to increase population size");			
+				int endTurnOrPlay = scan.nextInt();
+				
+				if(endTurnOrPlay == 1) {
+					currentPlayer.endPhaseThree();
+					System.out.println("End of Play Card phase for " + currentPlayerName);
+	
+					System.out.println(currentPlayerName + " board");
+					currentPlayersSpeciesBoard.displaySpeciesBoard();
+					System.out.println();
+	
+				}
+				else {
+				
+					System.out.println(currentPlayerName + ", which card would you like to select?");
+					int selectedCardIndex = scan.nextInt();
+					System.out.println(currentPlayerName + ", what would you like to do with your card " + selectedCardIndex + " ?");
+					System.out.println("Press 1 to create a new species on the left; Press 2 to create new species on the right, Press 3 to increase body size, Press 4 to increase population size");			
+					
+					// Handle user actions
+		
+						int input3 = scan.nextInt();
+						
+						if (input3 == 1) {
+							currentPlayersSpeciesBoard.addNewSpeciestoLeft();
+						}
+						else if (input3 == 2) {
+							currentPlayersSpeciesBoard.addNewSpeciestoRight();
+						}
+						else if (input3 == 3) {
+							System.out.println("Which species would you like to increase bodysize for?");
+							int input4 = scan.nextInt();
+							currentPlayersSpeciesBoard.updateBodySize(input4);
+						}
+						else if (input3 == 4) {
+							System.out.println("Which species would you like to increase the population for?");
+							int input5 = scan.nextInt();
+							currentPlayersSpeciesBoard.updatePopulation(input5, 1);
+						}
+						
+						// TODO: Play trait card
+						
+						// Remove card
+						currentPlayersHand.removeCardfromHand(selectedCardIndex);
+						
+						currentPlayersSpeciesBoard.displaySpeciesBoard();
+						System.out.println("");
+				}
 			
-			// Handle user actions
-
-				int input3 = scan.nextInt();
-				
-				if (input3 == 1) {
-					currentPlayersSpeciesBoard.addNewSpeciestoLeft();
-				}
-				else if (input3 == 2) {
-					currentPlayersSpeciesBoard.addNewSpeciestoRight();
-				}
-				else if (input3 == 3) {
-					System.out.println("Which species would you like to increase bodysize for?");
-					int input4 = scan.nextInt();
-					currentPlayersSpeciesBoard.updateBodySize(input4);
-				}
-				else if (input3 == 4) {
-					System.out.println("Which species would you like to increase the population for?");
-					int input5 = scan.nextInt();
-					currentPlayersSpeciesBoard.updatePopulation(input5, 1);
-				}
-				
-				// TODO: Play trait card
-				
-				// Remove card
-				currentPlayersHand.removeCardfromHand(selectedCardIndex);
-				
-				currentPlayersSpeciesBoard.displaySpeciesBoard();
-				System.out.println("");
-			}
-			
-		}	
+			}	
+		}
 		
 		
 	}
@@ -297,6 +306,8 @@ public class Game {
 			currentGame.moveConsumedFoodToFoodBag(playerTwo, SpeciesBoard2);
 			
 			// Remove species that died.
+			
+			
 			
 
 			System.out.println("The loop will restart to selecting cards for the watering hole now");
