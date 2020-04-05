@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Scanner;
 import java.util.ArrayList;
 
 public class SpeciesBoard {
@@ -39,6 +40,11 @@ public class SpeciesBoard {
 			System.out.print("Species " + key + " - ");
 			Species value = newPlayerBoard.get(key);
 			System.out.println("Body Size: " + value.getBodysize() + ", " + "Population: " + value.getPopulation() + ", " + "Food Consumed: " + value.getFoodConsumed());
+			System.out.println("Traits:");
+			for(int i = 0; i < value.getAttachedTraitCards().size(); i++) {
+				System.out.print(value.getAttachedTraitCards().get(i) + " ");			
+			}
+
 		}
 	}
 	
@@ -120,7 +126,7 @@ public class SpeciesBoard {
 		newPlayerBoard.put(pos,newSpecies);
 	}
 	
-	public void updateTraitCard(int pos, String cardName) {
+	public void updateTraitCard(int pos, String cardName, Scanner scan) {
 		Species value = newPlayerBoard.get(pos);
 		int isAlive = value.getIsAlive();
 		int BodySize = value.getBodysize();
@@ -140,6 +146,28 @@ public class SpeciesBoard {
 		}
 		if (cardName == "Fat Tissue") {
 			fatTissue = true;
+		}
+		
+		if(traitsArray.size() < 3) {
+			// Adds trait card to species' traits array.
+			traitsArray.add(cardName);
+		}
+		else {
+			// Prompt user to discard an attached trait card.
+			System.out.println("You already have 3 trait cards. Which card would you like to discard?");
+			// TODO: Give user a choice to not discard a card
+			
+			for(int i = 0; i < traitsArray.size(); i++) {
+				System.out.println((i+1) +": " + traitsArray.get(i));
+			}
+			
+			int indexOfTraitsToDiscard = scan.nextInt();
+			String traitToRemove = traitsArray.get((indexOfTraitsToDiscard -1));
+			traitsArray.remove((indexOfTraitsToDiscard-1));
+			System.out.println(traitToRemove + "was replaced");
+			
+			traitsArray.add(cardName);
+			
 		}
 		
 		Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue, climbing, numoftraitcards, traitsArray);

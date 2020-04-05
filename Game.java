@@ -70,7 +70,7 @@ public class Game {
 						else if (input3 == 5) {
 							System.out.println("Which species would you like to attach " + currentCardTrait + "?");
 							int playTraitOnSpeciesIndex = scan.nextInt();
-// TODO							currentPlayersSpeciesBoard.someFunction(playTraitOnSpeciesIndex, currentCardTrait);
+							currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex, currentCardTrait, scan);
 						}
 
 						
@@ -122,7 +122,7 @@ public class Game {
 				ableToContinue = true;
 				}
 				else {
-					
+					// TODO: Add logic which only allows player to feed a species that exists.
 					// TODO: Refactor species boards to belong to players.
 					if((currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed).getFoodConsumed() < currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed).getFoodCapacity()) && (wateringHole.getCurrentFoodAvailable() > 0)) {
 						currentPlayersSpeciesBoard.updateFoodConsumed(speciesToFeed);
