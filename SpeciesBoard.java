@@ -50,7 +50,7 @@ public class SpeciesBoard {
 	}
 	
 	
-	// remove species that has goes to extinction due to population size = 0
+	// remove species that has goes to extinction due to population size <= 0
 	public void extinctSpeciesBoard() {
 		Iterator<Integer> iterator = newPlayerBoard.keySet().iterator();
 		while (iterator.hasNext()) {
