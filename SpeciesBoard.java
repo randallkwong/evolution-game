@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -49,12 +50,13 @@ public class SpeciesBoard {
 	}
 	
 	
-	// remove species that has goes to extinction due to population size = 0
+	// remove species that has goes to extinction due to population size <= 0
 	public void extinctSpeciesBoard() {
-		for (Integer key: newPlayerBoard.keySet()) {
-			Species values = newPlayerBoard.get(key);
-			if (values.getPopulation() == 0) {
-				newPlayerBoard.remove(key);
+		Iterator<Integer> iterator = newPlayerBoard.keySet().iterator();
+		while (iterator.hasNext()) {
+			Integer key = iterator.next();
+			if (newPlayerBoard.get(key).getPopulation() <= 0) {
+				iterator.remove();
 			}
 		}
 	}
