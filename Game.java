@@ -224,7 +224,7 @@ public class Game {
 	
 	/**
 	 * This method handles species starving, which is when they do not receive food equal
-	 * to their popuulation size. Population decreases and species with no population left
+	 * to their population size. Population decreases and species with no population left
 	 * die off.
 	 * 
 	 * @param currentPlayer
