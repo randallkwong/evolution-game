@@ -1,6 +1,12 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * 
+ * This class defines a Species of the Evolution game. Species have various characteristics
+ * such as their population and body size and may receive traits to evolve new abilities during game play.
+ *
+ */
 public class Species {
 
 	// Indicates whether the species is currently living.
@@ -28,6 +34,36 @@ public class Species {
 	// The current number of trait cards on this species. A species can not have more than 3 trait cards;
 	int numberOfTraits;
 
+	/**
+	 * Constructs a species
+	 * 
+	 * @param isAlive
+	 * Takes a value to indicate with a 1 or a 0 whether a species is living or rather has starved or been eaten to zero population.
+	 * 
+	 * @param Population
+	 * Takes the population and applies it to the species.
+	 * 
+	 * @param BodySize
+	 * Takes the body size and applies it to the species.
+	 * 
+	 * @param FoodConsumed
+	 * Takes the food consumed and applies it to the species.
+	 * 
+	 * @param Carnivore
+	 * Takes the status of carnivore and applies it to the species.
+	 * 
+	 * @param FatTissue
+	 * Takes the fat tissue status and applies it to the species.
+	 * 
+	 * @param Climbing
+	 * Takes the climbing status and applies it to the species.
+	 * 
+	 * @param Traits
+	 * Takes the number of traits and appiles it to the species.
+	 * 
+	 * @param AttachedTraitCards
+	 * Takes the attached traits arraylist and applies it to the species.
+	 */
 	public Species(int isAlive, int Population, int BodySize, int FoodConsumed, boolean Carnivore, boolean FatTissue, boolean Climbing, int Traits, ArrayList<String> AttachedTraitCards) {
 		this.isAlive = isAlive;
 		population = Population;
@@ -58,47 +94,98 @@ public class Species {
 	}
 	
 	
+	/**
+	 * 
+	 * @return
+	 * Returns an integer 1 or 0 indicating whether or not a species is alive.
+	 */
 	public int getIsAlive() {
 		return isAlive;
 	}
 
 
+	/**
+	 * 
+	 * @return
+	 * Returns an integer indicating the population size of a species.
+	 */
 	public int getPopulation() {
 		return population;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 * Returns an integer indicating the body size of a species.
+	 */
 	public int getBodysize() {
 		return bodySize;
 	}
 	
+
 	public int getTraitcard() {
 		return numberOfTraits;
 	}
-	
+
+	/**
+	 * 
+	 * @return
+	 * Returns an integer indicating how much food a species has currently consumed.
+	 */
 	public int getFoodConsumed() {
 		return currentFoodConsumed;
 	}
-	
+
+	/**
+	 * 
+	 * @return
+	 * Returns a boolean indicating whether a species has the Fat Tissue trait attached.
+	 */
 	public boolean getFatTissue() {
 		return hasFatTissue;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 * Returns a boolean indicating whether a species has the Carnivore trait attached.
+	 */
 	public boolean getCarnivore() {
 		return isCarnivore;
 	}
-	
+
+	/**
+	 * 
+	 * @return
+	 * Returns a boolean indicating whether a species has the Climbing trait attached.
+	 */
 	public boolean getClimbing() {
 		return hasClimbing;
 	}
 
+	/**
+	 * 
+	 * @return
+	 * Returns an integer indicating how much food a species can consume.
+	 */
 	public int getFoodCapacity() {
 		return foodCapacity;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 * Returns an arraylist of attached trait cards for a species.
+	 */
 	public ArrayList<String> getAttachedTraitCards() {
 		return attachedTraitCards;
 	}
 
+	/**
+	 * 
+	 * @param attachedTraitCards
+	 * Takes an ArrayList of attached trait cards and applies it to a species.
+	 */
 	public void setAttachedTraitCards(ArrayList<String> attachedTraitCards) {
 		this.attachedTraitCards = attachedTraitCards;
 	}
