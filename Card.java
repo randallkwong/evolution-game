@@ -6,6 +6,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 
+/**
+ * This class defines a card by its food value and trait.
+ *
+ */
 public class Card extends Parent{
 	
 	int Card_width = 100;
@@ -15,6 +19,12 @@ public class Card extends Parent{
 	int foodValue;
 	String trait;
 	
+	/**
+	 * This constructor populates starting values for a card by its provided food value and trait.
+	 * 
+	 * @param foodValueInput - The food value of a trait card used to populate the watering hole.
+	 * @param traitInput - The trait that may be attached to a player's species.
+	 */
 	public Card(int foodValueInput, String traitInput) {
 		
 		this.foodValue = foodValueInput;
@@ -39,11 +49,18 @@ public class Card extends Parent{
 	}
 
 	
-	
+	/**
+	 * 
+	 * @return - Returns the food value of a card as an integer.
+	 */
 	public int getCardValue() {
 		return foodValue;
 	}
 
+	/**
+	 * 
+	 * @return - Returns the string value of a card's trait.
+	 */
 	public String getTrait() {
 		return trait;
 	}
