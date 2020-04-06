@@ -3,11 +3,22 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+/**
+ * 
+ * This class defines a deck of cards and methods of the deck for the game.
+ *
+ */
 public class Deck {
 
 	String filename = "evolution_cards_actual_deck.csv";
 	ArrayList<Card> gameDeck = new ArrayList<Card>();
-	
+
+	/**
+	 * This loads the possible card values for the deck based on a csv file containing
+	 * the actual card values from a physical copy of the Evolution game.
+	 * It loads those entries into an ArrayList of Cards represented by
+	 * integers (food value) and strings (traits).
+	 */
 	public void loadDeck() {
 		
 		try {
@@ -54,6 +65,10 @@ public class Deck {
 	
 	}
 
+	/**
+	 * 
+	 * @return - Returns the current card drawn.
+	 */
 	public Card drawCard() {
 		
 		Card currentCard = getGameDeck().get(0);
@@ -62,10 +77,18 @@ public class Deck {
 		
 	}
 	
+	/**
+	 * 
+	 * @return - Returns the active deck.
+	 */
 	public ArrayList<Card> getGameDeck() {
 		return this.gameDeck;
 	}
 
+	/**
+	 * 
+	 * @param gameDeck - Sets the active game deck to the provided game deck.
+	 */
 	public void setGameDeck(ArrayList<Card> gameDeck) {
 		this.gameDeck = gameDeck;
 	}
