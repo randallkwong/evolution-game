@@ -9,6 +9,24 @@ public class Game {
 		this.gameIsNotFinished = false;
 	}
 	
+	/**
+	 * 
+	 * This method handles Phase 3 of Evolution where players can discard cards to increase
+	 * population, increase body size, create new species, or attach a trait card to a species in play.
+	 * 
+	 * @param currentPlayer
+	 * Takes a player to provide details such as the number and play status.
+	 * 
+	 * @param currentPlayersHand
+	 * Takes a player's current hand so that cards may be played to the game board.
+	 * 
+	 * @param currentPlayersSpeciesBoard
+	 * Takes a player's species board so that it may be updated according to a player's actions.
+	 * 
+	 * @param scan
+	 * Takes the current scanner to capture user input.
+	 * 
+	 */
 	public void playPhaseThree(Player currentPlayer, Hand currentPlayersHand, SpeciesBoard currentPlayersSpeciesBoard, Scanner scan) {
 
 		String currentPlayerName = "Player " + currentPlayer.getPlayerNumber();
@@ -89,6 +107,24 @@ public class Game {
 		
 	}
 	
+	/**
+	 * This method handles the feeding phase of the players so they can feed their living species.
+	 * 
+	 * @param i
+	 * This keeps track of which player should take their turn as they rotate back and forth in the feeding loop.
+	 * 
+	 * @param currentPlayer
+	 * Takes the current player to keep track of things such as the player's number and play status.
+	 * 
+	 * @param currentPlayersSpeciesBoard
+	 * Takes the current player's species board so that changes to active species may be updated (ex: species receives food).
+	 * 
+	 * @param wateringHole
+	 * Takes the watering hole so that food consumed from the watering hold by herbivores can be updated as needed.
+	 * 
+	 * @param scan
+	 * Takes the active scanner so we can capture user input and apply the right player actions.
+	 */
 	public void feedingPhase(int i, Player currentPlayer, SpeciesBoard currentPlayersSpeciesBoard, WateringHole wateringHole, Scanner scan) {
 		
 		// TODO: Add logic to check if user wants to feed carnivorous species off the species board.
@@ -151,6 +187,18 @@ public class Game {
 		
 	}
 	
+	/**
+	 * This method moves food consumed by species during the feeding round to each player's
+	 * food bag where food points are collected to keep track of players' score.
+	 * 
+	 * @param currentPlayer
+	 * Takes the current player so that points may be moved to the active player's food bag.
+	 * 
+	 * @param currentPlayersSpeciesBoard
+	 * Takes the current player's species board so that food consumed may be cleared from
+	 * the species that were fed to the player's food bag, essentially resetting them for the next round.
+	 * 
+	 */
 	public void moveConsumedFoodToFoodBag(Player currentPlayer, SpeciesBoard currentPlayersSpeciesBoard) {
 		
 		String currentPlayerName = "Player " + currentPlayer.getPlayerNumber();
@@ -174,6 +222,17 @@ public class Game {
 		
 	}
 	
+	/**
+	 * This method handles species starving, which is when they do not receive food equal
+	 * to their popuulation size. Population decreases and species with no population left
+	 * die off.
+	 * 
+	 * @param currentPlayer
+	 * Takes the current player so that we keep track of the player's identity when providing game updates.
+	 * 
+	 * @param currentPlayersSpeciesBoard
+	 * Takes the current player's species board so that updates to species' populations and status as living or not living can be updated.
+	 */
 	public void starveSpecies(Player currentPlayer, SpeciesBoard currentPlayersSpeciesBoard) {
 		
 		String currentPlayerName = "Player " + currentPlayer.getPlayerNumber();
