@@ -37,6 +37,14 @@ public class GameRun {
 
 			Scanner scan = new Scanner(System.in);
 			
+			// If a player begins a round with no living species, they get
+			// one created for free.
+			if(SpeciesBoard1.numberOfSpeciesInPlay() == 0) {
+				SpeciesBoard1.addNewSpeciestoRight();
+			}
+			if(SpeciesBoard2.numberOfSpeciesInPlay() == 0) {
+				SpeciesBoard2.addNewSpeciestoRight();
+			}
 			// Draw cards (Starting hand is 4 cards each).
 			// Players draw one card for each species they have on the board
 			// plus three additional cards.
