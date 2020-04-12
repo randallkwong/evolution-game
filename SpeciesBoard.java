@@ -194,7 +194,7 @@ public class SpeciesBoard {
 	 * Takes the active scanner to capture user input.
 	 * 
 	 */
-	public void updateTraitCard(int pos, String cardName, Scanner scan) {
+	public void updateTraitCard(int pos, String cardName, int userInput) {
 		Species value = newPlayerBoard.get(pos);
 		int isAlive = value.getIsAlive();
 		int BodySize = value.getBodysize();
@@ -229,7 +229,7 @@ public class SpeciesBoard {
 				System.out.println((i+1) +": " + traitsArray.get(i));
 			}
 			
-			int indexOfTraitsToDiscard = scan.nextInt();
+			int indexOfTraitsToDiscard = userInput;
 			String traitToRemove = traitsArray.get((indexOfTraitsToDiscard -1));
 			traitsArray.remove((indexOfTraitsToDiscard-1));
 			System.out.println(traitToRemove + " was replaced");

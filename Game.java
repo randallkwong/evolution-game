@@ -1,8 +1,16 @@
 import java.util.Scanner;
+
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
+
 import java.util.HashMap;
 
 public class Game {
 	
+	//Button btnEndRound;
+	
+	Card card;
 	boolean gameIsNotFinished;
 	
 	public Game() {
@@ -27,7 +35,8 @@ public class Game {
 	 * Takes the current scanner to capture user input.
 	 * 
 	 */
-	public void playPhaseThree(Player currentPlayer, Hand currentPlayersHand, SpeciesBoard currentPlayersSpeciesBoard, Scanner scan) {
+	
+	public void playPhaseThree(Player currentPlayer, Hand currentPlayersHand, SpeciesBoard currentPlayersSpeciesBoard) {
 
 		String currentPlayerName = "Player " + currentPlayer.getPlayerNumber();
 		
@@ -45,61 +54,98 @@ public class Game {
 			else {
 				currentPlayer.phaseThreeStart();
 				currentPlayersHand.displayHand();
-			
-				int endTurnOrPlay = scan.nextInt();
 				
-				if(endTurnOrPlay == 1) {
-					currentPlayer.endPhaseThree();
-					System.out.println("End of Play Card phase for " + currentPlayerName);
-	
-					System.out.println(currentPlayerName + " board");
-					currentPlayersSpeciesBoard.displaySpeciesBoard();
-					System.out.println();
-	
-				}
-				else {
-				
-					System.out.println(currentPlayerName + ", which card would you like to select?");
-					int selectedCardIndex = scan.nextInt();
-					String currentCardTrait = currentPlayersHand.hand.get(selectedCardIndex-1).getTrait();
-					System.out.println(currentPlayerName + ", what would you like to do with your card " + selectedCardIndex + " ?");
-					System.out.println("Press 1 to create a new species on the left; Press 2 to create new species on the right, Press 3 to increase body size, Press 4 to increase population size, Press 5 to attach " + currentCardTrait);
+					TextInputDialog td_endRound = new TextInputDialog("Would you like to end this round?");
+					td_endRound.setHeaderText("If you'd like to end this round, please enter 1");
+					TextField endRoundInput = td_endRound.getEditor();
+					td_endRound.showAndWait();
 					
-					// Handle user actions
+					int endTurnOrPlay = Integer.parseInt(endRoundInput.getText());
+					
+					if(endTurnOrPlay == 1) {
+						currentPlayer.endPhaseThree();
+						System.out.println("End of Play Card phase for " + currentPlayerName);
 		
-						int input3 = scan.nextInt();
-						
-						if (input3 == 1) {
-							currentPlayersSpeciesBoard.addNewSpeciestoLeft();
-						}
-						else if (input3 == 2) {
-							currentPlayersSpeciesBoard.addNewSpeciestoRight();
-						}
-						else if (input3 == 3) {
-							System.out.println("Which species would you like to increase bodysize for?");
-							int input4 = scan.nextInt();
-							currentPlayersSpeciesBoard.updateBodySize(input4);
-						}
-						else if (input3 == 4) {
-							System.out.println("Which species would you like to increase the population for?");
-							int input5 = scan.nextInt();
-							currentPlayersSpeciesBoard.updatePopulation(input5, 1);
-						}
-						else if (input3 == 5) {
-							System.out.println("Which species would you like to attach " + currentCardTrait + "?");
-							int playTraitOnSpeciesIndex = scan.nextInt();
-							currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex, currentCardTrait, scan);
-						}
-
-						
-						// TODO: Play trait card
-						
-						// Remove card
-						currentPlayersHand.removeCardfromHand(selectedCardIndex);
-						
+						System.out.println(currentPlayerName + " board");
 						currentPlayersSpeciesBoard.displaySpeciesBoard();
-						System.out.println("");
-				}
+						System.out.println();
+		
+					}
+					else {
+						System.out.println(currentPlayerName + ", which card would you like to select?");
+						
+						TextInputDialog td_card = new TextInputDialog("Enter card selection");
+						td_card.setHeaderText("which card would you like to select?");
+						td_card.setContentText("Card");
+						TextField cardInput = td_card.getEditor();
+						td_card.showAndWait();
+
+						int selectedCardIndex = Integer.parseInt(cardInput.getText());
+						String currentCardTrait = currentPlayersHand.hand.get(selectedCardIndex-1).getTrait();
+						System.out.println(currentPlayerName + ", what would you like to do with your card " + selectedCardIndex + " ?");
+						//System.out.println("Press 1 to create a new species on the left; Press 2 to create new species on the right, Press 3 to increase body size, Press 4 to increase population size, Press 5 to attach " + currentCardTrait);
+						
+						TextInputDialog td_action = new TextInputDialog("Enter action for this card");
+						
+						td_action.setHeaderText("Enter action for this card: Press 1 to create a new species on the left; Press 2 to create new species on the right, Press 3 to increase body size, Press 4 to increase population size, Press 5 to attach traits");
+						td_action.setContentText("Action");
+						TextField actionInput = td_action.getEditor();
+						
+						TextInputDialog td_species = new TextInputDialog("Enter species for this action");
+						
+						td_species.setHeaderText("Select a species");
+						td_species.setContentText("Species");
+						TextField speciesInput = td_species.getEditor();
+						
+						TextInputDialog td_traits = new TextInputDialog("Enter trait to replace");
+						
+						td_traits.setHeaderText("Select a trait card to replace");
+						td_traits.setContentText("Trait");
+						TextField traitsInput = td_species.getEditor();
+						
+						// Handle user actions
+							td_action.showAndWait();
+							int input3 = Integer.parseInt(actionInput.getText());
+							//int input3 = scan.nextInt();
+							
+							if (input3 == 1) {
+								currentPlayersSpeciesBoard.addNewSpeciestoLeft();
+							}
+							else if (input3 == 2) {
+								currentPlayersSpeciesBoard.addNewSpeciestoRight();
+							}
+							else if (input3 == 3) {
+								System.out.println("Which species would you like to increase bodysize for?");
+								
+								int input4 = Integer.parseInt(speciesInput.getText());
+								//int input4 = scan.nextInt();
+								currentPlayersSpeciesBoard.updateBodySize(input4);
+							}
+							else if (input3 == 4) {
+								System.out.println("Which species would you like to increase the population for?");
+								int input5 = Integer.parseInt(speciesInput.getText());
+								//int input5 = scan.nextInt();
+								currentPlayersSpeciesBoard.updatePopulation(input5, 1);
+							}
+							else if (input3 == 5) {
+								System.out.println("Which species would you like to attach " + currentCardTrait + "?");
+								int playTraitOnSpeciesIndex = Integer.parseInt(speciesInput.getText());
+								currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex, card.getTrait(), Integer.parseInt(traitsInput.getText()));
+								
+								//int playTraitOnSpeciesIndex = scan.nextInt();
+								//currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex, currentCardTrait, scan);
+							}
+
+							
+							// TODO: Play trait card
+							
+							// Remove card
+							currentPlayersHand.removeCardfromHand(selectedCardIndex);
+							
+							currentPlayersSpeciesBoard.displaySpeciesBoard();
+							System.out.println("");
+					}
+				//int endTurnOrPlay = scan.nextInt();
 			
 			}	
 		}
@@ -125,7 +171,7 @@ public class Game {
 	 * @param scan
 	 * Takes the active scanner so we can capture user input and apply the right player actions.
 	 */
-	public void feedingPhase(int i, Player currentPlayer, SpeciesBoard currentPlayersSpeciesBoard, WateringHole wateringHole, Scanner scan) {
+	public void feedingPhase(int i, Player currentPlayer, SpeciesBoard currentPlayersSpeciesBoard, WateringHole wateringHole) {
 		
 		// TODO: Add logic to check if user wants to feed carnivorous species off the species board.
 		
@@ -137,15 +183,18 @@ public class Game {
 			boolean ableToContinue = false;
 			
 			while(ableToContinue == false) {
-
+				
 			// Prompt the player to feed. If the selected species to feed is invalid, re-prompt the user for input.
-			System.out.println(currentPlayerName + ": Which species would you like to feed?");
-			System.out.println("Enter 0 to skip one feeding");
-			System.out.println("Enter -1 to skip all feeding");
+			TextInputDialog td_species1 = new TextInputDialog("Enter species for this action. Enter 0 to skip one feeding. Enter -1 to skip all feeding");
+				
+			td_species1.setHeaderText("Select a species");
+			td_species1.setContentText("Species");
+			td_species1.showAndWait();
+			TextField speciesInput = td_species1.getEditor();
 			
 			currentPlayersSpeciesBoard.displaySpeciesBoard();
 			
-			int speciesToFeed = scan.nextInt();
+			int speciesToFeed = Integer.parseInt(speciesInput.getText());
 				
 			if(speciesToFeed == -1) {
 				currentPlayer.isDoneFeeding();
