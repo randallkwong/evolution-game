@@ -97,12 +97,6 @@ public class Game {
 						td_species.setContentText("Species");
 						TextField speciesInput = td_species.getEditor();
 						
-						TextInputDialog td_traits = new TextInputDialog("Enter trait to replace");
-						
-						td_traits.setHeaderText("Select a trait card to replace");
-						td_traits.setContentText("Trait");
-						TextField traitsInput = td_species.getEditor();
-						
 						// Handle user actions
 							td_action.showAndWait();
 							int input3 = Integer.parseInt(actionInput.getText());
@@ -130,7 +124,7 @@ public class Game {
 							else if (input3 == 5) {
 								System.out.println("Which species would you like to attach " + currentCardTrait + "?");
 								int playTraitOnSpeciesIndex = Integer.parseInt(speciesInput.getText());
-								currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex, card.getTrait(), Integer.parseInt(traitsInput.getText()));
+								currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex, currentCardTrait);
 								
 								//int playTraitOnSpeciesIndex = scan.nextInt();
 								//currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex, currentCardTrait, scan);

@@ -1,6 +1,10 @@
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
+
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
+
 import java.util.ArrayList;
 
 /**
@@ -194,7 +198,7 @@ public class SpeciesBoard {
 	 * Takes the active scanner to capture user input.
 	 * 
 	 */
-	public void updateTraitCard(int pos, String cardName, int userInput) {
+	public void updateTraitCard(int pos, String cardName) {
 		Species value = newPlayerBoard.get(pos);
 		int isAlive = value.getIsAlive();
 		int BodySize = value.getBodysize();
@@ -229,7 +233,13 @@ public class SpeciesBoard {
 				System.out.println((i+1) +": " + traitsArray.get(i));
 			}
 			
-			int indexOfTraitsToDiscard = userInput;
+			TextInputDialog td_traits = new TextInputDialog("Enter trait to replace");
+			
+			td_traits.setHeaderText("Select a trait card to replace");
+			td_traits.setContentText("Trait");
+			TextField traitsInput = td_traits.getEditor();
+			
+			int indexOfTraitsToDiscard = Integer.parseInt(traitsInput.getText());
 			String traitToRemove = traitsArray.get((indexOfTraitsToDiscard -1));
 			traitsArray.remove((indexOfTraitsToDiscard-1));
 			System.out.println(traitToRemove + " was replaced");
