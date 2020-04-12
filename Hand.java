@@ -1,15 +1,20 @@
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
+
 /**
  * 
  * The Hand class keep track of each player's hand, which contains their trait cards.
  *
  */
 public class Hand {
-	ArrayList<Card> hand = new ArrayList<Card>();
+	//ArrayList<Card> hand = new ArrayList<Card>();
+	ObservableList<Node> hand = FXCollections.observableArrayList();
 	
-	public Hand() {
-		
+	public Hand(ObservableList<Node> cards) {
+		this.hand = cards;
 	}
 
 	/**
@@ -24,15 +29,15 @@ public class Hand {
 	 */
 	public void drawCards(int numberOfCardsToDraw, Deck deck) {	
 
-		ArrayList<Card> tempHand = getHand();	
+		//ArrayList<Card> tempHand = getHand();	
 
 		// Draws cards and adds them to the player's hand.	
 		for(int i = 0; i < numberOfCardsToDraw; i++) {	
 			Card cardDrawn = deck.drawCard();	
-			tempHand.add(cardDrawn);	
+			hand.add(cardDrawn);	
 		}	
 
-		setHand(tempHand);	
+		//setHand(tempHand);	
 
 	}
 	
@@ -42,7 +47,7 @@ public class Hand {
 	 * @return
 	 * Return's the hand
 	 */
-	public ArrayList<Card> getHand() {	
+	public ObservableList<Node> getHand() {	
 		return this.hand;
 	}
 
@@ -52,7 +57,7 @@ public class Hand {
 	 * @param hand
 	 * Takes a hand to replace the active hand with.
 	 */
-	public void setHand(ArrayList<Card> hand) {	
+	public void setHand(ObservableList<Node> hand) {	
 		this.hand = hand;	
 	}
 	
@@ -62,7 +67,7 @@ public class Hand {
 	public void displayHand() {
 		System.out.println();
 		for (int i = 0; i < hand.size(); i++) {
-			System.out.println("Card[" + (i+1) + "]: " + hand.get(i).getCardValue() + ", " + hand.get(i).getTrait());
+			System.out.println("Card[" + (i+1) + "]: " + ((Card) hand.get(i)).getCardValue() + ", " + ((Card) hand.get(i)).getTrait());
 		}
 		System.out.println("");
 	}
@@ -103,6 +108,6 @@ public class Hand {
 	 * 
 	 */
 	public int getValuefromCard(int CardNum) {
-		return hand.get(CardNum-1).getCardValue();
+		return ((Card) hand.get(CardNum-1)).getCardValue();
 	}
 }

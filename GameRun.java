@@ -1,10 +1,13 @@
 import java.util.Scanner;
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -13,46 +16,39 @@ import javafx.scene.control.Alert.AlertType;
 public class GameRun extends Application {
 	Stage window;
 	Scene scene;
-	Button btnSubmit1,btnSubmit2, btnPlay, btnFeed;
+	Button btnSubmit1,btnSubmit2, btnPlay, btnFeed, btnContinue;
 	static Game currentGame = new Game();
 	static WateringHole wateringHole = new WateringHole();
 	static Deck deck = new Deck();
 	static Player playerOne = new Player(1);
 	static Player playerTwo = new Player(2);
-	static Hand handforPlayer1 = new Hand();
-	static Hand handforPlayer2 = new Hand();
+	static Hand handforPlayer1, handforPlayer2;
 	static SpeciesBoard SpeciesBoard1 = new SpeciesBoard();
 	static SpeciesBoard SpeciesBoard2 = new SpeciesBoard();
 	Card card;
 	
+	HBox player1Cards = new HBox (20);
+	HBox player2Cards = new HBox (20);
 	
-	public static void main(String[] args) {
-		launch(args);
-	}
 	
 	public void start(Stage primaryStage) throws Exception {
+		handforPlayer1 = new Hand(player1Cards.getChildren());	
+		handforPlayer2 = new Hand(player2Cards.getChildren());
+		
 		window = primaryStage;
 		window.setTitle("Evolution Game");
 	
-		startNewGame();
+		startNewGame();	
 		
-		while(currentGame.gameIsNotFinished == false) {
-			if(SpeciesBoard1.numberOfSpeciesInPlay() == 0) {
-				SpeciesBoard1.addNewSpeciestoRight();
-			}
-			if(SpeciesBoard2.numberOfSpeciesInPlay() == 0) {
-				SpeciesBoard2.addNewSpeciestoRight();
-			}
-			// Draw cards (Starting hand is 4 cards each).
-			// Players draw one card for each species they have on the board
-			// plus three additional cards.
-			System.out.print("Drawing cards for Player 1: ");
-			handforPlayer1.drawCards(SpeciesBoard1.numberOfSpeciesInPlay() + 3, deck);
-			handforPlayer1.displayHand();
-
-			System.out.print("Drawing cards for Player 2: ");
-			handforPlayer2.drawCards(SpeciesBoard2.numberOfSpeciesInPlay() + 3, deck);
-			handforPlayer2.displayHand();
+		
+		
+		//while(currentGame.gameIsNotFinished == false) {
+		
+			btnContinue = new Button ("Start new round");
+			btnContinue.setOnAction(e -> {
+				startNewRound();
+			});
+			
 			
 			//Phase 2 - select food for watering hole
 			
@@ -61,21 +57,25 @@ public class GameRun extends Application {
 				TextInputDialog td_wh1 = new TextInputDialog("Player 1: Which watering hole would you like to select?");
 				td_wh1.setContentText("Card for Watering Hole");
 				TextField userInput = td_wh1.getEditor();
+				td_wh1.showAndWait();
 				
 				String input  = userInput.getText();
 				int plantfoodNum1 = handforPlayer1.getValuefromCard(Integer.parseInt(input));
 				wateringHole.updateCurrentFoodAvailable(plantfoodNum1);
 				handforPlayer1.removeCardfromHand(Integer.parseInt(input));
 
-				TextInputDialog td_wh2 = new TextInputDialog("Player 1: Which watering hole would you like to select?");
+				TextInputDialog td_wh2 = new TextInputDialog("Player 2: Which watering hole would you like to select?");
 				td_wh2.setContentText("Card for Watering Hole");
 				TextField userInput2 = td_wh2.getEditor();
+				td_wh2.showAndWait();
 				
 				String input2  = userInput2.getText();
 				int plantfoodNum2 = handforPlayer2.getValuefromCard(Integer.parseInt(input2));
 				wateringHole.updateCurrentFoodAvailable(plantfoodNum2);
 				handforPlayer2.removeCardfromHand(Integer.parseInt(input2));	
 			});
+			
+			System.out.println("Finish of plant food selection");
 				
 			// Phase 3 - Play Cards
 			
@@ -98,25 +98,63 @@ public class GameRun extends Application {
 			
 			// Reveal Trait Cards
 			
+			System.out.println("Finish of phase 3");
+			
 			btnFeed = new Button ("Feed");
 			btnFeed.setOnAction(e -> {
 				feeding();
 			});
 			
+			System.out.println("Finish of feeding");
+			
 			// Layout
-			VBox layout = new VBox(10);
-			layout.setPadding(new Insets(20, 20, 20, 20));
-
-			//layout.getChildren().addAll(btnPlay, btnSubmit1, btnSubmit2, btnFeed);
-
-			scene = new Scene(layout, 300, 250);
+			
+			BorderPane border = new BorderPane();
+			HBox P1Card = addHBox1();
+			HBox P2Card = addHBox2();
+			border.setTop(P1Card);
+			border.setBottom(P2Card);
+			border.setLeft(addVBox());
+			
+			scene = new Scene(border, 300, 250);
 			window.setScene(scene);
 			window.show();
+			
+			
 		}
 
 		// End of game is not finished loop	
 
+	//}
+	public HBox addHBox1() {
+	    HBox hbox = new HBox();
+	    hbox.setPadding(new Insets(15, 12, 15, 12));
+	    hbox.setSpacing(10);
+	    hbox.setStyle("-fx-background-color: #336699;");
+	    Text Player1CardInstruction = new Text ("Player 1 Cards:"); 
+	    hbox.getChildren().addAll(Player1CardInstruction, player1Cards);
+
+	    return hbox;
 	}
+	
+	public HBox addHBox2() {
+	    HBox hbox = new HBox();
+	    hbox.setPadding(new Insets(15, 12, 15, 12));
+	    hbox.setSpacing(10);
+	    hbox.setStyle("-fx-background-color: #336699;");
+	    Text Player2CardInstruction = new Text ("Player 2 Cards:"); 
+	    hbox.getChildren().addAll(Player2CardInstruction, player2Cards);
+
+	    return hbox;
+	}
+	
+	public VBox addVBox() {
+		VBox layout = new VBox(10);
+		layout.setPadding(new Insets(20, 20, 20, 20));
+		layout.getChildren().addAll(btnContinue, btnPlay, btnSubmit1, btnSubmit2, btnFeed);
+		return layout;
+	}
+	
 	
 	public static void startNewGame(){	
 		// Create and shuffle deck
@@ -132,6 +170,25 @@ public class GameRun extends Application {
 		System.out.print("Player 2 Board: ");
 		SpeciesBoard2.displaySpeciesBoard();
 		
+	}
+	
+	public static void startNewRound() {
+		if(SpeciesBoard1.numberOfSpeciesInPlay() == 0) {
+			SpeciesBoard1.addNewSpeciestoRight();
+		}
+		if(SpeciesBoard2.numberOfSpeciesInPlay() == 0) {
+			SpeciesBoard2.addNewSpeciestoRight();
+		}
+		// Draw cards (Starting hand is 4 cards each).
+		// Players draw one card for each species they have on the board
+		// plus three additional cards.
+		System.out.print("Drawing cards for Player 1: ");
+		handforPlayer1.drawCards(SpeciesBoard1.numberOfSpeciesInPlay() + 3, deck);
+		handforPlayer1.displayHand();
+
+		System.out.print("Drawing cards for Player 2: ");
+		handforPlayer2.drawCards(SpeciesBoard2.numberOfSpeciesInPlay() + 3, deck);
+		handforPlayer2.displayHand();
 	}
 	
 	public static void feeding() {
@@ -179,6 +236,11 @@ public class GameRun extends Application {
 
 		System.out.println("The loop will restart to selecting cards for the watering hole now");
 	}
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
+	
 	
 	
 }

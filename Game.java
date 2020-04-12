@@ -81,7 +81,7 @@ public class Game {
 						td_card.showAndWait();
 
 						int selectedCardIndex = Integer.parseInt(cardInput.getText());
-						String currentCardTrait = currentPlayersHand.hand.get(selectedCardIndex-1).getTrait();
+						String currentCardTrait = ((Card) currentPlayersHand.hand.get(selectedCardIndex-1)).getTrait();
 						System.out.println(currentPlayerName + ", what would you like to do with your card " + selectedCardIndex + " ?");
 						//System.out.println("Press 1 to create a new species on the left; Press 2 to create new species on the right, Press 3 to increase body size, Press 4 to increase population size, Press 5 to attach " + currentCardTrait);
 						
@@ -90,6 +90,7 @@ public class Game {
 						td_action.setHeaderText("Enter action for this card: Press 1 to create a new species on the left; Press 2 to create new species on the right, Press 3 to increase body size, Press 4 to increase population size, Press 5 to attach traits");
 						td_action.setContentText("Action");
 						TextField actionInput = td_action.getEditor();
+						td_action.showAndWait();
 						
 						TextInputDialog td_species = new TextInputDialog("Enter species for this action");
 						
@@ -97,8 +98,9 @@ public class Game {
 						td_species.setContentText("Species");
 						TextField speciesInput = td_species.getEditor();
 						
+						
 						// Handle user actions
-							td_action.showAndWait();
+							
 							int input3 = Integer.parseInt(actionInput.getText());
 							//int input3 = scan.nextInt();
 							
@@ -110,13 +112,14 @@ public class Game {
 							}
 							else if (input3 == 3) {
 								System.out.println("Which species would you like to increase bodysize for?");
-								
+								td_species.showAndWait();
 								int input4 = Integer.parseInt(speciesInput.getText());
 								//int input4 = scan.nextInt();
 								currentPlayersSpeciesBoard.updateBodySize(input4);
 							}
 							else if (input3 == 4) {
 								System.out.println("Which species would you like to increase the population for?");
+								td_species.showAndWait();
 								int input5 = Integer.parseInt(speciesInput.getText());
 								//int input5 = scan.nextInt();
 								currentPlayersSpeciesBoard.updatePopulation(input5, 1);
@@ -179,11 +182,11 @@ public class Game {
 			while(ableToContinue == false) {
 				
 			// Prompt the player to feed. If the selected species to feed is invalid, re-prompt the user for input.
-			TextInputDialog td_species1 = new TextInputDialog("Enter species for this action. Enter 0 to skip one feeding. Enter -1 to skip all feeding");
+			TextInputDialog td_species1 = new TextInputDialog();
 				
-			td_species1.setHeaderText("Select a species");
+			td_species1.setHeaderText(currentPlayerName + ", Enter species for feeding. Enter 0 to skip one feeding. Enter -1 to skip all feeding");
 			td_species1.setContentText("Species");
-			td_species1.showAndWait();
+			td_species1.showAndWait(); 
 			TextField speciesInput = td_species1.getEditor();
 			
 			currentPlayersSpeciesBoard.displaySpeciesBoard();
@@ -205,6 +208,7 @@ public class Game {
 					// TODO: Refactor species boards to belong to players.
 					if((currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed).getFoodConsumed() < currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed).getFoodCapacity()) && (wateringHole.getCurrentFoodAvailable() > 0)) {
 						currentPlayersSpeciesBoard.updateFoodConsumed(speciesToFeed);
+						System.out.println("Displaying Species Board for " + currentPlayerName);
 						currentPlayersSpeciesBoard.displaySpeciesBoard();
 						
 						// Decrement available food in the watering hole.
@@ -213,7 +217,14 @@ public class Game {
 						
 						ableToContinue = true;
 						
-					} else
+					} 
+					// Add logic to handle case where there is no plant food available in the watering hole
+					else if (wateringHole.getCurrentFoodAvailable() == 0) {
+						currentPlayer.isDoneFeeding();
+						ableToContinue = true;
+					}
+					
+					else
 					{
 						System.out.println("You cannot feed Species " + speciesToFeed);
 					}						

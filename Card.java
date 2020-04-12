@@ -64,5 +64,4 @@ public class Card extends Parent{
 	public String getTrait() {
 		return trait;
 	}
-	
 }

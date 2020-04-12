@@ -238,6 +238,7 @@ public class SpeciesBoard {
 			td_traits.setHeaderText("Select a trait card to replace");
 			td_traits.setContentText("Trait");
 			TextField traitsInput = td_traits.getEditor();
+			td_traits.showAndWait();
 			
 			int indexOfTraitsToDiscard = Integer.parseInt(traitsInput.getText());
 			String traitToRemove = traitsArray.get((indexOfTraitsToDiscard -1));
