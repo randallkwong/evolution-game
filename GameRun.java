@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.BorderPane;
@@ -17,6 +18,10 @@ public class GameRun extends Application {
 	Stage window;
 	Scene scene;
 	Button btnSubmit1,btnSubmit2, btnPlay, btnFeed, btnContinue;
+	
+	// This will serve as "console log" in the player facing frontend.
+	Label pseudoConsoleLog = new Label("Player instructions");
+	
 	static Game currentGame = new Game();
 	static WateringHole wateringHole = new WateringHole();
 	static Deck deck = new Deck();
@@ -51,7 +56,6 @@ public class GameRun extends Application {
 		window.setTitle("Evolution Game");
 	
 		startNewGame();	
-		
 		
 		
 		//while(currentGame.gameIsNotFinished == false) {
@@ -100,14 +104,14 @@ public class GameRun extends Application {
 			btnSubmit1 = new Button ("Player 1: Start Phase 3");
 			btnSubmit1.setOnAction(e -> {
 				playerOne.readyForPhaseThree();
-				currentGame.playPhaseThree(playerOne, handforPlayer1, SpeciesBoard1);
+				currentGame.playPhaseThree(playerOne, handforPlayer1, SpeciesBoard1, pseudoConsoleLog);
 			});
 	
 			// Player Two plays Phase Three.
 			btnSubmit2 = new Button ("Player 2: Start Phase 3");
 			btnSubmit2.setOnAction(e -> {
 				playerTwo.readyForPhaseThree();
-				currentGame.playPhaseThree(playerTwo, handforPlayer2, SpeciesBoard2);
+				currentGame.playPhaseThree(playerTwo, handforPlayer2, SpeciesBoard2, pseudoConsoleLog);
 			});
 			
 			// Reveal Trait Cards
@@ -194,7 +198,7 @@ public class GameRun extends Application {
 	public VBox Buttons() {
 		VBox layout = new VBox(10);
 		layout.setPadding(new Insets(20, 20, 20, 20));
-		layout.getChildren().addAll(btnContinue, btnPlay, btnSubmit1, btnSubmit2, btnFeed);
+		layout.getChildren().addAll(btnContinue, btnPlay, btnSubmit1, btnSubmit2, btnFeed, pseudoConsoleLog);
 		return layout;
 	}
 	public VBox addVBox() {

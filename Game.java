@@ -1,7 +1,7 @@
 import java.util.Scanner;
-
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 
@@ -37,8 +37,9 @@ public class Game {
 	 * 
 	 */
 	
-	public void playPhaseThree(Player currentPlayer, Hand currentPlayersHand, SpeciesBoard currentPlayersSpeciesBoard) {
+	public void playPhaseThree(Player currentPlayer, Hand currentPlayersHand, SpeciesBoard currentPlayersSpeciesBoard, Label pseudoConsoleLog) {
 
+		
 		String currentPlayerName = "Player " + currentPlayer.getPlayerNumber();
 		
 		while(currentPlayer.getPhaseThreeStatus() == 0)
@@ -112,24 +113,34 @@ public class Game {
 								currentPlayersSpeciesBoard.addNewSpeciestoRight();
 							}
 							else if (input3 == 3) {
-								System.out.println("Which species would you like to increase bodysize for?");
+								pseudoConsoleLog.setText("Which species would you like to increase bodysize for?");
 								td_species.showAndWait();
 								int input4 = Integer.parseInt(speciesInput.getText());
 								//int input4 = scan.nextInt();
 								currentPlayersSpeciesBoard.updateBodySize(input4-1);
+								
+								// Clears player prompt
+								pseudoConsoleLog.setText("");
 							}
 							else if (input3 == 4) {
-								System.out.println("Which species would you like to increase the population for?");
+								pseudoConsoleLog.setText("Which species would you like to increase the population for?");
 								td_species.showAndWait();
 								int input5 = Integer.parseInt(speciesInput.getText());
 								//int input5 = scan.nextInt();
 								currentPlayersSpeciesBoard.updatePopulation(input5-1, 1);
+								
+								// Clears player prompt
+								pseudoConsoleLog.setText("");
 							}
 							else if (input3 == 5) {
-								System.out.println("Which species would you like to attach " + currentCardTrait + "?");
+								String whichSpeciesToAttachPrompt = "Which species would you like to attach " + currentCardTrait + "?";
+								pseudoConsoleLog.setText(whichSpeciesToAttachPrompt);
 								td_species.showAndWait();
 								int playTraitOnSpeciesIndex = Integer.parseInt(speciesInput.getText());
 								currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex-1, currentCardTrait);
+								
+								// Clears player prompt
+								pseudoConsoleLog.setText("");
 								
 								//int playTraitOnSpeciesIndex = scan.nextInt();
 								//currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex, currentCardTrait, scan);
