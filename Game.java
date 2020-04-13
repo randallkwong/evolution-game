@@ -181,9 +181,10 @@ public class Game {
 	 * @param scan
 	 * Takes the active scanner so we can capture user input and apply the right player actions.
 	 */
-	public void feedingPhase(int i, Player currentPlayer, SpeciesBoard currentPlayersSpeciesBoard, WateringHole wateringHole, Label pseudoConsoleLog) {
+	public void feedingPhase(int i, Player currentPlayer, SpeciesBoard currentPlayersSpeciesBoard, WateringHole wateringHole, Label wateringHoleDisplay, Label pseudoConsoleLog) {
 		
 		// TODO: Add logic to check if user wants to feed carnivorous species off the species board.
+		wateringHole.displayWH(wateringHoleDisplay);
 		
 		if((i == currentPlayer.getPlayerNumber())&&(currentPlayer.getIsFeeding() == 1)) {
 
@@ -233,7 +234,7 @@ public class Game {
 						
 						// Decrement available food in the watering hole.
 						wateringHole.decrementFoodAvailable(1);
-						wateringHole.displayWH();
+						wateringHole.displayWH(wateringHoleDisplay);
 						
 						ableToContinue = true;
 						

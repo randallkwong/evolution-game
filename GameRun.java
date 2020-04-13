@@ -24,6 +24,7 @@ public class GameRun extends Application {
 	
 	static Game currentGame = new Game();
 	static WateringHole wateringHole = new WateringHole();
+	static Label wateringHoleDisplay = new Label("Watering Hold Plant Food Available: " + Integer.toString(wateringHole.getCurrentFoodAvailable()));
 	static Deck deck = new Deck();
 	static Player playerOne = new Player(1);
 	static Player playerTwo = new Player(2);
@@ -80,6 +81,7 @@ public class GameRun extends Application {
 				int plantfoodNum1 = handforPlayer1.getValuefromCard(Integer.parseInt(input));
 				wateringHole.updateCurrentFoodAvailable(plantfoodNum1);
 				handforPlayer1.removeCardfromHand(Integer.parseInt(input));
+				wateringHole.displayWH(wateringHoleDisplay);
 
 				TextInputDialog td_wh2 = new TextInputDialog();
 				td_wh2.setHeaderText("Player 2: Which watering hole would you like to select?");
@@ -90,7 +92,8 @@ public class GameRun extends Application {
 				String input2  = userInput2.getText();
 				int plantfoodNum2 = handforPlayer2.getValuefromCard(Integer.parseInt(input2));
 				wateringHole.updateCurrentFoodAvailable(plantfoodNum2);
-				handforPlayer2.removeCardfromHand(Integer.parseInt(input2));	
+				handforPlayer2.removeCardfromHand(Integer.parseInt(input2));
+				wateringHole.displayWH(wateringHoleDisplay);
 			});
 			
 			System.out.println("Finish of plant food selection");
@@ -198,7 +201,7 @@ public class GameRun extends Application {
 	public VBox Buttons() {
 		VBox layout = new VBox(10);
 		layout.setPadding(new Insets(20, 20, 20, 20));
-		layout.getChildren().addAll(btnContinue, btnPlay, btnSubmit1, btnSubmit2, btnFeed, pseudoConsoleLog);
+		layout.getChildren().addAll(btnContinue, btnPlay, btnSubmit1, btnSubmit2, btnFeed, wateringHoleDisplay, pseudoConsoleLog);
 		return layout;
 	}
 	public VBox addVBox() {
@@ -234,6 +237,10 @@ public class GameRun extends Application {
 		if(SpeciesBoard2.numberOfSpeciesInPlay() == 0) {
 			SpeciesBoard2.addNewSpeciestoRight();
 		}
+		
+		// Clear the player instructions.
+		pseudoConsoleLog.setText("");
+				
 		// Draw cards (Starting hand is 4 cards each).
 		// Players draw one card for each species they have on the board
 		// plus three additional cards.
@@ -254,7 +261,8 @@ public class GameRun extends Application {
 
 		// Long Neck and Fertile handled first
 
-		wateringHole.displayWH();
+		// TODO: fix bug
+//		wateringHole.displayWH(wateringHoleDisplay);
 
 		// Regular feeding loop
 
@@ -268,10 +276,10 @@ public class GameRun extends Application {
 			for (int i = 1; i < 3; i++) {
 
 				// Player One feeds species.
-				currentGame.feedingPhase(i, playerOne, SpeciesBoard1, wateringHole, pseudoConsoleLog);
+				currentGame.feedingPhase(i, playerOne, SpeciesBoard1, wateringHole, wateringHoleDisplay, pseudoConsoleLog);
 
 				// Player Two feeds species.
-				currentGame.feedingPhase(i, playerTwo, SpeciesBoard2, wateringHole, pseudoConsoleLog);
+				currentGame.feedingPhase(i, playerTwo, SpeciesBoard2, wateringHole, wateringHoleDisplay, pseudoConsoleLog);
 
 			}
 

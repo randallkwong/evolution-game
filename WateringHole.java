@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import javafx.scene.control.Label;
+
 /**
  * This class keeps track of and alters the amount of plant food in the WateringHole.
  * 
@@ -68,8 +70,10 @@ public class WateringHole {
 	/**
 	 * This method prints the current available plant food in the WateringHole.
 	 */
-	public void displayWH() {
+	public void displayWH(Label wateringHoleDisplay) {
 		System.out.println("Current Watering Hole has " + currentFoodAvailable + " plant food");
 		System.out.println();
+		String wateringHoleFoodAvailable = "Watering Hold Plant Food Available: " + Integer.toString(getCurrentFoodAvailable());
+		wateringHoleDisplay.setText(wateringHoleFoodAvailable);
 	}
 }
