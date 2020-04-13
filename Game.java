@@ -58,7 +58,7 @@ public class Game {
 				currentPlayersHand.displayHand();
 				
 					TextInputDialog td_endRound = new TextInputDialog();
-					td_endRound.setHeaderText("Press 0 to continue this round; Press 1 to end this round" );
+					td_endRound.setHeaderText("Press 0 to continue this round; \nPress 1 to end this round" );
 					TextField endRoundInput = td_endRound.getEditor();
 					td_endRound.showAndWait();
 					
