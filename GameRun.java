@@ -72,7 +72,7 @@ public class GameRun extends Application {
 			btnPlay = new Button ("Select plant food");
 			btnPlay.setOnAction(e -> {
 				TextInputDialog td_wh1 = new TextInputDialog();
-				td_wh1.setHeaderText("Player 1: Which watering hole would you like to select?");
+				td_wh1.setHeaderText("Player 1: Which card would you like to select to add food to the watering hole?");
 				td_wh1.setContentText("Card for Watering Hole");
 				TextField userInput = td_wh1.getEditor();
 				td_wh1.showAndWait();
@@ -84,7 +84,7 @@ public class GameRun extends Application {
 				wateringHole.displayWH(wateringHoleDisplay);
 
 				TextInputDialog td_wh2 = new TextInputDialog();
-				td_wh2.setHeaderText("Player 2: Which watering hole would you like to select?");
+				td_wh2.setHeaderText("Player 2: Which card would you like to select to add food to the watering hole?");
 				td_wh2.setContentText("Card for Watering Hole");	
 				TextField userInput2 = td_wh2.getEditor();
 				td_wh2.showAndWait();
