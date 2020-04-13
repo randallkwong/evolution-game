@@ -66,7 +66,8 @@ public class GameRun extends Application {
 			
 			btnPlay = new Button ("Select plant food");
 			btnPlay.setOnAction(e -> {
-				TextInputDialog td_wh1 = new TextInputDialog("Player 1: Which watering hole would you like to select?");
+				TextInputDialog td_wh1 = new TextInputDialog();
+				td_wh1.setHeaderText("Player 1: Which watering hole would you like to select?");
 				td_wh1.setContentText("Card for Watering Hole");
 				TextField userInput = td_wh1.getEditor();
 				td_wh1.showAndWait();
@@ -76,8 +77,9 @@ public class GameRun extends Application {
 				wateringHole.updateCurrentFoodAvailable(plantfoodNum1);
 				handforPlayer1.removeCardfromHand(Integer.parseInt(input));
 
-				TextInputDialog td_wh2 = new TextInputDialog("Player 2: Which watering hole would you like to select?");
-				td_wh2.setContentText("Card for Watering Hole");
+				TextInputDialog td_wh2 = new TextInputDialog();
+				td_wh2.setHeaderText("Player 2: Which watering hole would you like to select?");
+				td_wh2.setContentText("Card for Watering Hole");	
 				TextField userInput2 = td_wh2.getEditor();
 				td_wh2.showAndWait();
 				
@@ -95,14 +97,14 @@ public class GameRun extends Application {
 			// Ready the players.
 			
 			// Player One plays Phase Three.
-			btnSubmit1 = new Button ("Player 1: Phase 3 starts");
+			btnSubmit1 = new Button ("Player 1: Start Phase 3");
 			btnSubmit1.setOnAction(e -> {
 				playerOne.readyForPhaseThree();
 				currentGame.playPhaseThree(playerOne, handforPlayer1, SpeciesBoard1);
 			});
 	
 			// Player Two plays Phase Three.
-			btnSubmit2 = new Button ("Player 2: Phase 3 starts");
+			btnSubmit2 = new Button ("Player 2: Start Phase 3");
 			btnSubmit2.setOnAction(e -> {
 				playerTwo.readyForPhaseThree();
 				currentGame.playPhaseThree(playerTwo, handforPlayer2, SpeciesBoard2);

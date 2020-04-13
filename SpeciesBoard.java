@@ -257,7 +257,7 @@ public class SpeciesBoard {
 			TextField traitsInput = td_traits.getEditor();
 			
 			
-			int indexOfTraitsToDiscard = Integer.parseInt(traitsInput.getText()) - 1;
+			int indexOfTraitsToDiscard = Integer.parseInt(traitsInput.getText());
 			String traitToRemove = traitsArray.get((indexOfTraitsToDiscard -1));
 			traitsArray.remove((indexOfTraitsToDiscard-1));
 			System.out.println(traitToRemove + " was replaced");

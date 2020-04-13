@@ -56,8 +56,8 @@ public class Game {
 				currentPlayer.phaseThreeStart();
 				currentPlayersHand.displayHand();
 				
-					TextInputDialog td_endRound = new TextInputDialog("Would you like to end this round?");
-					td_endRound.setHeaderText("If you'd like to end this round, please enter 1");
+					TextInputDialog td_endRound = new TextInputDialog();
+					td_endRound.setHeaderText("Press 0 to continue this round; Press 1 to end this round" );
 					TextField endRoundInput = td_endRound.getEditor();
 					td_endRound.showAndWait();
 					
@@ -75,7 +75,7 @@ public class Game {
 					else {
 						System.out.println(currentPlayerName + ", which card would you like to select?");
 						
-						TextInputDialog td_card = new TextInputDialog("Enter card selection");
+						TextInputDialog td_card = new TextInputDialog();
 						td_card.setHeaderText("which card would you like to select?");
 						td_card.setContentText("Card");
 						TextField cardInput = td_card.getEditor();
@@ -86,14 +86,14 @@ public class Game {
 						System.out.println(currentPlayerName + ", what would you like to do with your card " + selectedCardIndex + " ?");
 						//System.out.println("Press 1 to create a new species on the left; Press 2 to create new species on the right, Press 3 to increase body size, Press 4 to increase population size, Press 5 to attach " + currentCardTrait);
 						
-						TextInputDialog td_action = new TextInputDialog("Enter action for this card");
+						TextInputDialog td_action = new TextInputDialog();
 						
 						td_action.setHeaderText("Enter action for this card: Press 1 to create a new species on the left; Press 2 to create new species on the right, Press 3 to increase body size, Press 4 to increase population size, Press 5 to attach traits");
 						td_action.setContentText("Action");
 						TextField actionInput = td_action.getEditor();
 						td_action.showAndWait();
 						
-						TextInputDialog td_species = new TextInputDialog("Enter species for this action");
+						TextInputDialog td_species = new TextInputDialog();
 						
 						td_species.setHeaderText("Select a species");
 						td_species.setContentText("Species");
@@ -193,7 +193,7 @@ public class Game {
 			// Prompt the player to feed. If the selected species to feed is invalid, re-prompt the user for input.
 			TextInputDialog td_species1 = new TextInputDialog();
 				
-			td_species1.setHeaderText(currentPlayerName + ", Enter species for feeding. Enter -1 to skip one feeding. Enter -2 to skip all feeding");
+			td_species1.setHeaderText(currentPlayerName + ", Enter species for feeding. Enter 0 to skip one feeding. Enter -1 to skip all feeding");
 			td_species1.setContentText("Species");
 			td_species1.showAndWait(); 
 			TextField speciesInput = td_species1.getEditor();

@@ -36,12 +36,12 @@ public class Card extends Parent{
 		background.setFill(Color.WHITE);
 		
 		Text nameofCard = new Text(trait);
-		nameofCard.setFont(Font.font(18));
+		nameofCard.setFont(Font.font(14));
 		nameofCard.setX(Card_width - nameofCard.getLayoutBounds().getWidth() - 10);
 		nameofCard.setY(nameofCard.getLayoutBounds().getHeight());
 
 		Text valueofCard = new Text(String.valueOf(foodValue));
-		valueofCard.setFont(Font.font(18));
+		valueofCard.setFont(Font.font(14));
 		valueofCard.setX(10);
 		valueofCard.setY(Card_height-10);
 		

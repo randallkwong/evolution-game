@@ -110,24 +110,24 @@ public class Species extends Parent{
 		
 		//Added blank trait names so that it can be displayed. If blank name is not added, then GUI display will crash.
 		
-		AttachedTraitCards.add("");
-		AttachedTraitCards.add("");
-		AttachedTraitCards.add("");
+		AttachedTraitCards.add("Empty T1");
+		AttachedTraitCards.add("Empty T2");
+		AttachedTraitCards.add("Empty T3");
 		
 		Text Trait1ofCard = new Text(AttachedTraitCards.get(0));
 		Trait1ofCard.setFont(Font.font(18));
-		Trait1ofCard.setX(Species_width - Trait1ofCard.getLayoutBounds().getWidth() - 10);
+		Trait1ofCard.setX(10);
 		Trait1ofCard.setY(Trait1ofCard.getLayoutBounds().getHeight());
 		
 		Text Trait2ofCard = new Text(AttachedTraitCards.get(1));
 		Trait2ofCard.setFont(Font.font(18));
-		Trait2ofCard.setX(Species_width - Trait2ofCard.getLayoutBounds().getWidth() - 10);
+		Trait2ofCard.setX(10);
 		Trait2ofCard.setY(50);
 		
 		Text Trait3ofCard = new Text(AttachedTraitCards.get(2));
 		Trait3ofCard.setFont(Font.font(18));
-		Trait3ofCard.setX(Species_width - Trait2ofCard.getLayoutBounds().getWidth() - 10);
-		Trait3ofCard.setY(100);
+		Trait3ofCard.setX(10);
+		Trait3ofCard.setY(80);
 
 		Text bodySizeofSpecies = new Text("B:" + String.valueOf(bodySize));
 		bodySizeofSpecies.setFont(Font.font(18));
@@ -142,7 +142,7 @@ public class Species extends Parent{
 		Text populationofSpecies = new Text("P:" + String.valueOf(population));
 		populationofSpecies.setFont(Font.font(18));
 		populationofSpecies.setX(90);
-		bodySizeofSpecies.setY(Species_height-10);
+		populationofSpecies.setY(Species_height-10);
 		
 		getChildren().addAll(background, Trait1ofCard, Trait2ofCard, Trait3ofCard, bodySizeofSpecies,foodofSpecies,populationofSpecies);		
 		
