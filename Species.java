@@ -1,5 +1,11 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.Parent;
+import javafx.scene.layout.StackPane;
 
 /**
  * 
@@ -7,7 +13,12 @@ import java.util.Scanner;
  * such as their population and body size and may receive traits to evolve new abilities during game play.
  *
  */
-public class Species {
+public class Species extends Parent{
+	
+	//initialize size of the Species Card
+	
+	int Species_width = 140;
+	int Species_height = 140;
 
 	// Indicates whether the species is currently living.
 	int isAlive;
@@ -90,6 +101,50 @@ public class Species {
 			// TODO: Food stored by fat tissue must be subtracted.
 			foodCapacity = Population + BodySize;
 		}
+		
+		//Add GUI for Species Card to display
+		Rectangle background = new Rectangle (Species_width, Species_height);
+		background.setArcWidth(20);
+		background.setArcHeight(20);
+		background.setFill(Color.WHITE);
+		
+		//Added blank trait names so that it can be displayed. If blank name is not added, then GUI display will crash.
+		
+		AttachedTraitCards.add("");
+		AttachedTraitCards.add("");
+		AttachedTraitCards.add("");
+		
+		Text Trait1ofCard = new Text(AttachedTraitCards.get(0));
+		Trait1ofCard.setFont(Font.font(18));
+		Trait1ofCard.setX(Species_width - Trait1ofCard.getLayoutBounds().getWidth() - 10);
+		Trait1ofCard.setY(Trait1ofCard.getLayoutBounds().getHeight());
+		
+		Text Trait2ofCard = new Text(AttachedTraitCards.get(1));
+		Trait2ofCard.setFont(Font.font(18));
+		Trait2ofCard.setX(Species_width - Trait2ofCard.getLayoutBounds().getWidth() - 10);
+		Trait2ofCard.setY(50);
+		
+		Text Trait3ofCard = new Text(AttachedTraitCards.get(2));
+		Trait3ofCard.setFont(Font.font(18));
+		Trait3ofCard.setX(Species_width - Trait2ofCard.getLayoutBounds().getWidth() - 10);
+		Trait3ofCard.setY(100);
+
+		Text bodySizeofSpecies = new Text("B:" + String.valueOf(bodySize));
+		bodySizeofSpecies.setFont(Font.font(18));
+		bodySizeofSpecies.setX(10);
+		bodySizeofSpecies.setY(Species_height-10);
+		
+		Text foodofSpecies = new Text("F:" + String.valueOf(currentFoodConsumed));
+		foodofSpecies.setFont(Font.font(18));
+		foodofSpecies.setX(50);
+		foodofSpecies.setY(Species_height-10);
+		
+		Text populationofSpecies = new Text("P:" + String.valueOf(population));
+		populationofSpecies.setFont(Font.font(18));
+		populationofSpecies.setX(90);
+		bodySizeofSpecies.setY(Species_height-10);
+		
+		getChildren().addAll(background, Trait1ofCard, Trait2ofCard, Trait3ofCard, bodySizeofSpecies,foodofSpecies,populationofSpecies);		
 		
 	}
 	

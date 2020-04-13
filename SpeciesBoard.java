@@ -2,6 +2,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 
@@ -14,35 +17,46 @@ import java.util.ArrayList;
  *
  */
 public class SpeciesBoard {
-	HashMap <Integer, Species> newPlayerBoard;
+	
+	//HashMap <Integer, Species> newPlayerBoard;
+	ObservableList<Node> newPlayerBoard = FXCollections.observableArrayList();
 	Species newSpecies = new Species(1,1,1,0,false,false,false,0, new ArrayList<String>());
 
 	/**
 	 * When the SpeciesBoard is first constructed at the game's start, each player begins with one Species.
+	 * @param observableList 
+	 * @param observableList 
 	 */
-	public SpeciesBoard(){
-		newPlayerBoard = new HashMap <Integer, Species>();
-		newPlayerBoard.put(1,newSpecies);
+	public SpeciesBoard(ObservableList<Node> species){
+		newPlayerBoard = species;
+		//newPlayerBoard = new HashMap <Integer, Species>();
+		Species newSpecies1 = new Species(1,1,1,0,false,false,false,0, new ArrayList<String>());
+		newPlayerBoard.add((Species) newSpecies1);
 	}
 	
 	/**
 	 * This method adds a new species to the player board on the right hand side.
 	 */
 	public void addNewSpeciestoRight() {
-		int currentNumofSpecies = newPlayerBoard.size();
-		newPlayerBoard.put(currentNumofSpecies+1, newSpecies);
+		//added new species since if it doesn't exist, it will cause error: Children: duplicate children added: parent 
+		Species newSpecies2 = new Species(1,1,1,0,false,false,false,0, new ArrayList<String>());
+		newPlayerBoard.add(newSpecies2);
 	}
 	
 	
 	/**
 	 * This method adds a new species to the player board on the left hand side.
+	 * TODO: this code is buggy. It still causes: Children: duplicate children added: parent
 	 */
 	public void addNewSpeciestoLeft() {
 		for (int i = newPlayerBoard.size(); i > 0; i--) {
-			Species tmp = newPlayerBoard.get(i);
-			newPlayerBoard.put(i+1,tmp);
+			Species tmp = (Species) newPlayerBoard.get(i-1);
+			newPlayerBoard.add(i,tmp);
+			System.out.println("debug");
 		}
-		newPlayerBoard.put(1,newSpecies);
+		
+		Species newSpecies3 = new Species(1,1,1,0,false,false,false,0, new ArrayList<String>());
+		newPlayerBoard.set(0,newSpecies3);
 	}
 	
 	/**
@@ -61,16 +75,17 @@ public class SpeciesBoard {
 	 */
 	public void displaySpeciesBoard() {
 		System.out.println(newPlayerBoard.size() + " species on the board." );
-		
-		for (Integer key : newPlayerBoard.keySet()) {
+	
+		for (int j = 0; j < newPlayerBoard.size(); j++) {
+			int key = j+1;
+			System.out.println("");
 			System.out.print("Species " + key + " - ");
-			Species value = newPlayerBoard.get(key);
+			Species value = (Species) newPlayerBoard.get(j);
 			System.out.println("Body Size: " + value.getBodysize() + ", " + "Population: " + value.getPopulation() + ", " + "Food Consumed: " + value.getFoodConsumed());
 			System.out.println("Traits:");
 			for(int i = 0; i < value.getAttachedTraitCards().size(); i++) {
 				System.out.print(value.getAttachedTraitCards().get(i) + " ");			
 			}
-
 		}
 	}
 	
@@ -82,10 +97,10 @@ public class SpeciesBoard {
 	 * TODO: Re-index the living species for a SpeciesBoard.
 	 */
 	public void extinctSpeciesBoard() {
-		Iterator<Integer> iterator = newPlayerBoard.keySet().iterator();
+		Iterator<Node> iterator = newPlayerBoard.iterator();
 		while (iterator.hasNext()) {
-			Integer key = iterator.next();
-			if (newPlayerBoard.get(key).getPopulation() <= 0) {
+			Species key = (Species) iterator.next();
+			if (key.getPopulation() <= 0) {
 				iterator.remove();
 			}
 		}
@@ -99,7 +114,7 @@ public class SpeciesBoard {
 	 * Takes the index of a Species on the SpeciesBoard from the player input.
 	 */
 	public void updateBodySize(int pos) {
-		Species value = newPlayerBoard.get(pos);
+		Species value = (Species) newPlayerBoard.get(pos);
 		int isAlive = value.getIsAlive();
 		int BodySize = value.getBodysize() + 1;
 		int population = value.getPopulation();
@@ -110,7 +125,7 @@ public class SpeciesBoard {
 		int numoftraitcards = value.getTraitcard();
 		ArrayList<String>traitsArray = value.getAttachedTraitCards();
 		Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue, climbing, numoftraitcards, traitsArray);
-		newPlayerBoard.put(pos,newSpecies);
+		newPlayerBoard.set(pos,newSpecies);
 	}
 	
 	/**
@@ -123,7 +138,7 @@ public class SpeciesBoard {
 	 * Takes the amount to alter a species population by.
 	 */
 	public void updatePopulation(int pos, int amountChanged) {
-		Species value = newPlayerBoard.get(pos);
+		Species value = (Species) newPlayerBoard.get(pos);
 		int isAlive = value.getIsAlive();
 		int BodySize = value.getBodysize();
 		int population = value.getPopulation() + amountChanged;
@@ -137,7 +152,7 @@ public class SpeciesBoard {
 		int numoftraitcards = value.getTraitcard();
 		ArrayList<String>traitsArray = value.getAttachedTraitCards();
 		Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue, climbing, numoftraitcards, traitsArray);
-		newPlayerBoard.put(pos,newSpecies);
+		newPlayerBoard.set(pos,newSpecies);
 	}
 	
 	/**
@@ -147,7 +162,7 @@ public class SpeciesBoard {
 	 * Takes the index of a Species on the SpeciesBoard from the player input.
 	 */
 	public void updateFoodConsumed(int pos) {
-		Species value = newPlayerBoard.get(pos);
+		Species value = (Species) newPlayerBoard.get(pos);
 		int isAlive = value.getIsAlive();
 		int BodySize = value.getBodysize();
 		int population = value.getPopulation();
@@ -158,7 +173,7 @@ public class SpeciesBoard {
 		int numoftraitcards = value.getTraitcard();
 		ArrayList<String>traitsArray = value.getAttachedTraitCards();
 		Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue, climbing, numoftraitcards, traitsArray);
-		newPlayerBoard.put(pos,newSpecies);
+		newPlayerBoard.set(pos,newSpecies);
 	}
 
 	/**
@@ -171,7 +186,7 @@ public class SpeciesBoard {
 	 * Takes the amount of food moved.
 	 */
 	public void moveFoodConsumed(int pos, int foodMoved) {
-		Species value = newPlayerBoard.get(pos);
+		Species value = (Species) newPlayerBoard.get(pos);
 		int isAlive = value.getIsAlive();
 		int BodySize = value.getBodysize();
 		int population = value.getPopulation();
@@ -182,7 +197,7 @@ public class SpeciesBoard {
 		int numoftraitcards = value.getTraitcard();
 		ArrayList<String>traitsArray = value.getAttachedTraitCards();
 		Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue, climbing, numoftraitcards, traitsArray);
-		newPlayerBoard.put(pos,newSpecies);
+		newPlayerBoard.set(pos,newSpecies);
 	}
 	
 	/**
@@ -199,7 +214,7 @@ public class SpeciesBoard {
 	 * 
 	 */
 	public void updateTraitCard(int pos, String cardName) {
-		Species value = newPlayerBoard.get(pos);
+		Species value = (Species) newPlayerBoard.get(pos);
 		int isAlive = value.getIsAlive();
 		int BodySize = value.getBodysize();
 		int population = value.getPopulation();
@@ -230,17 +245,19 @@ public class SpeciesBoard {
 			// TODO: Give user a choice to not discard a card
 			
 			for(int i = 0; i < traitsArray.size(); i++) {
-				System.out.println((i+1) +": " + traitsArray.get(i));
+				int key = i+1;
+				System.out.println((key) +": " + traitsArray.get(i));
 			}
 			
 			TextInputDialog td_traits = new TextInputDialog("Enter trait to replace");
 			
 			td_traits.setHeaderText("Select a trait card to replace");
 			td_traits.setContentText("Trait");
-			TextField traitsInput = td_traits.getEditor();
 			td_traits.showAndWait();
+			TextField traitsInput = td_traits.getEditor();
 			
-			int indexOfTraitsToDiscard = Integer.parseInt(traitsInput.getText());
+			
+			int indexOfTraitsToDiscard = Integer.parseInt(traitsInput.getText()) - 1;
 			String traitToRemove = traitsArray.get((indexOfTraitsToDiscard -1));
 			traitsArray.remove((indexOfTraitsToDiscard-1));
 			System.out.println(traitToRemove + " was replaced");
@@ -250,6 +267,6 @@ public class SpeciesBoard {
 		}
 		
 		Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue, climbing, numoftraitcards, traitsArray);
-		newPlayerBoard.put(pos,newSpecies);
+		newPlayerBoard.set(pos,newSpecies);
 	}
 }

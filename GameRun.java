@@ -23,17 +23,29 @@ public class GameRun extends Application {
 	static Player playerOne = new Player(1);
 	static Player playerTwo = new Player(2);
 	static Hand handforPlayer1, handforPlayer2;
-	static SpeciesBoard SpeciesBoard1 = new SpeciesBoard();
-	static SpeciesBoard SpeciesBoard2 = new SpeciesBoard();
-	Card card;
+	static SpeciesBoard SpeciesBoard1, SpeciesBoard2;
+	
+	//Card card;
 	
 	HBox player1Cards = new HBox (20);
 	HBox player2Cards = new HBox (20);
+	
+	//Species species;
+	
+	HBox player1Species = new HBox(20);
+	HBox player2Species = new HBox(20);
+	
 	
 	
 	public void start(Stage primaryStage) throws Exception {
 		handforPlayer1 = new Hand(player1Cards.getChildren());	
 		handforPlayer2 = new Hand(player2Cards.getChildren());
+		
+		SpeciesBoard1 = new SpeciesBoard(player1Species.getChildren());
+		SpeciesBoard2 = new SpeciesBoard(player2Species.getChildren());
+		
+		//System.out.println("player 1 species created");
+		
 		
 		window = primaryStage;
 		window.setTitle("Evolution Game");
@@ -112,11 +124,18 @@ public class GameRun extends Application {
 			BorderPane border = new BorderPane();
 			HBox P1Card = addHBox1();
 			HBox P2Card = addHBox2();
+			//HBox P1Species = addHBox3();
+			//HBox P2Species = addHBox4();
+			
+			
 			border.setTop(P1Card);
 			border.setBottom(P2Card);
-			border.setLeft(addVBox());
+			//border.setLeft(P2Species);
+			//border.setRight(P1Species);
+			border.setCenter(addVBox());
+			border.setRight(Buttons());
 			
-			scene = new Scene(border, 300, 250);
+			scene = new Scene(border, 1000, 900);
 			window.setScene(scene);
 			window.show();
 			
@@ -148,10 +167,40 @@ public class GameRun extends Application {
 	    return hbox;
 	}
 	
-	public VBox addVBox() {
+	public HBox addHBox3() {
+	    HBox hbox = new HBox();
+	    hbox.setPadding(new Insets(15, 12, 15, 12));
+	    hbox.setSpacing(10);
+	    hbox.setStyle("-fx-background-color: #336699;");
+	    Text Player1SpeciesInstruction = new Text ("Player 1 Species:"); 
+	    hbox.getChildren().addAll(Player1SpeciesInstruction, player1Species);
+
+	    return hbox;
+	}
+	
+	public HBox addHBox4() {
+	    HBox hbox = new HBox();
+	    hbox.setPadding(new Insets(15, 12, 15, 12));
+	    hbox.setSpacing(10);
+	    hbox.setStyle("-fx-background-color: #336699;");
+	    Text Player2SpeciesInstruction = new Text ("Player 2 Species:"); 
+	    hbox.getChildren().addAll(Player2SpeciesInstruction, player2Species);
+
+	    return hbox;
+	}
+	
+	public VBox Buttons() {
 		VBox layout = new VBox(10);
 		layout.setPadding(new Insets(20, 20, 20, 20));
 		layout.getChildren().addAll(btnContinue, btnPlay, btnSubmit1, btnSubmit2, btnFeed);
+		return layout;
+	}
+	public VBox addVBox() {
+		VBox layout = new VBox(10);
+		layout.setPadding(new Insets(20, 20, 20, 20));
+		Text Player1SpeciesInstruction = new Text ("Player 1 Species:"); 
+		Text Player2SpeciesInstruction = new Text ("Player 2 Species:"); 
+		layout.getChildren().addAll(Player1SpeciesInstruction, player1Species,Player2SpeciesInstruction,player2Species);
 		return layout;
 	}
 	

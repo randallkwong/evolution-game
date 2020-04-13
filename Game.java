@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
@@ -115,19 +116,20 @@ public class Game {
 								td_species.showAndWait();
 								int input4 = Integer.parseInt(speciesInput.getText());
 								//int input4 = scan.nextInt();
-								currentPlayersSpeciesBoard.updateBodySize(input4);
+								currentPlayersSpeciesBoard.updateBodySize(input4-1);
 							}
 							else if (input3 == 4) {
 								System.out.println("Which species would you like to increase the population for?");
 								td_species.showAndWait();
 								int input5 = Integer.parseInt(speciesInput.getText());
 								//int input5 = scan.nextInt();
-								currentPlayersSpeciesBoard.updatePopulation(input5, 1);
+								currentPlayersSpeciesBoard.updatePopulation(input5-1, 1);
 							}
 							else if (input3 == 5) {
 								System.out.println("Which species would you like to attach " + currentCardTrait + "?");
+								td_species.showAndWait();
 								int playTraitOnSpeciesIndex = Integer.parseInt(speciesInput.getText());
-								currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex, currentCardTrait);
+								currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex-1, currentCardTrait);
 								
 								//int playTraitOnSpeciesIndex = scan.nextInt();
 								//currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex, currentCardTrait, scan);
@@ -179,34 +181,41 @@ public class Game {
 			// Variable to break loop.
 			boolean ableToContinue = false;
 			
+			// Add logic to handle case where there is no plant food available in the watering hole. 
+			
+			if (wateringHole.getCurrentFoodAvailable() == 0) {
+				currentPlayer.isDoneFeeding();
+				ableToContinue = true;
+			}
+			
 			while(ableToContinue == false) {
 				
 			// Prompt the player to feed. If the selected species to feed is invalid, re-prompt the user for input.
 			TextInputDialog td_species1 = new TextInputDialog();
 				
-			td_species1.setHeaderText(currentPlayerName + ", Enter species for feeding. Enter 0 to skip one feeding. Enter -1 to skip all feeding");
+			td_species1.setHeaderText(currentPlayerName + ", Enter species for feeding. Enter -1 to skip one feeding. Enter -2 to skip all feeding");
 			td_species1.setContentText("Species");
 			td_species1.showAndWait(); 
 			TextField speciesInput = td_species1.getEditor();
 			
 			currentPlayersSpeciesBoard.displaySpeciesBoard();
 			
-			int speciesToFeed = Integer.parseInt(speciesInput.getText());
+			int speciesToFeed = Integer.parseInt(speciesInput.getText())-1;
 				
-			if(speciesToFeed == -1) {
+			if(speciesToFeed == -2) {
 				currentPlayer.isDoneFeeding();
 				ableToContinue = true;
 			}
 			else 
 			{
-				if (speciesToFeed == 0) {
+				if (speciesToFeed == -1) {
 				System.out.println(currentPlayerName + " skips one round of feeding");
 				ableToContinue = true;
 				}
 				else {
 					// TODO: Add logic which only allows player to feed a species that exists.
 					// TODO: Refactor species boards to belong to players.
-					if((currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed).getFoodConsumed() < currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed).getFoodCapacity()) && (wateringHole.getCurrentFoodAvailable() > 0)) {
+					if((((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getFoodConsumed() < ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getFoodCapacity()) && (wateringHole.getCurrentFoodAvailable() > 0)) {
 						currentPlayersSpeciesBoard.updateFoodConsumed(speciesToFeed);
 						System.out.println("Displaying Species Board for " + currentPlayerName);
 						currentPlayersSpeciesBoard.displaySpeciesBoard();
@@ -218,15 +227,10 @@ public class Game {
 						ableToContinue = true;
 						
 					} 
-					// Add logic to handle case where there is no plant food available in the watering hole
-					else if (wateringHole.getCurrentFoodAvailable() == 0) {
-						currentPlayer.isDoneFeeding();
-						ableToContinue = true;
-					}
-					
 					else
 					{
-						System.out.println("You cannot feed Species " + speciesToFeed);
+						int speciesToFeedActual = speciesToFeed + 1;
+						System.out.println("You cannot feed Species " + speciesToFeedActual);
 					}						
 					
 				}
@@ -258,9 +262,10 @@ public class Game {
 		String currentPlayerName = "Player " + currentPlayer.getPlayerNumber();
 		
 		System.out.println(currentPlayerName + " tally up food points");
-		for (Integer key : currentPlayersSpeciesBoard.newPlayerBoard.keySet()) {
-			System.out.print("Species " + key + " - ");
-			Species value = currentPlayersSpeciesBoard.newPlayerBoard.get(key);
+		
+		for (int i = 0; i < currentPlayersSpeciesBoard.newPlayerBoard.size(); i++) {
+			System.out.print("Species " + i+1 + " - ");
+			Species value = (Species) currentPlayersSpeciesBoard.newPlayerBoard.get(i);
 			int foodPointsToAdd = value.getFoodConsumed();
 			System.out.println("Food Consumed: " + value.getFoodConsumed());
 			
@@ -268,8 +273,7 @@ public class Game {
 			currentPlayer.addFoodPoints(foodPointsToAdd);
 			
 			// Reset food consumed for current species.
-			currentPlayersSpeciesBoard.moveFoodConsumed(key, foodPointsToAdd);
-			
+			currentPlayersSpeciesBoard.moveFoodConsumed(i, foodPointsToAdd);
 		}
 		
 		System.out.println(currentPlayerName + " has " + currentPlayer.getFoodPoints() + " food points");
@@ -293,13 +297,14 @@ public class Game {
 		
 		System.out.println("Handle " + currentPlayerName + " species that starved if any");
 		
-		for (Integer key : currentPlayersSpeciesBoard.newPlayerBoard.keySet()) {
-			System.out.print("Species " + key + " - ");
-			Species value = currentPlayersSpeciesBoard.newPlayerBoard.get(key);
+		for (int i = 0; i < currentPlayersSpeciesBoard.newPlayerBoard.size(); i++) {
+			
+			System.out.print("Species " + i + 1 + " - ");
+			Species value = (Species) currentPlayersSpeciesBoard.newPlayerBoard.get(i);
 			System.out.println("Is Alive: " + value.getIsAlive() + ", Body Size: " + value.getBodysize() + ", " + "Population: " + value.getPopulation() + ", " + "Food Consumed: " + value.getFoodConsumed());
 			int foodDeficit = (value.getPopulation() - value.getFoodConsumed()) * -1;
-			currentPlayersSpeciesBoard.updatePopulation(key, foodDeficit);
-			value = currentPlayersSpeciesBoard.newPlayerBoard.get(key);
+			currentPlayersSpeciesBoard.updatePopulation(i, foodDeficit);
+			value = (Species) currentPlayersSpeciesBoard.newPlayerBoard.get(i);
 			System.out.println("Is Alive: " + value.getIsAlive() + ", Body Size: " + value.getBodysize() + ", " + "Population: " + value.getPopulation() + ", " + "Food Consumed: " + value.getFoodConsumed());
 		}
 		currentPlayersSpeciesBoard.extinctSpeciesBoard();
