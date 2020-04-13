@@ -181,7 +181,7 @@ public class Game {
 	 * @param scan
 	 * Takes the active scanner so we can capture user input and apply the right player actions.
 	 */
-	public void feedingPhase(int i, Player currentPlayer, SpeciesBoard currentPlayersSpeciesBoard, WateringHole wateringHole) {
+	public void feedingPhase(int i, Player currentPlayer, SpeciesBoard currentPlayersSpeciesBoard, WateringHole wateringHole, Label pseudoConsoleLog) {
 		
 		// TODO: Add logic to check if user wants to feed carnivorous species off the species board.
 		
@@ -241,7 +241,8 @@ public class Game {
 					else
 					{
 						int speciesToFeedActual = speciesToFeed + 1;
-						System.out.println("You cannot feed Species " + speciesToFeedActual);
+						String youCannotFeedSpeciesWarning = "You cannot feed Species " + speciesToFeedActual;
+						pseudoConsoleLog.setText(youCannotFeedSpeciesWarning);
 					}						
 					
 				}

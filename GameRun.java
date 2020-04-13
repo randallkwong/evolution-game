@@ -20,7 +20,7 @@ public class GameRun extends Application {
 	Button btnSubmit1,btnSubmit2, btnPlay, btnFeed, btnContinue;
 	
 	// This will serve as "console log" in the player facing frontend.
-	Label pseudoConsoleLog = new Label("Player instructions");
+	static Label pseudoConsoleLog = new Label("Player instructions");
 	
 	static Game currentGame = new Game();
 	static WateringHole wateringHole = new WateringHole();
@@ -268,10 +268,10 @@ public class GameRun extends Application {
 			for (int i = 1; i < 3; i++) {
 
 				// Player One feeds species.
-				currentGame.feedingPhase(i, playerOne, SpeciesBoard1, wateringHole);
+				currentGame.feedingPhase(i, playerOne, SpeciesBoard1, wateringHole, pseudoConsoleLog);
 
 				// Player Two feeds species.
-				currentGame.feedingPhase(i, playerTwo, SpeciesBoard2, wateringHole);
+				currentGame.feedingPhase(i, playerTwo, SpeciesBoard2, wateringHole, pseudoConsoleLog);
 
 			}
 
