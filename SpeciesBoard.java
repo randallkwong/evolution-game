@@ -62,9 +62,9 @@ public class SpeciesBoard {
 			Species tmpSpeciesAtLowestIndex = (Species) newPlayerBoard.get(0);
 			
 			// Remove that species and add it to the top of the ArrayList.
-			newPlayerBoard.remove(0);
 			newPlayerBoard.add(tmpSpeciesAtLowestIndex);
-
+			newPlayerBoard.remove(0);
+			
 			// Repeated this until all the elements have been iterated through.			
 			
 		}

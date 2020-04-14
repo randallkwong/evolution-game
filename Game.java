@@ -53,7 +53,7 @@ public class Game {
 		
 		while(currentPlayer.getPhaseThreeStatus() == 0)
 		{
-		currentPlayersSpeciesBoard.displaySpeciesBoard();
+			currentPlayersSpeciesBoard.displaySpeciesBoard();
 			if (currentPlayersHand.getHandSize() == 0) {
 				currentPlayer.endPhaseThree();
 				System.out.println("End of Play Card phase for " + currentPlayerName);
