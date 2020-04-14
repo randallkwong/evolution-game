@@ -43,6 +43,8 @@ public class Game {
 	
 	public void playPhaseThree(Player currentPlayer, Hand currentPlayersHand, SpeciesBoard currentPlayersSpeciesBoard, Label pseudoConsoleLog) {
 
+		// Clears player prompt.
+		pseudoConsoleLog.setText("");
 		
 		String currentPlayerName = "Player " + currentPlayer.getPlayerNumber();
 		
@@ -141,10 +143,10 @@ public class Game {
 								pseudoConsoleLog.setText(whichSpeciesToAttachPrompt);
 								td_species.showAndWait();
 								int playTraitOnSpeciesIndex = Integer.parseInt(speciesInput.getText());
-								currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex-1, currentCardTrait);
+								currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex-1, currentCardTrait, pseudoConsoleLog);
 								
 								// Clears player prompt
-								pseudoConsoleLog.setText("");
+//								pseudoConsoleLog.setText("");
 								
 								//int playTraitOnSpeciesIndex = scan.nextInt();
 								//currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex, currentCardTrait, scan);

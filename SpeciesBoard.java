@@ -5,6 +5,7 @@ import java.util.Scanner;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 
@@ -213,7 +214,7 @@ public class SpeciesBoard {
 	 * Takes the active scanner to capture user input.
 	 * 
 	 */
-	public void updateTraitCard(int pos, String cardName) {
+	public void updateTraitCard(int pos, String cardName, Label pseudoConsoleLog) {
 		Species value = (Species) newPlayerBoard.get(pos);
 		int isAlive = value.getIsAlive();
 		int BodySize = value.getBodysize();
@@ -241,7 +242,8 @@ public class SpeciesBoard {
 		}
 		else {
 			// Prompt user to discard an attached trait card.
-			System.out.println("You already have 3 trait cards. Which card would you like to discard?");
+			pseudoConsoleLog.setText("You already have 3 trait cards. Which card would you like to discard?");
+
 			// TODO: Give user a choice to not discard a card
 			
 			for(int i = 0; i < traitsArray.size(); i++) {
@@ -260,7 +262,8 @@ public class SpeciesBoard {
 			int indexOfTraitsToDiscard = Integer.parseInt(traitsInput.getText());
 			String traitToRemove = traitsArray.get((indexOfTraitsToDiscard -1));
 			traitsArray.remove((indexOfTraitsToDiscard-1));
-			System.out.println(traitToRemove + " was replaced");
+
+			pseudoConsoleLog.setText(traitToRemove + " was replaced");
 			
 			traitsArray.add(cardName);
 			
