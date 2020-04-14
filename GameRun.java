@@ -50,6 +50,10 @@ public class GameRun extends Application {
 		SpeciesBoard1 = new SpeciesBoard(player1Species.getChildren());
 		SpeciesBoard2 = new SpeciesBoard(player2Species.getChildren());
 		
+		// Updates the indicies of the Species.
+		SpeciesBoard1.displaySpeciesBoard();
+		SpeciesBoard2.displaySpeciesBoard();
+		
 		//System.out.println("player 1 species created");
 		
 		
@@ -230,11 +234,11 @@ public class GameRun extends Application {
 		// Create starting game species board
 		
 		System.out.print("Player 1 Board: ");
-		SpeciesBoard1.displaySpeciesBoard();
+//		SpeciesBoard1.displaySpeciesBoard();
 
 		
 		System.out.print("Player 2 Board: ");
-		SpeciesBoard2.displaySpeciesBoard();
+//		SpeciesBoard2.displaySpeciesBoard();
 		
 	}
 	
@@ -245,6 +249,10 @@ public class GameRun extends Application {
 		if(SpeciesBoard2.numberOfSpeciesInPlay() == 0) {
 			SpeciesBoard2.addNewSpeciestoRight();
 		}
+		
+		// Updates the Species indicies.
+		SpeciesBoard1.displaySpeciesBoard();
+		SpeciesBoard2.displaySpeciesBoard();
 		
 		// Clear the player instructions.
 		pseudoConsoleLog.setText("");
@@ -305,6 +313,10 @@ public class GameRun extends Application {
 
 		// Remove species that died.
 
+		// Update the indicies.
+		SpeciesBoard1.displaySpeciesBoard();
+		SpeciesBoard2.displaySpeciesBoard();
+		
 		System.out.println("The loop will restart to selecting cards for the watering hole now");
 		pseudoConsoleLog.setText("Feeding is complete. Start the next round!");
 	}

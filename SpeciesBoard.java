@@ -42,6 +42,7 @@ public class SpeciesBoard {
 		//added new species since if it doesn't exist, it will cause error: Children: duplicate children added: parent 
 		Species newSpecies2 = new Species(1,1,1,0,false,false,false,0, new ArrayList<String>());
 		newPlayerBoard.add(newSpecies2);
+		displaySpeciesBoard();
 	}
 	
 	
@@ -50,14 +51,25 @@ public class SpeciesBoard {
 	 * TODO: this code is buggy. It still causes: Children: duplicate children added: parent
 	 */
 	public void addNewSpeciestoLeft() {
-		for (int i = newPlayerBoard.size(); i > 0; i--) {
-			Species tmp = (Species) newPlayerBoard.get(i-1);
-			newPlayerBoard.add(i,tmp);
-			System.out.println("debug");
+		
+		
+		newPlayerBoard.add(new Species(1, 1, 1, 0, false, false, false, 0, new ArrayList<String>()));
+			
+		for (int i = 0; i < newPlayerBoard.size(); i++) {
+			System.out.println("Board size: " + newPlayerBoard.size());
+
+			// Store the speciest at the lowest index.
+			Species tmpSpeciesAtLowestIndex = (Species) newPlayerBoard.get(0);
+			
+			// Remove that species and add it to the top of the ArrayList.
+			newPlayerBoard.remove(0);
+			newPlayerBoard.add(tmpSpeciesAtLowestIndex);
+
+			// Repeated this until all the elements have been iterated through.			
+			
 		}
 		
-		Species newSpecies3 = new Species(1,1,1,0,false,false,false,0, new ArrayList<String>());
-		newPlayerBoard.set(0,newSpecies3);
+		displaySpeciesBoard();
 	}
 	
 	/**
@@ -87,7 +99,43 @@ public class SpeciesBoard {
 			for(int i = 0; i < value.getAttachedTraitCards().size(); i++) {
 				System.out.print(value.getAttachedTraitCards().get(i) + " ");			
 			}
+/*		
+		for(int i = 0; i < newPlayerBoard.size(); i++) {
+			((Species) newPlayerBoard.get(i)).setIndex(Integer.toString(i));
 		}
+*/
+	
+		}	
+		
+		for(int i = 0; i < newPlayerBoard.size(); i++) {
+			
+			int indexPlusOne = i + 1;
+			String newIndex = Integer.toString(indexPlusOne);
+			Species value = (Species) newPlayerBoard.get(0);
+			int isAlive = value.getIsAlive();
+			int BodySize = value.getBodysize();
+			int population = value.getPopulation();
+			int foodconsumed = value.getFoodConsumed();
+			boolean carnivore = value.getCarnivore();
+			boolean fatTissue = value.getFatTissue();
+			boolean climbing = value.getClimbing();
+			int numoftraitcards = value.getTraitcard();
+			ArrayList<String>traitsArray = value.getAttachedTraitCards();
+			Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue, climbing, numoftraitcards, traitsArray, newIndex);
+
+			newPlayerBoard.remove(0);
+			newPlayerBoard.add(newSpecies);
+			
+		}
+				
+/*
+			for(int i = 0; i < newPlayerBoard.size(); i++) {
+				((Species) newPlayerBoard.get(i)).setIndex(Integer.toString(i));
+				((Species) newPlayerBoard.get(i)).indexOfSpecies.setText("hello");
+			}
+*/
+				
+			
 	}
 	
 	

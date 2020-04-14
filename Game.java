@@ -46,11 +46,14 @@ public class Game {
 		// Clears player prompt.
 		pseudoConsoleLog.setText("");
 		
+		// Updates the Species indicies.
+		currentPlayersSpeciesBoard.displaySpeciesBoard();
+		
 		String currentPlayerName = "Player " + currentPlayer.getPlayerNumber();
 		
 		while(currentPlayer.getPhaseThreeStatus() == 0)
 		{
-			
+		currentPlayersSpeciesBoard.displaySpeciesBoard();
 			if (currentPlayersHand.getHandSize() == 0) {
 				currentPlayer.endPhaseThree();
 				System.out.println("End of Play Card phase for " + currentPlayerName);
