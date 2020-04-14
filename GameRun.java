@@ -246,11 +246,11 @@ public class GameRun extends Application {
 		// plus three additional cards.
 		System.out.print("Drawing cards for Player 1: ");
 		handforPlayer1.drawCards(SpeciesBoard1.numberOfSpeciesInPlay() + 3, deck);
-		handforPlayer1.displayHand();
+		handforPlayer1.updateHand();
 
 		System.out.print("Drawing cards for Player 2: ");
 		handforPlayer2.drawCards(SpeciesBoard2.numberOfSpeciesInPlay() + 3, deck);
-		handforPlayer2.displayHand();
+		handforPlayer2.updateHand();
 	}
 	
 	public static void feeding() {

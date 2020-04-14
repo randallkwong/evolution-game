@@ -55,7 +55,7 @@ public class Game {
 			}
 			else {
 				currentPlayer.phaseThreeStart();
-				currentPlayersHand.displayHand();
+				currentPlayersHand.updateHand();
 				
 					TextInputDialog td_endRound = new TextInputDialog();
 					td_endRound.setHeaderText("Press 0 to continue this round; \nPress 1 to end this round" );

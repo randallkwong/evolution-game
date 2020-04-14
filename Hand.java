@@ -67,7 +67,7 @@ public class Hand {
 	/**
 	 * This method updates the Cards in a player's Hand.
 	 */
-	public void displayHand() {
+	public void updateHand() {
 
 		// Re-index each card's displayed index value to it's current correct position in the hand.
 		for (int i = 0; i < hand.size(); i++) {			
@@ -89,7 +89,7 @@ public class Hand {
 		int size = getHandSize();
 		if (size != 0) {
 			System.out.println("Change of hand. New hand is:");
-			displayHand();
+			updateHand();
 		}
 	}
 	
