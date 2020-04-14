@@ -138,7 +138,14 @@ public class Player {
 		this.foodPoints = this.foodPoints + foodPointsToAdd;
 	}
 	
-	
-	
+	public void calculateScore(SpeciesBoard playerSpeciesBoard) {
+		// TODO: Add number of attached traits
+		int tempScore = getFoodPoints() + playerSpeciesBoard.numberOfSpeciesInPlay();
+		this.score = tempScore;
+	}
+
+	public int getScore() {
+		return score;
+	}
 	
 }

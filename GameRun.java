@@ -131,7 +131,8 @@ public class GameRun extends Application {
 			btnScoreGame = new Button ("End Game");
 			btnScoreGame.setOnAction(e -> {
 
-				currentGame.scoreGame();
+				// Scores the game and displays the final score.
+				currentGame.scoreGame(playerOne, SpeciesBoard1, playerTwo, SpeciesBoard2);
 
 			});
 			

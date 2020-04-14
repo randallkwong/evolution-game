@@ -329,17 +329,42 @@ public class Game {
 		currentPlayersSpeciesBoard.displaySpeciesBoard();
 	}
 	
-	public void scoreGame() {
+	public void scoreGame(Player playerOne, SpeciesBoard SpeciesBoard1, Player playerTwo, SpeciesBoard SpeciesBoard2) {
+		
+		// Score both players and determine the winner.
+		playerOne.calculateScore(SpeciesBoard1);
+		playerTwo.calculateScore(SpeciesBoard2);
+		
+		String winningPlayer = calculateWinner(playerOne, playerTwo);
+		
+		// Display the winner and game stats to the players.
 		Alert alertEndGame = new Alert(AlertType.INFORMATION);
 		alertEndGame.setTitle("Game over");
-		String winner = "Player placeholder";
-		alertEndGame.setHeaderText(winner + " won the game");
-		
-		String scoreComparisonText = "The final scores were...";
+
+		alertEndGame.setHeaderText(winningPlayer + " won the game");
+
+		String scoreComparisonText = "The final scores were...\n\n" + "Player 1: " + playerOne.getScore() + " points\n" + "Player 2: " + playerTwo.getScore() + " points\n\n" + "Thanks for playing!";
 		alertEndGame.setContentText(scoreComparisonText);
 		alertEndGame.show();
 	}
 
+	public String calculateWinner(Player playerOne, Player playerTwo) {
+		
+		String winner = "";
+		
+		if(playerOne.getScore() > playerTwo.getScore()) {
+			winner = "Player One";
+		}
+		if (playerOne.getScore() < playerTwo.getScore()) {
+			winner = "Player Two";
+		}
+		if (playerOne.getScore() == playerTwo.getScore()) {
+			winner = "Nobody";
+		}
+		
+		return winner;
+	}
+	
 }
 	
 	
