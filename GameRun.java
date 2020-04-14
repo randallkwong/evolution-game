@@ -298,6 +298,7 @@ public class GameRun extends Application {
 		// Remove species that died.
 
 		System.out.println("The loop will restart to selecting cards for the watering hole now");
+		pseudoConsoleLog.setText("Feeding is complete. Start the next round!");
 	}
 	
 	public static void main(String[] args) {

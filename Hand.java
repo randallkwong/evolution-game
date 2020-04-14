@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.text.Text;
 
 /**
  * 
@@ -33,8 +34,10 @@ public class Hand {
 
 		// Draws cards and adds them to the player's hand.	
 		for(int i = 0; i < numberOfCardsToDraw; i++) {	
-			Card cardDrawn = deck.drawCard();	
-			hand.add(cardDrawn);	
+			Card cardDrawn = deck.drawCard();
+			int index = i + 1;
+			Card cardToAdd = new Card(cardDrawn.getCardValue(), cardDrawn.getTrait(), Integer.toString(index));
+			hand.add(cardToAdd);	
 		}	
 
 		//setHand(tempHand);	
@@ -62,14 +65,16 @@ public class Hand {
 	}
 	
 	/**
-	 * This method prints out the Cards in a player's Hand.
+	 * This method updates the Cards in a player's Hand.
 	 */
 	public void displayHand() {
-		System.out.println();
-		for (int i = 0; i < hand.size(); i++) {
-			System.out.println("Card[" + (i+1) + "]: " + ((Card) hand.get(i)).getCardValue() + ", " + ((Card) hand.get(i)).getTrait());
+
+		// Re-index each card's displayed index value to it's current correct position in the hand.
+		for (int i = 0; i < hand.size(); i++) {			
+			int index = i + 1;
+			Card updatedCard = new Card(((Card) hand.get(i)).getCardValue(), ((Card) hand.get(i)).getTrait(), Integer.toString(index));
+			hand.set(i, updatedCard);	
 		}
-		System.out.println("");
 	}
 	
 	/**
