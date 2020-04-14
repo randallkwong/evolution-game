@@ -4,6 +4,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.util.HashMap;
 
@@ -325,6 +329,16 @@ public class Game {
 		currentPlayersSpeciesBoard.displaySpeciesBoard();
 	}
 	
+	public void scoreGame() {
+		Alert alertEndGame = new Alert(AlertType.INFORMATION);
+		alertEndGame.setTitle("Game over");
+		String winner = "Player placeholder";
+		alertEndGame.setHeaderText(winner + " won the game");
+		
+		String scoreComparisonText = "The final scores were...";
+		alertEndGame.setContentText(scoreComparisonText);
+		alertEndGame.show();
+	}
 
 }
 	

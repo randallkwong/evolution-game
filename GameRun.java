@@ -17,7 +17,7 @@ import javafx.scene.control.Alert.AlertType;
 public class GameRun extends Application {
 	Stage window;
 	Scene scene;
-	Button btnSubmit1,btnSubmit2, btnPlay, btnFeed, btnContinue;
+	Button btnSubmit1,btnSubmit2, btnPlay, btnFeed, btnContinue, btnScoreGame;
 	
 	// This will serve as "console log" in the player facing frontend.
 	static Label pseudoConsoleLog = new Label("Player instructions");
@@ -128,6 +128,13 @@ public class GameRun extends Application {
 			
 			System.out.println("Finish of feeding");
 			
+			btnScoreGame = new Button ("End Game");
+			btnScoreGame.setOnAction(e -> {
+
+				currentGame.scoreGame();
+
+			});
+			
 			// Layout
 			
 			BorderPane border = new BorderPane();
@@ -201,7 +208,7 @@ public class GameRun extends Application {
 	public VBox Buttons() {
 		VBox layout = new VBox(10);
 		layout.setPadding(new Insets(20, 20, 20, 20));
-		layout.getChildren().addAll(btnContinue, btnPlay, btnSubmit1, btnSubmit2, btnFeed, wateringHoleDisplay, pseudoConsoleLog);
+		layout.getChildren().addAll(btnContinue, btnPlay, btnSubmit1, btnSubmit2, btnFeed, wateringHoleDisplay, pseudoConsoleLog, btnScoreGame);
 		return layout;
 	}
 	public VBox addVBox() {
