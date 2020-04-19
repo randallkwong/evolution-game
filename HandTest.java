@@ -2,6 +2,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
+
 class HandTest {
 
 	@Test
@@ -9,6 +12,7 @@ class HandTest {
 	 * Checks that cards are correctly drawn from the deck.
 	 */
 	void testDrawCards() {
+		Card card;
 		Deck deck = new Deck();
 		deck.loadDeck();
 		

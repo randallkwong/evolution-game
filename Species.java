@@ -78,91 +78,12 @@ public class Species extends Parent{
 	 * @param AttachedTraitCards
 	 * Takes the attached traits arraylist and applies it to the species.
 	 */
-	public Species(int isAlive, int Population, int BodySize, int FoodConsumed, boolean Carnivore, boolean FatTissue, boolean Climbing, int Traits, ArrayList<String> AttachedTraitCards) {
-		String index = "";
-		this.isAlive = isAlive;
-		population = Population;
-		bodySize = BodySize;
-		currentFoodConsumed = FoodConsumed;
-		isCarnivore = Carnivore;
-		// TODO: get rid of Fat Tissue variable in Species constructor and Species methods.
-		hasFatTissue = FatTissue;
-		hasClimbing = Climbing;
-		numberOfTraits = Traits;
-		attachedTraitCards = AttachedTraitCards;
-		
-		hasFatTissue = false;
-		for(int i = 0; i < AttachedTraitCards.size(); i++) {
-			if(AttachedTraitCards.get(i).equals("Fat Tissue")){
-				hasFatTissue = true;
-			}
-		}
-		
-		if(hasFatTissue == false) {
-			foodCapacity = Population;
-		}
-		else {
-			// TODO: Food stored by fat tissue must be subtracted.
-			foodCapacity = Population + BodySize;
-		}
-		
-		//Add GUI for Species Card to display
-		Rectangle background = new Rectangle (Species_width, Species_height);
-		background.setArcWidth(20);
-		background.setArcHeight(20);
-		background.setFill(Color.WHITE);
-		
-		//Added blank trait names so that it can be displayed. If blank name is not added, then GUI display will crash.
-		
-		AttachedTraitCards.add("Empty T1");
-		AttachedTraitCards.add("Empty T2");
-		AttachedTraitCards.add("Empty T3");
-		
-		Text Trait1ofCard = new Text(AttachedTraitCards.get(0));
-		Trait1ofCard.setFont(Font.font(18));
-		Trait1ofCard.setX(10);
-		Trait1ofCard.setY(Trait1ofCard.getLayoutBounds().getHeight());
-		
-		Text Trait2ofCard = new Text(AttachedTraitCards.get(1));
-		Trait2ofCard.setFont(Font.font(18));
-		Trait2ofCard.setX(10);
-		Trait2ofCard.setY(50);
-		
-		Text Trait3ofCard = new Text(AttachedTraitCards.get(2));
-		Trait3ofCard.setFont(Font.font(18));
-		Trait3ofCard.setX(10);
-		Trait3ofCard.setY(80);
-
-		Text indexOfSpecies = new Text("[]");
-		indexOfSpecies.setFont(Font.font(18));
-		indexOfSpecies.setX(10);
-		indexOfSpecies.setY(Species_height-40);
-		
-		Text bodySizeofSpecies = new Text("B:" + String.valueOf(bodySize));
-		bodySizeofSpecies.setFont(Font.font(18));
-		bodySizeofSpecies.setX(10);
-		bodySizeofSpecies.setY(Species_height-10);
-		
-		Text foodofSpecies = new Text("F:" + String.valueOf(currentFoodConsumed));
-		foodofSpecies.setFont(Font.font(18));
-		foodofSpecies.setX(50);
-		foodofSpecies.setY(Species_height-10);
-		
-		Text populationofSpecies = new Text("P:" + String.valueOf(population));
-		populationofSpecies.setFont(Font.font(18));
-		populationofSpecies.setX(90);
-		populationofSpecies.setY(Species_height-10);
-		
-		getChildren().addAll(background, Trait1ofCard, Trait2ofCard, Trait3ofCard, indexOfSpecies, bodySizeofSpecies,foodofSpecies,populationofSpecies);		
-		
-	}
-
 
 	/**
 	 * Overloaded constructor to handle species indexing.
 	 */
-	public Species(int isAlive, int Population, int BodySize, int FoodConsumed, boolean Carnivore, boolean FatTissue, boolean Climbing, int Traits, ArrayList<String> AttachedTraitCards, String index) {
-		index = index;
+	public Species(int isAlive, int Population, int BodySize, int FoodConsumed, boolean Carnivore, boolean FatTissue, boolean Climbing, int Traits, ArrayList<String> AttachedTraitCards, String Index) {
+		index = Index;
 		this.isAlive = isAlive;
 		population = Population;
 		bodySize = BodySize;
