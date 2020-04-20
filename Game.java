@@ -16,10 +16,16 @@ public class Game {
 	//Button btnEndRound;
 	
 	Card card;
-	boolean gameIsNotFinished;
+	private boolean gameIsNotFinished;
 	
+	/**
+	 *  The Game class contains methods which handle the primary game logic and outline the various
+	 *  play phases that each player advances through during one round of the species'
+	 *  creation, evolution, feeding, starvation, and transfer of food.
+	 */
 	public Game() {
-		this.gameIsNotFinished = false;
+		// A variable to indicate whether or not the game is finished.
+		this.gameIsNotFinished = true;
 	}
 	
 	/**
@@ -384,6 +390,22 @@ public class Game {
 		currentPlayersSpeciesBoard.displaySpeciesBoard();
 	}
 	
+	/**
+	 * This method calculates the scores for the game and displays the end game scores and winner.
+	 * 
+	 * @param playerOne
+	 * Takes player one as an input.
+	 * 
+	 * @param SpeciesBoard1
+	 * Takes player one's species board as an input. The contents of the board will be used to calculate scores.
+	 * 
+	 * @param playerTwo
+	 * Takes player two as an input.
+	 * 
+	 * @param SpeciesBoard2
+	 * Takes player two's species board as an input. The contents of the board will be used to calculate scores.
+	 * 
+	 */
 	public void scoreGame(Player playerOne, SpeciesBoard SpeciesBoard1, Player playerTwo, SpeciesBoard SpeciesBoard2) {
 		
 		// Score both players and determine the winner.
@@ -401,8 +423,22 @@ public class Game {
 		String scoreComparisonText = "The final scores were...\n\n" + "Player 1: " + playerOne.getScore() + " points\n" + "Player 2: " + playerTwo.getScore() + " points\n\n" + "Thanks for playing!";
 		alertEndGame.setContentText(scoreComparisonText);
 		alertEndGame.show();
+		
+		
 	}
 
+	/**
+	 * This method calculates the winner of the game.
+	 * 
+	 * @param playerOne
+	 * Takes player one as an input.
+	 * 
+	 * @param playerTwo
+	 * Takes player two as an input.
+	 * 
+	 * @return
+	 * Returns a string for the player who won.
+	 */
 	public String calculateWinner(Player playerOne, Player playerTwo) {
 		
 		String winner = "";
@@ -420,6 +456,18 @@ public class Game {
 		return winner;
 	}
 	
+	
+	/**
+	 * This method takes the header text and content text and returns the user input as an integer.
+	 * 
+	 * @param headerText
+	 * This is the header text that will populate in the dialog box.
+	 * 
+	 * @param contentText
+	 * This is the content text that will populate in the dialog box.
+	 * 
+	 * @return
+	 */
 	public static int promptUserInputForInteger(String headerText, String contentText) {
 		
 		TextInputDialog td_species = new TextInputDialog();
@@ -432,32 +480,65 @@ public class Game {
 		return returnInt;
 	}
 	
+	/**
+	 * This method handles the logic for when a player selects a card from their hand to contribute
+	 * its food value to the watering hole.
+	 * 
+	 * @param currentPlayer
+	 * Takes the current player.
+	 * 
+	 * @param currentHand
+	 * Takes the current player's hand of cards.
+	 * 
+	 * @param wateringHole
+	 * Takes the game's watering hole.
+	 * 
+	 * @param wateringHoleDisplay
+	 * Take's the watering hole label which displays the available plant food.
+	 */
 	public void playWateringHoleCard(Player currentPlayer, Hand currentHand, WateringHole wateringHole, Label wateringHoleDisplay) {
 		
 		String feedingHeaderTextP1 = "Player " + currentPlayer.getPlayerNumber() + ": Which card would you like to select to add food to the watering hole?";
 		String feedingContentTextP1 = "Select which [Card] you'd like to use for Watering Hole";
 		
+		// Set a dummy value before entering the loop.
 		int playerSelectedFoodCard = -1;
 		
 		while(
 				!((playerSelectedFoodCard <= currentHand.getHandSize()) && (playerSelectedFoodCard > 0))
 			 ) {
-
-			playerSelectedFoodCard = Game.promptUserInputForInteger(feedingHeaderTextP1, feedingContentTextP1);
-			
+			// Gets the user input.
+			playerSelectedFoodCard = Game.promptUserInputForInteger(feedingHeaderTextP1, feedingContentTextP1);			
 		}
 		
-		int plantfoodNum1 = currentHand.getValuefromCard(playerSelectedFoodCard);
-		wateringHole.updateCurrentFoodAvailable(plantfoodNum1);
+		int plantFoodValue = currentHand.getValuefromCard(playerSelectedFoodCard);
+		wateringHole.updateCurrentFoodAvailable(plantFoodValue);
 		
+		// Remove the selected card from the player's hand.
 		currentHand.removeCardfromHand(playerSelectedFoodCard);
-		
+
+		// Update the available plant food in the watering hole.
 		wateringHole.displayWH(wateringHoleDisplay);
 		
 	}
-	
-}
 
+	/**
+	 * 
+	 * @return
+	 * Returns a boolean indicating whether or not the game is finished.
+	 */
+	public boolean isGameIsNotFinished() {
+		return gameIsNotFinished;
+	}
 	
-	
+	/**
+	 * 
+	 * @param gameIsNotFinished
+	 * Sets the boolean that indicates whether or not the game is finished.
+	 */
+	public void setGameIsNotFinished(boolean gameIsNotFinished) {
+		this.gameIsNotFinished = gameIsNotFinished;
+	}
+
+}	
 	
