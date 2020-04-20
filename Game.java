@@ -55,12 +55,10 @@ public class Game {
 		{
 		
 			if (currentPlayersHand.getHandSize() == 0) {
+				
 				currentPlayer.endPhaseThree();
-				System.out.println("End of Play Card phase for " + currentPlayerName);
-
-				System.out.println(currentPlayerName + " board");
-				currentPlayersSpeciesBoard.displaySpeciesBoard();
-				System.out.println();
+				pseudoConsoleLog.setText("End of Play Card phase for " + currentPlayerName + "\n" + "Continue to the next button");
+				
 			}
 			else {
 				
