@@ -25,6 +25,8 @@ public class Card extends Parent{
 	 * @param foodValueInput - The food value of a trait card used to populate the watering hole.
 	 * @param traitInput - The trait that may be attached to a player's species.
 	 */
+	
+	/*
 	public Card(int foodValueInput, String traitInput) {
 		
 		this.foodValue = foodValueInput;
@@ -53,6 +55,9 @@ public class Card extends Parent{
 		getChildren().addAll(background, nameofCard, valueofCard, indexOfCardInHand);		
 	}
 
+*/
+	
+	
 	/*
 	 *  This is an overloaded constructor that takes an additional
 	 *  argument for card index.

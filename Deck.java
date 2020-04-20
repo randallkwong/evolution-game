@@ -43,7 +43,7 @@ public class Deck {
 			int foodValue = Integer.parseInt(currentCardColumns[1]);
 			
 			// Creates a card from its food value and trait.
-			Card currentCard = new Card(foodValue, trait);
+			Card currentCard = new Card(foodValue, trait,"1");
 
 			// Add the card to the deck.
 			deckBuilder.add(currentCard);

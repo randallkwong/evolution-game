@@ -16,10 +16,10 @@ class GameTest {
 		Player playerOne = new Player(1);
 		
 		// Board creation creates one species
-		SpeciesBoard SpeciesBoard1 = new SpeciesBoard();
+		SpeciesBoard SpeciesBoard1 = new SpeciesBoard(null);
 		
 		// Add one additional species to the board
-		SpeciesBoard1.addNewSpeciestoLeft();
+		SpeciesBoard1.addNewSpeciestoRight();
 
 		// Two species are in play
 		assertEquals(SpeciesBoard1.numberOfSpeciesInPlay(), 2);

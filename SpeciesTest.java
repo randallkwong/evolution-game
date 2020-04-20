@@ -16,11 +16,11 @@ class SpeciesTest {
 		
 		testTraits.add("Fat Tissue");
 		
-		Species testSpeciesHasFatTissue = new Species(1, 1, 1, 0, false, true, false, 1, testTraits);
+		Species testSpeciesHasFatTissue = new Species(1, 1, 1, 0, false, true, false, 1, testTraits,"1");
 		
 		testTraits.remove(0);
 		
-		Species testSpeciesDoesNotHaveFatTissue = new Species(1, 1, 1, 0, false, false, false, 1, testTraits);
+		Species testSpeciesDoesNotHaveFatTissue = new Species(1, 1, 1, 0, false, false, false, 1, testTraits,"1");
 		
 		assertEquals(testSpeciesHasFatTissue.getFoodCapacity(), 2);
 		assertEquals(testSpeciesDoesNotHaveFatTissue.getFoodCapacity(), 1);
