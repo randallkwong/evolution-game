@@ -103,11 +103,6 @@ public class Game {
 						TextField actionInput = td_action.getEditor();
 						td_action.showAndWait();
 						
-//						TextInputDialog td_species = new TextInputDialog();
-						
-//						td_species.setHeaderText("Select a species");
-//						td_species.setContentText("Species");
-//						TextField speciesInput = td_species.getEditor();
 						
 						String selectSpeciesHeaderText = "Select a species";
 						String selectSpeciesContentText = "Species";
@@ -115,7 +110,7 @@ public class Game {
 						// Handle user actions
 							
 							int userActionInput = Integer.parseInt(actionInput.getText());
-							//int userActionInput = scan.nextInt();
+
 							
 							if (userActionInput == 1) {
 								currentPlayersSpeciesBoard.addNewSpeciestoLeft();
@@ -131,16 +126,10 @@ public class Game {
 								 ) {
 
 								pseudoConsoleLog.setText("Which species would you like to increase bodysize for?");
-
 								input4 = promptUserInputForInteger(selectSpeciesHeaderText, selectSpeciesContentText);
-/*
-								TextField speciesInput = td_species.getEditor();
-								td_species.showAndWait();
-								input4 = Integer.parseInt(speciesInput.getText());
-*/
 								
 								}
-								//int input4 = scan.nextInt();
+
 								currentPlayersSpeciesBoard.updateBodySize(input4-1);
 								
 								// Clears player prompt
@@ -158,14 +147,7 @@ public class Game {
 									 ) {
 
 								pseudoConsoleLog.setText("Which species would you like to increase the population for?");
-
 								input5 = promptUserInputForInteger(selectSpeciesHeaderText, selectSpeciesContentText);
-/*
-								TextField speciesInput = td_species.getEditor();
-								td_species.showAndWait();
-								input5 = Integer.parseInt(speciesInput.getText());
-*/
-								//int input5 = scan.nextInt();
 								
 								}
 								
@@ -186,12 +168,6 @@ public class Game {
 								pseudoConsoleLog.setText(whichSpeciesToAttachPrompt);
 								
 								playTraitOnSpeciesIndex = promptUserInputForInteger(selectSpeciesHeaderText, selectSpeciesContentText);
-
-/*
-								TextField speciesInput = td_species.getEditor();
-								td_species.showAndWait();
-								playTraitOnSpeciesIndex = Integer.parseInt(speciesInput.getText());
-*/
 								
 								}
 								
