@@ -115,22 +115,22 @@ public class Species extends Parent{
 		//Added blank trait names so that it can be displayed. If there is already traits in traitsarray, then no need to add any traits. 
 		
 		if (AttachedTraitCards.size() == 0) {
-			AttachedTraitCards.add("T1: Empty");
-			AttachedTraitCards.add("T2: Empty");
-			AttachedTraitCards.add("T3: Empty");
+			AttachedTraitCards.add("Empty");
+			AttachedTraitCards.add("Empty");
+			AttachedTraitCards.add("Empty");
 		}
 		
-		Text Trait1ofCard = new Text(AttachedTraitCards.get(0));
+		Text Trait1ofCard = new Text("T1:" + AttachedTraitCards.get(0));
 		Trait1ofCard.setFont(Font.font(18));
 		Trait1ofCard.setX(10);
 		Trait1ofCard.setY(Trait1ofCard.getLayoutBounds().getHeight());
 		
-		Text Trait2ofCard = new Text(AttachedTraitCards.get(1));
+		Text Trait2ofCard = new Text("T2:" + AttachedTraitCards.get(1));
 		Trait2ofCard.setFont(Font.font(18));
 		Trait2ofCard.setX(10);
 		Trait2ofCard.setY(30);
 		
-		Text Trait3ofCard = new Text(AttachedTraitCards.get(2));
+		Text Trait3ofCard = new Text("T3:" + AttachedTraitCards.get(2));
 		Trait3ofCard.setFont(Font.font(18));
 		Trait3ofCard.setX(10);
 		Trait3ofCard.setY(60);
@@ -164,7 +164,7 @@ public class Species extends Parent{
 	 * Overloaded constructor to handle species indexing.
 	 */
 	public Species(int isAlive, int Population, int BodySize, int FoodConsumed, boolean Carnivore, boolean FatTissue, boolean Climbing, int Traits, ArrayList<String> AttachedTraitCards, String index) {
-		index = index;
+		index = "";
 		this.isAlive = isAlive;
 		population = Population;
 		bodySize = BodySize;
@@ -219,20 +219,20 @@ public class Species extends Parent{
 //		AttachedTraitCards.add("Empty T2");
 //		AttachedTraitCards.add("Empty T3");
 		
-		Text Trait1ofCard = new Text(AttachedTraitCards.get(0));
+		Text Trait1ofCard = new Text("T1:" + AttachedTraitCards.get(0));
 		Trait1ofCard.setFont(Font.font(18));
 		Trait1ofCard.setX(10);
 		Trait1ofCard.setY(Trait1ofCard.getLayoutBounds().getHeight());
 		
-		Text Trait2ofCard = new Text(AttachedTraitCards.get(1));
+		Text Trait2ofCard = new Text("T2:" + AttachedTraitCards.get(1));
 		Trait2ofCard.setFont(Font.font(18));
 		Trait2ofCard.setX(10);
-		Trait2ofCard.setY(50);
+		Trait2ofCard.setY(45);
 		
-		Text Trait3ofCard = new Text(AttachedTraitCards.get(2));
+		Text Trait3ofCard = new Text("T3:" + AttachedTraitCards.get(2));
 		Trait3ofCard.setFont(Font.font(18));
 		Trait3ofCard.setX(10);
-		Trait3ofCard.setY(80);
+		Trait3ofCard.setY(70);
 
 		Text indexOfSpecies = new Text("[" + index + "]");
 		indexOfSpecies.setFont(Font.font(18));
