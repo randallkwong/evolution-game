@@ -2,13 +2,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
+
 class GameTest {
+
 
 	@Test
 	/*
 	 * Tests that a species that isn't fed will starve and be removed from the species board.
 	 */
 	void testStarvationAndSpeciesDeath() {
+		
+		//Species species;
 
 		Game currentGame = new Game();
 		
@@ -16,7 +22,7 @@ class GameTest {
 		Player playerOne = new Player(1);
 		
 		// Board creation creates one species
-		SpeciesBoard SpeciesBoard1 = new SpeciesBoard(null);
+		SpeciesBoard SpeciesBoard1 = new SpeciesBoard(ObservableList<Node> species);
 		
 		// Add one additional species to the board
 		SpeciesBoard1.addNewSpeciestoRight();
