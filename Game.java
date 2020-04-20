@@ -475,7 +475,14 @@ public class Game {
 		td_species.setContentText(contentText);
 		TextField textInput = td_species.getEditor();
 		td_species.showAndWait();
-		int returnInt = Integer.parseInt(textInput.getText());
+		int returnInt = -999;
+		try {
+			returnInt = Integer.parseInt(textInput.getText());			
+		}
+		catch (Exception e) {
+		// This will trigger the loop enclosing these input prompts to start again.
+			returnInt = -999;
+		}
 
 		return returnInt;
 	}
