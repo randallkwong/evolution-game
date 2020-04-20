@@ -12,7 +12,6 @@ class GameTest {
 
 	ObservableList<Node> newPlayerBoard = FXCollections.observableArrayList();
 	Species newSpecies = new Species(1, 1, 1, 0, false, false, false, 0, new ArrayList<String>(), "1");
-
 	
 	
 	@Test
@@ -47,5 +46,9 @@ class GameTest {
 		// One species should starve and die off, leaving one species left
 		assertEquals(SpeciesBoard1.numberOfSpeciesInPlay(), 1);
 	}
+	
+	
+	
+	
 	
 }
