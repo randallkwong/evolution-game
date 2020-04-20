@@ -268,26 +268,36 @@ public class Game {
 			while(ableToContinue == false) {
 				
 			// Prompt the player to feed. If the selected species to feed is invalid, re-prompt the user for input.
-			TextInputDialog td_species1 = new TextInputDialog();
-				
-			td_species1.setHeaderText(currentPlayerName + ", you may choose to do one of the following: \nEnter [Species] to feed \nEnter 0 to skip one feeding. \nEnter -1 to skip all feeding");
-			td_species1.setContentText("Enter a number");
-			td_species1.showAndWait(); 
-			TextField speciesInput = td_species1.getEditor();
+			String speciesToFeedHeaderText = currentPlayerName + ", you may choose to do one of the following: \nEnter [Species] to feed \nEnter 0 to skip one feeding. \nEnter -1 to skip all feeding";
+			String speciesToFeedContentText = "Enter a number";
+			int speciesToFeed = -999;
 			
+			while(
+					// A user may select 0 to skip one round of feeding or -1 to skip all rounds of feeding.
+					// Otherwise input must be a valid species on the board.
+					!((speciesToFeed <= currentPlayersSpeciesBoard.newPlayerBoard.size()) && (speciesToFeed >= -1))
+				 ) {
+			
+				speciesToFeed = promptUserInputForInteger(speciesToFeedHeaderText, speciesToFeedContentText);
+			
+			}
+				
 			currentPlayersSpeciesBoard.displaySpeciesBoard();
 			
-			int speciesToFeed = Integer.parseInt(speciesInput.getText())-1;
-				
+			// We need to decrement the user input due to array indicies starting at 0;
+			speciesToFeed = speciesToFeed - 1;
+			
+			// If user selects -1, then they want to finish feeding.
 			if(speciesToFeed == -2) {
 				currentPlayer.isDoneFeeding();
 				ableToContinue = true;
 			}
 			else 
 			{
+				// If a user selects 0, they want to skip one round of feeding. They will have the option to continue feeding.
 				if (speciesToFeed == -1) {
-				System.out.println(currentPlayerName + " skips one round of feeding");
-				ableToContinue = true;
+					pseudoConsoleLog.setText(currentPlayerName + " skips one round of feeding");
+					ableToContinue = true;
 				}
 				else {
 					// TODO: Add logic which only allows player to feed a species that exists.
