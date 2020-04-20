@@ -75,29 +75,10 @@ public class GameRun extends Application {
 			
 			btnPlay = new Button ("Select plant food");
 			btnPlay.setOnAction(e -> {
-				TextInputDialog td_wh1 = new TextInputDialog();
-				td_wh1.setHeaderText("Player 1: Which card would you like to select to add food to the watering hole?");
-				td_wh1.setContentText("Card for Watering Hole");
-				TextField userInput = td_wh1.getEditor();
-				td_wh1.showAndWait();
 				
-				String input  = userInput.getText();
-				int plantfoodNum1 = handforPlayer1.getValuefromCard(Integer.parseInt(input));
-				wateringHole.updateCurrentFoodAvailable(plantfoodNum1);
-				handforPlayer1.removeCardfromHand(Integer.parseInt(input));
-				wateringHole.displayWH(wateringHoleDisplay);
-
-				TextInputDialog td_wh2 = new TextInputDialog();
-				td_wh2.setHeaderText("Player 2: Which card would you like to select to add food to the watering hole?");
-				td_wh2.setContentText("Card for Watering Hole");	
-				TextField userInput2 = td_wh2.getEditor();
-				td_wh2.showAndWait();
+				currentGame.playWateringHoleCard(playerOne, handforPlayer1, wateringHole, wateringHoleDisplay);
+				currentGame.playWateringHoleCard(playerTwo, handforPlayer2, wateringHole, wateringHoleDisplay);
 				
-				String input2  = userInput2.getText();
-				int plantfoodNum2 = handforPlayer2.getValuefromCard(Integer.parseInt(input2));
-				wateringHole.updateCurrentFoodAvailable(plantfoodNum2);
-				handforPlayer2.removeCardfromHand(Integer.parseInt(input2));
-				wateringHole.displayWH(wateringHoleDisplay);
 			});
 			
 			System.out.println("Finish of plant food selection");

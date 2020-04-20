@@ -420,7 +420,7 @@ public class Game {
 		return winner;
 	}
 	
-	public int promptUserInputForInteger(String headerText, String contentText) {
+	public static int promptUserInputForInteger(String headerText, String contentText) {
 		
 		TextInputDialog td_species = new TextInputDialog();
 		td_species.setHeaderText(headerText);
@@ -430,6 +430,30 @@ public class Game {
 		int returnInt = Integer.parseInt(textInput.getText());
 
 		return returnInt;
+	}
+	
+	public void playWateringHoleCard(Player currentPlayer, Hand currentHand, WateringHole wateringHole, Label wateringHoleDisplay) {
+		
+		String feedingHeaderTextP1 = "Player " + currentPlayer.getPlayerNumber() + ": Which card would you like to select to add food to the watering hole?";
+		String feedingContentTextP1 = "Select which [Card] you'd like to use for Watering Hole";
+		
+		int playerSelectedFoodCard = -1;
+		
+		while(
+				!((playerSelectedFoodCard <= currentHand.getHandSize()) && (playerSelectedFoodCard > 0))
+			 ) {
+
+			playerSelectedFoodCard = Game.promptUserInputForInteger(feedingHeaderTextP1, feedingContentTextP1);
+			
+		}
+		
+		int plantfoodNum1 = currentHand.getValuefromCard(playerSelectedFoodCard);
+		wateringHole.updateCurrentFoodAvailable(plantfoodNum1);
+		
+		currentHand.removeCardfromHand(playerSelectedFoodCard);
+		
+		wateringHole.displayWH(wateringHoleDisplay);
+		
 	}
 	
 }
