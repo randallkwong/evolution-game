@@ -69,6 +69,11 @@ public class GameRun extends Application {
 			
 		}
 
+	/**
+	 * 
+	 * @return
+	 * This method returns a horizontal box that will contain Player 1's cards.
+	 */
 	public HBox addHBox1() {
 	    HBox hbox = new HBox();
 	    hbox.setPadding(new Insets(15, 12, 15, 12));
@@ -80,6 +85,11 @@ public class GameRun extends Application {
 	    return hbox;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 * This method returns a horizontal box that will contain Player 2's cards.
+	 */
 	public HBox addHBox2() {
 	    HBox hbox = new HBox();
 	    hbox.setPadding(new Insets(15, 12, 15, 12));
@@ -91,6 +101,11 @@ public class GameRun extends Application {
 	    return hbox;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 * This method returns a horizontal box that contains Player 1's species.
+	 */
 	public HBox addHBox3() {
 	    HBox hbox = new HBox();
 	    hbox.setPadding(new Insets(15, 12, 15, 12));
@@ -102,6 +117,11 @@ public class GameRun extends Application {
 	    return hbox;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 * This method returns a horizontal box that contains Player 2's species.
+	 */
 	public HBox addHBox4() {
 	    HBox hbox = new HBox();
 	    hbox.setPadding(new Insets(15, 12, 15, 12));
@@ -113,12 +133,24 @@ public class GameRun extends Application {
 	    return hbox;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 * This method returns a vertical box that contains the game's buttons that initiate various phases of the game, as well
+	 * as player help text, and the current amount of food in the watering hole.
+	 */
 	public VBox Buttons() {
 		VBox layout = new VBox(10);
 		layout.setPadding(new Insets(20, 20, 20, 20));
 		layout.getChildren().addAll(btnContinue, btnPlay, btnSubmit1, btnSubmit2, btnFeed, wateringHoleDisplay, pseudoConsoleLog, btnScoreGame);
 		return layout;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 * This method returns a vertical box that has information about each players' species.
+	 */
 	public VBox addVBox() {
 		VBox layout = new VBox(10);
 		layout.setPadding(new Insets(20, 20, 20, 20));
@@ -128,7 +160,20 @@ public class GameRun extends Application {
 		return layout;
 	}
 	
-	
+	/**
+	 * 
+	 * @param player1Cards
+	 * This is the horizontal box that contains Player 1's cards.
+	 * 
+	 * @param player2Cards
+	 * This is the horizontal box that contains Player 2's cards.
+	 * 
+	 * @param player1Species
+	 * This is the horizontal box that contains Player 1's species.
+	 * 
+	 * @param player2Species
+	 * This is the horizontal box that contains Player 2's species.
+	 */
 	public static void startNewGame(HBox player1Cards, HBox player2Cards, HBox player1Species, HBox player2Species){	
 		
 		// Sets up the user interface for the players
@@ -147,6 +192,11 @@ public class GameRun extends Application {
 		
 	}
 	
+	/**
+	 * This method begins a new round, which consists of repeated game phases.
+	 * The round begins by spawning new species for players who had all their species become extinct,
+	 * then deals cards for each player and updates the game board.
+	 */
 	public static void startNewRound() {
 		if(SpeciesBoard1.numberOfSpeciesInPlay() == 0) {
 			SpeciesBoard1.addNewSpeciestoRight();
@@ -174,16 +224,24 @@ public class GameRun extends Application {
 		handforPlayer2.updateHand();
 	}
 	
+	/**
+	 * This method contains the feeding phase of the game. Players take turns feeding their species
+	 * and once feeding is complete, species that did not receive food starve off and die, and
+	 * food points are transferred from species that fed to their player's food bag, eventually
+	 * to count toward that player's end game score.
+	 */
 	public static void feeding() {
 		// Phase 4 - Feeding
 
 		playerOne.isReadyToFeed();
 		playerTwo.isReadyToFeed();
 
-		// Long Neck and Fertile handled first
+		// TODO: Game enhancements - Long Neck and Fertile handled first
 
 		// Regular feeding loop
 
+		// As long as at least one player wants to continue feeding their species,
+		// continue the feeding phase.
 		while ((playerOne.getIsFeeding() + playerTwo.getIsFeeding()) != 0) {
 
 			// Loop through players and allow them the opportunity to feed.
@@ -200,7 +258,7 @@ public class GameRun extends Application {
 
 		}
 
-		System.out.println("End of feeding loop");
+		// End of the feeding loop.
 
 		// Handles starving species that lose population or die.
 		currentGame.starveSpecies(playerOne, SpeciesBoard1);
@@ -216,10 +274,14 @@ public class GameRun extends Application {
 		SpeciesBoard1.displaySpeciesBoard();
 		SpeciesBoard2.displaySpeciesBoard();
 		
-		System.out.println("The loop will restart to selecting cards for the watering hole now");
+		// Player help text.
 		pseudoConsoleLog.setText("Feeding is complete. Start the next round!");
 	}
 	
+	/**
+	 * This method creates the play buttons for the game. These buttons trigger events that
+	 * initiate each phase of the game, including new rounds/turns and end of game scoring.
+	 */
 	public void createPlayButtons() {
 		
 		// Creates a button to start a new round each turn.
@@ -277,7 +339,11 @@ public class GameRun extends Application {
 		
 	}
 	
-	// Loads the layout for the game.
+	/**
+	 * 
+	 * @param border
+	 * This method takes a BorderPane and loads layout elements for the game display. 
+	 */
 	public void loadLayout(BorderPane border) {
 
 		HBox P1Card = addHBox1();
@@ -294,6 +360,11 @@ public class GameRun extends Application {
 		border.setRight(Buttons());
 	}
 	
+	/**
+	 * 
+	 * @param args
+	 * JavaFx will run a main function which launches the program.
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
