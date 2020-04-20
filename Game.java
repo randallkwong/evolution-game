@@ -86,18 +86,24 @@ public class Game {
 						
 						System.out.println(currentPlayerName + ", which card would you like to select?");
 						
-						TextInputDialog td_card = new TextInputDialog();
-						td_card.setHeaderText(currentPlayerName + ", which card would you like to select?");
-						td_card.setContentText("Card");
-						TextField cardInput = td_card.getEditor();
-						td_card.showAndWait();
+						
+						String cardSelectionHeaderText = currentPlayerName + ", which card would you like to select?";
+						String cardSelectionContentText = "Card";
 
-						int selectedCardIndex = Integer.parseInt(cardInput.getText());
+						int selectedCardIndex = -1;
+						
+						while(
+								!((selectedCardIndex <= currentPlayersHand.hand.size()) && (selectedCardIndex > 0))
+							 ) {
+						
+							selectedCardIndex = promptUserInputForInteger(cardSelectionHeaderText, cardSelectionContentText);
+						
+						}
+						
 						String currentCardTrait = ((Card) currentPlayersHand.hand.get(selectedCardIndex-1)).getTrait();
-						System.out.println(currentPlayerName + ", what would you like to do with your card " + selectedCardIndex + " ?");
-						//System.out.println("Press 1 to create a new species on the left; Press 2 to create new species on the right, Press 3 to increase body size, Press 4 to increase population size, Press 5 to attach " + currentCardTrait);
 						
-						
+						pseudoConsoleLog.setText(currentPlayerName + ", what would you like to do with your card " + selectedCardIndex + " ?");
+												
 						String userActionHeaderText = "Enter action for this card: \nEnter 1 to create a new species on the left \nEnter 2 to create new species on the right \nEnter 3 to increase body size \nEnter 4 to increase population size \nEnter 5 to attach traits";
 						String userActionContextText = "Action";
 						
