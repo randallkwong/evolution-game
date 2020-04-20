@@ -53,21 +53,16 @@ public class SpeciesBoard {
 	public void addNewSpeciestoLeft() {
 		
 		
-		newPlayerBoard.add(new Species(1, 1, 1, 0, false, false, false, 0, new ArrayList<String>(),"1"));
+		Species tmp = new Species(1, 1, 1, 0, false, false, false, 0, new ArrayList<String>(),"1");
 			
-		for (int i = 0; i < newPlayerBoard.size(); i++) {
-			System.out.println("Board size: " + newPlayerBoard.size());
-
-			// Store the species at the lowest index.
-			Species tmpSpeciesAtLowestIndex = (Species) newPlayerBoard.get(0);
-			
-			// Remove that species and add it to the top of the ArrayList.
-			newPlayerBoard.add(tmpSpeciesAtLowestIndex);
-			newPlayerBoard.remove(0);
-			
+		for (int i = newPlayerBoard.size(); i > 0; i--) {
+			System.out.println("Board size: " + newPlayerBoard.size());		
+			// Add species to the right that is the same as the last species on the board
+			newPlayerBoard.add(newPlayerBoard.get(i-1));
 			// Repeated this until all the elements have been iterated through.			
-			
 		}
+		
+		newPlayerBoard.add(0,tmp);
 		
 		displaySpeciesBoard();
 	}
