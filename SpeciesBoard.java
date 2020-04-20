@@ -21,7 +21,7 @@ public class SpeciesBoard {
 	
 	//HashMap <Integer, Species> newPlayerBoard;
 	ObservableList<Node> newPlayerBoard = FXCollections.observableArrayList();
-	Species newSpecies = new Species(1,1,1,0,false,false,false,0, new ArrayList<String>());
+	Species newSpecies = new Species(1,1,1,0,false,false,false,0, new ArrayList<String>(),"1");
 
 	/**
 	 * When the SpeciesBoard is first constructed at the game's start, each player begins with one Species.
@@ -31,7 +31,7 @@ public class SpeciesBoard {
 	public SpeciesBoard(ObservableList<Node> species){
 		newPlayerBoard = species;
 		//newPlayerBoard = new HashMap <Integer, Species>();
-		Species newSpecies1 = new Species(1,1,1,0,false,false,false,0, new ArrayList<String>());
+		Species newSpecies1 = new Species(1,1,1,0,false,false,false,0, new ArrayList<String>(),"1");
 		newPlayerBoard.add((Species) newSpecies1);
 	}
 	
@@ -40,7 +40,7 @@ public class SpeciesBoard {
 	 */
 	public void addNewSpeciestoRight() {
 		//added new species since if it doesn't exist, it will cause error: Children: duplicate children added: parent 
-		Species newSpecies2 = new Species(1,1,1,0,false,false,false,0, new ArrayList<String>());
+		Species newSpecies2 = new Species(1,1,1,0,false,false,false,0, new ArrayList<String>(),"1");
 		newPlayerBoard.add(newSpecies2);
 		displaySpeciesBoard();
 	}
@@ -53,12 +53,12 @@ public class SpeciesBoard {
 	public void addNewSpeciestoLeft() {
 		
 		
-		newPlayerBoard.add(new Species(1, 1, 1, 0, false, false, false, 0, new ArrayList<String>()));
+		newPlayerBoard.add(new Species(1, 1, 1, 0, false, false, false, 0, new ArrayList<String>(),"1"));
 			
 		for (int i = 0; i < newPlayerBoard.size(); i++) {
 			System.out.println("Board size: " + newPlayerBoard.size());
 
-			// Store the speciest at the lowest index.
+			// Store the species at the lowest index.
 			Species tmpSpeciesAtLowestIndex = (Species) newPlayerBoard.get(0);
 			
 			// Remove that species and add it to the top of the ArrayList.
@@ -173,7 +173,7 @@ public class SpeciesBoard {
 		boolean climbing = value.getClimbing();
 		int numoftraitcards = value.getTraitcard();
 		ArrayList<String>traitsArray = value.getAttachedTraitCards();
-		Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue, climbing, numoftraitcards, traitsArray);
+		Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue, climbing, numoftraitcards, traitsArray,"1");
 		newPlayerBoard.set(pos,newSpecies);
 	}
 	
@@ -200,7 +200,7 @@ public class SpeciesBoard {
 		boolean climbing = value.getClimbing();
 		int numoftraitcards = value.getTraitcard();
 		ArrayList<String>traitsArray = value.getAttachedTraitCards();
-		Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue, climbing, numoftraitcards, traitsArray);
+		Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue, climbing, numoftraitcards, traitsArray,"1");
 		newPlayerBoard.set(pos,newSpecies);
 	}
 	
@@ -221,7 +221,7 @@ public class SpeciesBoard {
 		boolean climbing = value.getClimbing();
 		int numoftraitcards = value.getTraitcard();
 		ArrayList<String>traitsArray = value.getAttachedTraitCards();
-		Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue, climbing, numoftraitcards, traitsArray);
+		Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue, climbing, numoftraitcards, traitsArray,"1");
 		newPlayerBoard.set(pos,newSpecies);
 	}
 
@@ -245,7 +245,7 @@ public class SpeciesBoard {
 		boolean climbing = value.getClimbing();
 		int numoftraitcards = value.getTraitcard();
 		ArrayList<String>traitsArray = value.getAttachedTraitCards();
-		Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue, climbing, numoftraitcards, traitsArray);
+		Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue, climbing, numoftraitcards, traitsArray,"1");
 		newPlayerBoard.set(pos,newSpecies);
 	}
 	
@@ -317,7 +317,7 @@ public class SpeciesBoard {
 			
 		}
 		
-		Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue, climbing, numoftraitcards, traitsArray);
+		Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue, climbing, numoftraitcards, traitsArray,"1");
 		newPlayerBoard.set(pos,newSpecies);
 	}
 }

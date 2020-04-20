@@ -83,6 +83,7 @@ public class Game {
 		
 					}
 					else {
+						
 						System.out.println(currentPlayerName + ", which card would you like to select?");
 						
 						TextInputDialog td_card = new TextInputDialog();

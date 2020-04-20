@@ -21,7 +21,6 @@ public class GameRun extends Application {
 	
 	// This will serve as "console log" in the player facing frontend.
 	static Label pseudoConsoleLog = new Label("Player instructions");
-	
 	static Game currentGame = new Game();
 	static WateringHole wateringHole = new WateringHole();
 	static Label wateringHoleDisplay = new Label("Watering Hold Plant Food Available: " + Integer.toString(wateringHole.getCurrentFoodAvailable()));

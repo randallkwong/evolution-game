@@ -78,6 +78,8 @@ public class Species extends Parent{
 	 * @param AttachedTraitCards
 	 * Takes the attached traits arraylist and applies it to the species.
 	 */
+	
+	/*
 	public Species(int isAlive, int Population, int BodySize, int FoodConsumed, boolean Carnivore, boolean FatTissue, boolean Climbing, int Traits, ArrayList<String> AttachedTraitCards) {
 		String index = "";
 		this.isAlive = isAlive;
@@ -112,13 +114,7 @@ public class Species extends Parent{
 		background.setArcHeight(20);
 		background.setFill(Color.WHITE);
 		
-		//Added blank trait names so that it can be displayed. If there is already traits in traitsarray, then no need to add any traits. 
 		
-		if (AttachedTraitCards.size() == 0) {
-			AttachedTraitCards.add("Empty");
-			AttachedTraitCards.add("Empty");
-			AttachedTraitCards.add("Empty");
-		}
 		
 		Text Trait1ofCard = new Text("T1:" + AttachedTraitCards.get(0));
 		Trait1ofCard.setFont(Font.font(18));
@@ -158,13 +154,14 @@ public class Species extends Parent{
 		getChildren().addAll(background, Trait1ofCard, Trait2ofCard, Trait3ofCard, indexOfSpecies, bodySizeofSpecies,foodofSpecies,populationofSpecies);		
 		
 	}
+	*/
 
 
 	/**
 	 * Overloaded constructor to handle species indexing.
 	 */
-	public Species(int isAlive, int Population, int BodySize, int FoodConsumed, boolean Carnivore, boolean FatTissue, boolean Climbing, int Traits, ArrayList<String> AttachedTraitCards, String index) {
-		index = "";
+	public Species(int isAlive, int Population, int BodySize, int FoodConsumed, boolean Carnivore, boolean FatTissue, boolean Climbing, int Traits, ArrayList<String> AttachedTraitCards, String Index) {
+		index = Index;
 		this.isAlive = isAlive;
 		population = Population;
 		bodySize = BodySize;
@@ -215,9 +212,13 @@ public class Species extends Parent{
 			}
 		}
 		
-//		AttachedTraitCards.add("Empty T1");
-//		AttachedTraitCards.add("Empty T2");
-//		AttachedTraitCards.add("Empty T3");
+		//Added blank trait names so that it can be displayed. If there is already traits in traitsarray, then no need to add any traits. 
+		
+		if (AttachedTraitCards.size() == 0) {
+			AttachedTraitCards.add("Empty");
+			AttachedTraitCards.add("Empty");
+			AttachedTraitCards.add("Empty");
+		}
 		
 		Text Trait1ofCard = new Text("T1:" + AttachedTraitCards.get(0));
 		Trait1ofCard.setFont(Font.font(18));
