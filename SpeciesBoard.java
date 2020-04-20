@@ -294,15 +294,19 @@ public class SpeciesBoard {
 				System.out.println((key) +": " + traitsArray.get(i));
 			}
 			
-			TextInputDialog td_traits = new TextInputDialog("Enter trait to replace");
+			int indexOfTraitsToDiscard = -999;
 			
-			td_traits.setHeaderText("Select a trait card to replace");
-			td_traits.setContentText("Trait");
-			td_traits.showAndWait();
-			TextField traitsInput = td_traits.getEditor();
+			String traitReplacementHeaderText = "Select a trait card to replace";
+			String traitReplacementContentText = "Trait 1-3";
 			
+			while(
+					!((indexOfTraitsToDiscard <= 3) && (indexOfTraitsToDiscard > 0))
+				 ) {
+				indexOfTraitsToDiscard = Game.promptUserInputForInteger(traitReplacementHeaderText, traitReplacementContentText);
+				pseudoConsoleLog.setText("Please select a valid trait slot of 1-3");			
+			}
 			
-			int indexOfTraitsToDiscard = Integer.parseInt(traitsInput.getText());
+			// Replaces the selected trait with the new card's trait.
 			String traitToRemove = traitsArray.get((indexOfTraitsToDiscard -1));
 			traitsArray.remove((indexOfTraitsToDiscard-1));
 

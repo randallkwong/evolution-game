@@ -151,14 +151,14 @@ public class Game {
 								else if (userActionInput == 3) {
 									
 									int input4 = -1;
-								
+									pseudoConsoleLog.setText("Which species would you like to increase bodysize for?");
+									
 									while(
 											!((input4 <= currentPlayersSpeciesBoard.newPlayerBoard.size()) && (input4 > 0))
 										 ) {
 		
-										pseudoConsoleLog.setText("Which species would you like to increase bodysize for?");
 										input4 = promptUserInputForInteger(selectSpeciesHeaderText, selectSpeciesContentText);
-										pseudoConsoleLog.setText("Please enter a valid [Species]");
+										pseudoConsoleLog.setText("Which species would you like to increase bodysize for?" + "\n" + "Please enter a valid [Species]");
 										
 										}
 	
@@ -173,14 +173,14 @@ public class Game {
 								else if (userActionInput == 4) {
 									
 									int input5 = -1;
+									pseudoConsoleLog.setText("Which species would you like to increase the population for?");
 									
 									while(
 											!((input5 <= currentPlayersSpeciesBoard.newPlayerBoard.size()) && (input5 > 0))
 										 ) {
 	
-									pseudoConsoleLog.setText("Which species would you like to increase the population for?");
 									input5 = promptUserInputForInteger(selectSpeciesHeaderText, selectSpeciesContentText);
-									pseudoConsoleLog.setText("Please enter a valid [Species]");
+									pseudoConsoleLog.setText("Which species would you like to increase the population for?" + "\n" + "Please enter a valid [Species]");
 									
 									}
 									
@@ -194,15 +194,15 @@ public class Game {
 									
 									int playTraitOnSpeciesIndex = -1;
 									
+									String whichSpeciesToAttachPrompt = "Which species would you like to attach " + currentCardTrait + "?";
+									pseudoConsoleLog.setText(whichSpeciesToAttachPrompt);
+									
 									while(
 											!((playTraitOnSpeciesIndex <= currentPlayersSpeciesBoard.newPlayerBoard.size()) && (playTraitOnSpeciesIndex > 0))
 										 ) {
 									
-									String whichSpeciesToAttachPrompt = "Which species would you like to attach " + currentCardTrait + "?";
-									pseudoConsoleLog.setText(whichSpeciesToAttachPrompt);
-									
 									playTraitOnSpeciesIndex = promptUserInputForInteger(selectSpeciesHeaderText, selectSpeciesContentText);
-									pseudoConsoleLog.setText("Please enter a valid [Species]");
+									pseudoConsoleLog.setText("Which species would you like to attach " + currentCardTrait + "?" + "\n" + "Please enter a valid [Species]");
 									}
 									
 									currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex-1, currentCardTrait, pseudoConsoleLog);
