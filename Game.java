@@ -96,100 +96,120 @@ public class Game {
 						System.out.println(currentPlayerName + ", what would you like to do with your card " + selectedCardIndex + " ?");
 						//System.out.println("Press 1 to create a new species on the left; Press 2 to create new species on the right, Press 3 to increase body size, Press 4 to increase population size, Press 5 to attach " + currentCardTrait);
 						
+/*
 						TextInputDialog td_action = new TextInputDialog();
 						
 						td_action.setHeaderText("Enter action for this card: \nEnter 1 to create a new species on the left \nEnter 2 to create new species on the right \nEnter 3 to increase body size \nEnter 4 to increase population size \nEnter 5 to attach traits");
 						td_action.setContentText("Action");
 						TextField actionInput = td_action.getEditor();
 						td_action.showAndWait();
+*/
 						
+						
+						String userActionHeaderText = "Enter action for this card: \nEnter 1 to create a new species on the left \nEnter 2 to create new species on the right \nEnter 3 to increase body size \nEnter 4 to increase population size \nEnter 5 to attach traits";
+						String userActionContextText = "Action";
 						
 						String selectSpeciesHeaderText = "Select a species";
 						String selectSpeciesContentText = "Species";
 						
 						// Handle user actions
+						
+						int userActionInput = -1;
 							
-							int userActionInput = Integer.parseInt(actionInput.getText());
-
+						while(
+								!((userActionInput <= 5) && (userActionInput > 0))
+							 ) {
 							
-							if (userActionInput == 1) {
-								currentPlayersSpeciesBoard.addNewSpeciestoLeft();
-							}
-							else if (userActionInput == 2) {
-								currentPlayersSpeciesBoard.addNewSpeciestoRight();
-							}
-							else if (userActionInput == 3) {
-								int input4 = -1;
-							
-							while(
-									!((input4 <= currentPlayersSpeciesBoard.newPlayerBoard.size()) && (input4 > 0))
-								 ) {
-
-								pseudoConsoleLog.setText("Which species would you like to increase bodysize for?");
-								input4 = promptUserInputForInteger(selectSpeciesHeaderText, selectSpeciesContentText);
-								
-								}
-
-								currentPlayersSpeciesBoard.updateBodySize(input4-1);
-								
-								// Clears player prompt
-								pseudoConsoleLog.setText("");
-								
-							}
-
-
-							else if (userActionInput == 4) {
-								
-								int input5 = -1;
-								
-								while(
-										!((input5 <= currentPlayersSpeciesBoard.newPlayerBoard.size()) && (input5 > 0))
-									 ) {
-
-								pseudoConsoleLog.setText("Which species would you like to increase the population for?");
-								input5 = promptUserInputForInteger(selectSpeciesHeaderText, selectSpeciesContentText);
+								// Collects input for user action.
+								userActionInput = promptUserInputForInteger(userActionHeaderText, userActionContextText);
 								
 								}
 								
-								currentPlayersSpeciesBoard.updatePopulation(input5-1, 1);
-								
-								// Clears player prompt
-								pseudoConsoleLog.setText("");
-							}
-							else if (userActionInput == 5) {
-								
-							int playTraitOnSpeciesIndex = -1;
-								
-								while(
-										!((playTraitOnSpeciesIndex <= currentPlayersSpeciesBoard.newPlayerBoard.size()) && (playTraitOnSpeciesIndex > 0))
-									 ) {
-								
-								String whichSpeciesToAttachPrompt = "Which species would you like to attach " + currentCardTrait + "?";
-								pseudoConsoleLog.setText(whichSpeciesToAttachPrompt);
-								
-								playTraitOnSpeciesIndex = promptUserInputForInteger(selectSpeciesHeaderText, selectSpeciesContentText);
-								
+								if (userActionInput == 1) {
+									currentPlayersSpeciesBoard.addNewSpeciestoLeft();
 								}
+								else if (userActionInput == 2) {
+									currentPlayersSpeciesBoard.addNewSpeciestoRight();
+								}
+								else if (userActionInput == 3) {
+									
+									int input4 = -1;
 								
-								currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex-1, currentCardTrait, pseudoConsoleLog);
-								// Clears player prompt
-								pseudoConsoleLog.setText("");
+									while(
+											!((input4 <= currentPlayersSpeciesBoard.newPlayerBoard.size()) && (input4 > 0))
+										 ) {
+		
+										pseudoConsoleLog.setText("Which species would you like to increase bodysize for?");
+										input4 = promptUserInputForInteger(selectSpeciesHeaderText, selectSpeciesContentText);
+										
+										}
+	
+									currentPlayersSpeciesBoard.updateBodySize(input4-1);
+									
+									// Clears player prompt
+									pseudoConsoleLog.setText("");
+									
+								}
+	
+	
+								else if (userActionInput == 4) {
+									
+									int input5 = -1;
+									
+									while(
+											!((input5 <= currentPlayersSpeciesBoard.newPlayerBoard.size()) && (input5 > 0))
+										 ) {
+	
+									pseudoConsoleLog.setText("Which species would you like to increase the population for?");
+									input5 = promptUserInputForInteger(selectSpeciesHeaderText, selectSpeciesContentText);
+									
+									}
+									
+									currentPlayersSpeciesBoard.updatePopulation(input5-1, 1);
+									
+									// Clears player prompt
+									pseudoConsoleLog.setText("");
+									
+								}
+								else if (userActionInput == 5) {
+									
+									int playTraitOnSpeciesIndex = -1;
+									
+									while(
+											!((playTraitOnSpeciesIndex <= currentPlayersSpeciesBoard.newPlayerBoard.size()) && (playTraitOnSpeciesIndex > 0))
+										 ) {
+									
+									String whichSpeciesToAttachPrompt = "Which species would you like to attach " + currentCardTrait + "?";
+									pseudoConsoleLog.setText(whichSpeciesToAttachPrompt);
+									
+									playTraitOnSpeciesIndex = promptUserInputForInteger(selectSpeciesHeaderText, selectSpeciesContentText);
+									
+									}
+									
+									currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex-1, currentCardTrait, pseudoConsoleLog);
+									// Clears player prompt
+									pseudoConsoleLog.setText("");
+									
+								}
+	
 								
-								//int playTraitOnSpeciesIndex = scan.nextInt();
-								//currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex, currentCardTrait, scan);
-							}
+								// TODO: Play trait card
+								
+								// Remove card
+								currentPlayersHand.removeCardfromHand(selectedCardIndex);
+								
+								currentPlayersSpeciesBoard.displaySpeciesBoard();
+								System.out.println("");
+								
+								
+						// End of userActionInput while loop
+//						}
+						
+				
+				// End of endTurnOrPlay input
+				}
+					
 
-							
-							// TODO: Play trait card
-							
-							// Remove card
-							currentPlayersHand.removeCardfromHand(selectedCardIndex);
-							
-							currentPlayersSpeciesBoard.displaySpeciesBoard();
-							System.out.println("");
-					}
-				//int endTurnOrPlay = scan.nextInt();
-			
 			}	
 		}
 		
