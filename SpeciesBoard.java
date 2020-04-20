@@ -9,7 +9,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * 
@@ -22,7 +26,7 @@ public class SpeciesBoard {
 	//HashMap <Integer, Species> newPlayerBoard;
 	ObservableList<Node> newPlayerBoard = FXCollections.observableArrayList();
 	Species newSpecies = new Species(1,1,1,0,false,false,false,0, new ArrayList<String>(),"1");
-
+	
 	/**
 	 * When the SpeciesBoard is first constructed at the game's start, each player begins with one Species.
 	 * @param observableList 
@@ -39,7 +43,7 @@ public class SpeciesBoard {
 	 * This method adds a new species to the player board on the right hand side.
 	 */
 	public void addNewSpeciestoRight() {
-		//added new species since if it doesn't exist, it will cause error: Children: duplicate children added: parent 
+
 		Species newSpecies2 = new Species(1,1,1,0,false,false,false,0, new ArrayList<String>(),"1");
 		newPlayerBoard.add(newSpecies2);
 		displaySpeciesBoard();
@@ -48,21 +52,40 @@ public class SpeciesBoard {
 	
 	/**
 	 * This method adds a new species to the player board on the left hand side.
-	 * TODO: this code is buggy. It still causes: Children: duplicate children added: parent
+	 * 
 	 */
 	public void addNewSpeciestoLeft() {
 		
+		// We start by adding the species to the right side, the top of the ArrayList.
+		// TODO: Optimization - fix duplicate children error and instead sort the array.
+		Species speciesToAddLeft = new Species(1, 1, 1, 0, false, false, false, 0, new ArrayList<String>(),"1");
+		newPlayerBoard.add(speciesToAddLeft);
 		
-		Species tmp = new Species(1, 1, 1, 0, false, false, false, 0, new ArrayList<String>(),"1");
+		// We'll cycle through all the values except the latest (size - 1) so that value we just added is at the bottom.
+		for(int i = 0; i < newPlayerBoard.size() - 1; i++) {
+
+			// We want to shift all the values up by one. Due to duplicate children error, we cannot swap array values
+			// so we instead create a new species and insert that into the array. We cycle through all the values
+			// so that we can add the latest entry added to location 0, effectively placing it on the left.
 			
-		for (int i = newPlayerBoard.size(); i > 0; i--) {
-			System.out.println("Board size: " + newPlayerBoard.size());		
-			// Add species to the right that is the same as the last species on the board
-			newPlayerBoard.add(newPlayerBoard.get(i-1));
-			// Repeated this until all the elements have been iterated through.			
+			int indexPlusOne = i + 1;
+			String newIndex = Integer.toString(indexPlusOne);
+			Species value = (Species) newPlayerBoard.get(0);
+			int isAlive = value.getIsAlive();
+			int BodySize = value.getBodysize();
+			int population = value.getPopulation();
+			int foodconsumed = value.getFoodConsumed();
+			boolean carnivore = value.getCarnivore();
+			boolean fatTissue = value.getFatTissue();
+			boolean climbing = value.getClimbing();
+			int numoftraitcards = value.getTraitcard();
+			ArrayList<String>traitsArray = value.getAttachedTraitCards();
+			Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue, climbing, numoftraitcards, traitsArray, newIndex);
+
+			newPlayerBoard.remove(0);
+			newPlayerBoard.add(newSpecies);
+			
 		}
-		
-		newPlayerBoard.add(0,tmp);
 		
 		displaySpeciesBoard();
 	}
@@ -84,23 +107,14 @@ public class SpeciesBoard {
 	public void displaySpeciesBoard() {
 
 	
-		for (int j = 0; j < newPlayerBoard.size(); j++) {
-			int key = j+1;
-			System.out.println("");
-			System.out.print("Species " + key + " - ");
-			Species value = (Species) newPlayerBoard.get(j);
-			System.out.println("Body Size: " + value.getBodysize() + ", " + "Population: " + value.getPopulation() + ", " + "Food Consumed: " + value.getFoodConsumed());
-			System.out.println("Traits:");
-			for(int i = 0; i < value.getAttachedTraitCards().size(); i++) {
-				System.out.print(value.getAttachedTraitCards().get(i) + " ");			
-			}
+	
 /*		
 		for(int i = 0; i < newPlayerBoard.size(); i++) {
 			((Species) newPlayerBoard.get(i)).setIndex(Integer.toString(i));
 		}
 */
 	
-		}	
+//		newPlayerBoard.sort(null);
 		
 		for(int i = 0; i < newPlayerBoard.size(); i++) {
 			
@@ -319,4 +333,5 @@ public class SpeciesBoard {
 		Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue, climbing, numoftraitcards, traitsArray,"1");
 		newPlayerBoard.set(pos,newSpecies);
 	}
+	
 }

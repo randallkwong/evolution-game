@@ -144,6 +144,7 @@ public class Game {
 								
 								if (userActionInput == 1) {
 									currentPlayersSpeciesBoard.addNewSpeciestoLeft();
+//									currentPlayersSpeciesBoard.displaySpeciesBoard();
 								}
 								else if (userActionInput == 2) {
 									currentPlayersSpeciesBoard.addNewSpeciestoRight();

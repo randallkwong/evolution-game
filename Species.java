@@ -13,7 +13,7 @@ import javafx.scene.layout.StackPane;
  * such as their population and body size and may receive traits to evolve new abilities during game play.
  *
  */
-public class Species extends Parent{
+public class Species extends Parent implements Comparable{
 	
 	//initialize size of the Species Card
 	
@@ -355,7 +355,25 @@ public class Species extends Parent{
 	public void setIndex(String index) {
 		this.index = index;
 	}
-	
-	
+
+
+	@Override
+	/**
+	 *  We need to create a way to compare species so that we can sort the observable list. This avoids
+	 *  the error we were having with duplicate children when species were added to the species board.
+	 */
+	public int compareTo(Object otherSpecies) {
+		Species myOtherSpecies = (Species) otherSpecies;
+		
+		int myOtherSpeciesIndex = Integer.parseInt(myOtherSpecies.getIndex());
+		int thisSpeciesIndex = Integer.parseInt(index);
+		
+		if(myOtherSpeciesIndex == thisSpeciesIndex) return 0;
+		if((thisSpeciesIndex - myOtherSpeciesIndex) < 1) {
+			return -1;
+		}
+		// Otherwise return 1 if index is greater than myOtherSpecies.index
+		return 1;
+	}
 	
 }
