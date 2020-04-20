@@ -194,30 +194,12 @@ public class Species extends Parent{
 		background.setArcHeight(20);
 		background.setFill(Color.WHITE);
 		
-		//Added blank trait names so that it can be displayed. If blank name is not added, then GUI display will crash.
-
-		// While we are debugging, the number of attached traits may be higher
-		// than three. This removes all of the empty traits and then populates
-		// the total back to three.
-		for(int k = 0; k < AttachedTraitCards.size(); k++) {
-			if(AttachedTraitCards.get(k) == "Empty")
-			{
-				AttachedTraitCards.remove(k);
-			}
-		}
+		//Added blank trait names so that it can be displayed. If blank name is not added, then GUI display will crash
 		
 		for(int j = 0; j < 3; j++) {
 			if(AttachedTraitCards.size() < 3) {
 				AttachedTraitCards.add("Empty");
 			}
-		}
-		
-		//Added blank trait names so that it can be displayed. If there is already traits in traitsarray, then no need to add any traits. 
-		
-		if (AttachedTraitCards.size() == 0) {
-			AttachedTraitCards.add("Empty");
-			AttachedTraitCards.add("Empty");
-			AttachedTraitCards.add("Empty");
 		}
 		
 		Text Trait1ofCard = new Text("T1:" + AttachedTraitCards.get(0));

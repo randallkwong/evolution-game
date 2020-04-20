@@ -313,7 +313,7 @@ public class SpeciesBoard {
 
 			pseudoConsoleLog.setText(traitToRemove + " was replaced");
 			
-			traitsArray.add(cardName);
+			traitsArray.add(indexOfTraitsToDiscard-1, cardName);
 			
 		}
 		
