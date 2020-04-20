@@ -82,7 +82,7 @@ public class SpeciesBoard {
 	 * Prints the active Species and their characteristics on the current SpeciesBoard.
 	 */
 	public void displaySpeciesBoard() {
-		System.out.println(newPlayerBoard.size() + " species on the board." );
+
 	
 		for (int j = 0; j < newPlayerBoard.size(); j++) {
 			int key = j+1;

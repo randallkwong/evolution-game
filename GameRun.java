@@ -214,11 +214,10 @@ public class GameRun extends Application {
 		// Draw cards (Starting hand is 4 cards each).
 		// Players draw one card for each species they have on the board
 		// plus three additional cards.
-		System.out.print("Drawing cards for Player 1: ");
+
 		handforPlayer1.drawCards(SpeciesBoard1.numberOfSpeciesInPlay() + 3, deck);
 		handforPlayer1.updateHand();
 
-		System.out.print("Drawing cards for Player 2: ");
 		handforPlayer2.drawCards(SpeciesBoard2.numberOfSpeciesInPlay() + 3, deck);
 		handforPlayer2.updateHand();
 	}

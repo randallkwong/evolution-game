@@ -88,7 +88,6 @@ public class Hand {
 		//add the logic to check for empty hand.
 		int size = getHandSize();
 		if (size != 0) {
-			System.out.println("Change of hand. New hand is:");
 			updateHand();
 		}
 	}

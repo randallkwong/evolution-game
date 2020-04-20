@@ -218,7 +218,6 @@ public class Game {
 								currentPlayersHand.removeCardfromHand(selectedCardIndex);
 								
 								currentPlayersSpeciesBoard.displaySpeciesBoard();
-								System.out.println("");
 								
 								
 						// End of userActionInput while loop
@@ -313,8 +312,8 @@ public class Game {
 					// TODO: Add logic which only allows player to feed a species that exists.
 					// TODO: Refactor species boards to belong to players.
 					if((((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getFoodConsumed() < ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getFoodCapacity()) && (wateringHole.getCurrentFoodAvailable() > 0)) {
+
 						currentPlayersSpeciesBoard.updateFoodConsumed(speciesToFeed);
-						System.out.println("Displaying Species Board for " + currentPlayerName);
 						currentPlayersSpeciesBoard.displaySpeciesBoard();
 						
 						// Decrement available food in the watering hole.
@@ -357,15 +356,11 @@ public class Game {
 	 */
 	public void moveConsumedFoodToFoodBag(Player currentPlayer, SpeciesBoard currentPlayersSpeciesBoard) {
 		
-		String currentPlayerName = "Player " + currentPlayer.getPlayerNumber();
-		
-		System.out.println(currentPlayerName + " tally up food points");
-		
+		// Move all of the food on each species to the player's food bag which stores points.
 		for (int i = 0; i < currentPlayersSpeciesBoard.newPlayerBoard.size(); i++) {
-			System.out.print("Species " + i+1 + " - ");
+
 			Species value = (Species) currentPlayersSpeciesBoard.newPlayerBoard.get(i);
 			int foodPointsToAdd = value.getFoodConsumed();
-			System.out.println("Food Consumed: " + value.getFoodConsumed());
 			
 			// Add consume food to player's food bag.
 			currentPlayer.addFoodPoints(foodPointsToAdd);
@@ -373,8 +368,6 @@ public class Game {
 			// Reset food consumed for current species.
 			currentPlayersSpeciesBoard.moveFoodConsumed(i, foodPointsToAdd);
 		}
-		
-		System.out.println(currentPlayerName + " has " + currentPlayer.getFoodPoints() + " food points");
 		
 	}
 	
@@ -393,20 +386,18 @@ public class Game {
 		
 		String currentPlayerName = "Player " + currentPlayer.getPlayerNumber();
 		
-		System.out.println("Handle " + currentPlayerName + " species that starved if any");
-		
 		for (int i = 0; i < currentPlayersSpeciesBoard.newPlayerBoard.size(); i++) {
 			
-			System.out.print("Species " + i + 1 + " - ");
 			Species value = (Species) currentPlayersSpeciesBoard.newPlayerBoard.get(i);
-			System.out.println("Is Alive: " + value.getIsAlive() + ", Body Size: " + value.getBodysize() + ", " + "Population: " + value.getPopulation() + ", " + "Food Consumed: " + value.getFoodConsumed());
+
 			int foodDeficit = (value.getPopulation() - value.getFoodConsumed()) * -1;
 			currentPlayersSpeciesBoard.updatePopulation(i, foodDeficit);
 			value = (Species) currentPlayersSpeciesBoard.newPlayerBoard.get(i);
-			System.out.println("Is Alive: " + value.getIsAlive() + ", Body Size: " + value.getBodysize() + ", " + "Population: " + value.getPopulation() + ", " + "Food Consumed: " + value.getFoodConsumed());
+
 		}
 		currentPlayersSpeciesBoard.extinctSpeciesBoard();
-		System.out.println("Display player board after extinction");
+
+		// Display the board after extinctions.
 		currentPlayersSpeciesBoard.displaySpeciesBoard();
 	}
 	
