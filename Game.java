@@ -103,12 +103,14 @@ public class Game {
 						TextField actionInput = td_action.getEditor();
 						td_action.showAndWait();
 						
-						TextInputDialog td_species = new TextInputDialog();
+//						TextInputDialog td_species = new TextInputDialog();
 						
-						td_species.setHeaderText("Select a species");
-						td_species.setContentText("Species");
+//						td_species.setHeaderText("Select a species");
+//						td_species.setContentText("Species");
 //						TextField speciesInput = td_species.getEditor();
 						
+						String selectSpeciesHeaderText = "Select a species";
+						String selectSpeciesContentText = "Species";
 						
 						// Handle user actions
 							
@@ -123,18 +125,19 @@ public class Game {
 							}
 							else if (userActionInput == 3) {
 								int input4 = -1;
-
-
+							
 							while(
 									!((input4 <= currentPlayersSpeciesBoard.newPlayerBoard.size()) && (input4 > 0))
 								 ) {
-//								TextField speciesInput = td_species.getEditor();
+
 								pseudoConsoleLog.setText("Which species would you like to increase bodysize for?");
 
+								input4 = promptUserInputForInteger(selectSpeciesHeaderText, selectSpeciesContentText);
+/*
 								TextField speciesInput = td_species.getEditor();
 								td_species.showAndWait();
 								input4 = Integer.parseInt(speciesInput.getText());
-
+*/
 								
 								}
 								//int input4 = scan.nextInt();
@@ -153,11 +156,15 @@ public class Game {
 								while(
 										!((input5 <= currentPlayersSpeciesBoard.newPlayerBoard.size()) && (input5 > 0))
 									 ) {
-								
-								TextField speciesInput = td_species.getEditor();
+
 								pseudoConsoleLog.setText("Which species would you like to increase the population for?");
+
+								input5 = promptUserInputForInteger(selectSpeciesHeaderText, selectSpeciesContentText);
+/*
+								TextField speciesInput = td_species.getEditor();
 								td_species.showAndWait();
 								input5 = Integer.parseInt(speciesInput.getText());
+*/
 								//int input5 = scan.nextInt();
 								
 								}
@@ -175,12 +182,17 @@ public class Game {
 										!((playTraitOnSpeciesIndex <= currentPlayersSpeciesBoard.newPlayerBoard.size()) && (playTraitOnSpeciesIndex > 0))
 									 ) {
 								
-								TextField speciesInput = td_species.getEditor();
 								String whichSpeciesToAttachPrompt = "Which species would you like to attach " + currentCardTrait + "?";
 								pseudoConsoleLog.setText(whichSpeciesToAttachPrompt);
+								
+								playTraitOnSpeciesIndex = promptUserInputForInteger(selectSpeciesHeaderText, selectSpeciesContentText);
+
+/*
+								TextField speciesInput = td_species.getEditor();
 								td_species.showAndWait();
 								playTraitOnSpeciesIndex = Integer.parseInt(speciesInput.getText());
-
+*/
+								
 								}
 								
 								currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex-1, currentCardTrait, pseudoConsoleLog);
@@ -404,6 +416,18 @@ public class Game {
 		}
 		
 		return winner;
+	}
+	
+	public int promptUserInputForInteger(String headerText, String contentText) {
+		
+		TextInputDialog td_species = new TextInputDialog();
+		td_species.setHeaderText(headerText);
+		td_species.setContentText(contentText);
+		TextField textInput = td_species.getEditor();
+		td_species.showAndWait();
+		int returnInt = Integer.parseInt(textInput.getText());
+
+		return returnInt;
 	}
 	
 }
