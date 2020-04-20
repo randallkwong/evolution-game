@@ -63,15 +63,25 @@ public class Game {
 				System.out.println();
 			}
 			else {
+				
 				currentPlayer.phaseThreeStart();
 				currentPlayersHand.updateHand();
 				
-					TextInputDialog td_endRound = new TextInputDialog();
-					td_endRound.setHeaderText("Press 0 to continue this round; \nPress 1 to end this round" );
-					TextField endRoundInput = td_endRound.getEditor();
-					td_endRound.showAndWait();
+				String phaseThreePlayerHelpText = "During Phase Three, you may: " + "\n" + "1) Create a new species on the left" + "\n" + "2) Create new species on the right" + "\n" + "3) Increase body size" + "\n" + "4) Increase population size" + "\n" + "5) Attach traits to your species";
+				pseudoConsoleLog.setText(phaseThreePlayerHelpText);
+				
+					int endTurnOrPlay = -1;
 					
-					int endTurnOrPlay = Integer.parseInt(endRoundInput.getText());
+					String endTurnOrPlayHeaderText = "Enter 0 to continue this round \nEnter 1 to end this round";
+					String endTurnOrPlayContentText = "";
+	
+					while(
+							!((endTurnOrPlay <= 1) && (endTurnOrPlay >= 0))
+						 ) {
+					
+						endTurnOrPlay = promptUserInputForInteger(endTurnOrPlayHeaderText, endTurnOrPlayContentText);
+					
+					}
 					
 					if(endTurnOrPlay == 1) {
 						currentPlayer.endPhaseThree();
@@ -102,7 +112,7 @@ public class Game {
 						
 						String currentCardTrait = ((Card) currentPlayersHand.hand.get(selectedCardIndex-1)).getTrait();
 						
-						pseudoConsoleLog.setText(currentPlayerName + ", what would you like to do with your card " + selectedCardIndex + " ?");
+						pseudoConsoleLog.setText(currentPlayerName + ", what would you like to do with your card " + "[" + selectedCardIndex + "]" + " ?");
 												
 						String userActionHeaderText = "Enter action for this card: \nEnter 1 to create a new species on the left \nEnter 2 to create new species on the right \nEnter 3 to increase body size \nEnter 4 to increase population size \nEnter 5 to attach traits";
 						String userActionContextText = "Action";
@@ -425,7 +435,7 @@ public class Game {
 	}
 	
 }
-	
+
 	
 	
 	
