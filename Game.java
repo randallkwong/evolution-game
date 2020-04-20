@@ -84,21 +84,22 @@ public class Game {
 						 ) {
 					
 						endTurnOrPlay = promptUserInputForInteger(endTurnOrPlayHeaderText, endTurnOrPlayContentText);
+						pseudoConsoleLog.setText("Please enter a valid input");
 					
 					}
 					
 					if(endTurnOrPlay == 1) {
+						
+						// Ends Phase Three for current player.
 						currentPlayer.endPhaseThree();
-						System.out.println("End of Play Card phase for " + currentPlayerName);
-		
-						System.out.println(currentPlayerName + " board");
+						pseudoConsoleLog.setText("End of Phase Three for " + currentPlayerName + "\n" + "Continue to the next button");
 						currentPlayersSpeciesBoard.displaySpeciesBoard();
-						System.out.println();
 		
 					}
 					else {
 						
-						System.out.println(currentPlayerName + ", which card would you like to select?");
+						// Clears player help text.
+						pseudoConsoleLog.setText("");
 						
 						
 						String cardSelectionHeaderText = currentPlayerName + ", which card would you like to select?";
@@ -111,12 +112,13 @@ public class Game {
 							 ) {
 						
 							selectedCardIndex = promptUserInputForInteger(cardSelectionHeaderText, cardSelectionContentText);
+							pseudoConsoleLog.setText("Please enter a valid (Card) number");
 						
 						}
 						
 						String currentCardTrait = ((Card) currentPlayersHand.hand.get(selectedCardIndex-1)).getTrait();
 						
-						pseudoConsoleLog.setText(currentPlayerName + ", what would you like to do with your card " + "[" + selectedCardIndex + "]" + " ?");
+						pseudoConsoleLog.setText(currentPlayerName + ", what would you like to do with your card " + "(" + selectedCardIndex + ")" + " ?");
 												
 						String userActionHeaderText = "Enter action for this card: \nEnter 1 to create a new species on the left \nEnter 2 to create new species on the right \nEnter 3 to increase body size \nEnter 4 to increase population size \nEnter 5 to attach traits";
 						String userActionContextText = "Action";
@@ -134,8 +136,11 @@ public class Game {
 							
 								// Collects input for user action.
 								userActionInput = promptUserInputForInteger(userActionHeaderText, userActionContextText);
+								pseudoConsoleLog.setText("Please enter a valid input");
 								
 								}
+
+								pseudoConsoleLog.setText("");
 								
 								if (userActionInput == 1) {
 									currentPlayersSpeciesBoard.addNewSpeciestoLeft();
@@ -153,6 +158,7 @@ public class Game {
 		
 										pseudoConsoleLog.setText("Which species would you like to increase bodysize for?");
 										input4 = promptUserInputForInteger(selectSpeciesHeaderText, selectSpeciesContentText);
+										pseudoConsoleLog.setText("Please enter a valid [Species]");
 										
 										}
 	
@@ -174,6 +180,7 @@ public class Game {
 	
 									pseudoConsoleLog.setText("Which species would you like to increase the population for?");
 									input5 = promptUserInputForInteger(selectSpeciesHeaderText, selectSpeciesContentText);
+									pseudoConsoleLog.setText("Please enter a valid [Species]");
 									
 									}
 									
@@ -195,7 +202,7 @@ public class Game {
 									pseudoConsoleLog.setText(whichSpeciesToAttachPrompt);
 									
 									playTraitOnSpeciesIndex = promptUserInputForInteger(selectSpeciesHeaderText, selectSpeciesContentText);
-									
+									pseudoConsoleLog.setText("Please enter a valid [Species]");
 									}
 									
 									currentPlayersSpeciesBoard.updateTraitCard(playTraitOnSpeciesIndex-1, currentCardTrait, pseudoConsoleLog);
@@ -263,10 +270,11 @@ public class Game {
 			if (wateringHole.getCurrentFoodAvailable() == 0) {
 				currentPlayer.isDoneFeeding();
 				ableToContinue = true;
+				pseudoConsoleLog.setText("End of Feeding Phase for " + currentPlayerName);
 			}
 			
 			while(ableToContinue == false) {
-				
+			
 			// Prompt the player to feed. If the selected species to feed is invalid, re-prompt the user for input.
 			String speciesToFeedHeaderText = currentPlayerName + ", you may choose to do one of the following: \nEnter [Species] to feed \nEnter 0 to skip one feeding. \nEnter -1 to skip all feeding";
 			String speciesToFeedContentText = "Enter a number";
@@ -279,6 +287,7 @@ public class Game {
 				 ) {
 			
 				speciesToFeed = promptUserInputForInteger(speciesToFeedHeaderText, speciesToFeedContentText);
+				pseudoConsoleLog.setText("Please enter a valid input");
 			
 			}
 				
@@ -291,6 +300,7 @@ public class Game {
 			if(speciesToFeed == -2) {
 				currentPlayer.isDoneFeeding();
 				ableToContinue = true;
+				pseudoConsoleLog.setText("End of Feeding Phase for " + currentPlayerName);
 			}
 			else 
 			{
@@ -513,10 +523,10 @@ public class Game {
 	 * @param wateringHoleDisplay
 	 * Take's the watering hole label which displays the available plant food.
 	 */
-	public void playWateringHoleCard(Player currentPlayer, Hand currentHand, WateringHole wateringHole, Label wateringHoleDisplay) {
+	public void playWateringHoleCard(Player currentPlayer, Hand currentHand, WateringHole wateringHole, Label wateringHoleDisplay, Label pseudoConsoleLog) {
 		
 		String feedingHeaderTextP1 = "Player " + currentPlayer.getPlayerNumber() + ": Which card would you like to select to add food to the watering hole?";
-		String feedingContentTextP1 = "Select which [Card] you'd like to use for Watering Hole";
+		String feedingContentTextP1 = "Select which (Card) you'd like to use for Watering Hole";
 		
 		// Set a dummy value before entering the loop.
 		int playerSelectedFoodCard = -1;
@@ -525,7 +535,8 @@ public class Game {
 				!((playerSelectedFoodCard <= currentHand.getHandSize()) && (playerSelectedFoodCard > 0))
 			 ) {
 			// Gets the user input.
-			playerSelectedFoodCard = Game.promptUserInputForInteger(feedingHeaderTextP1, feedingContentTextP1);			
+			playerSelectedFoodCard = Game.promptUserInputForInteger(feedingHeaderTextP1, feedingContentTextP1);
+			pseudoConsoleLog.setText("Please enter a valid (Card) number");
 		}
 		
 		int plantFoodValue = currentHand.getValuefromCard(playerSelectedFoodCard);
@@ -534,9 +545,11 @@ public class Game {
 		// Remove the selected card from the player's hand.
 		currentHand.removeCardfromHand(playerSelectedFoodCard);
 
+		pseudoConsoleLog.setText("");
+		
 		// Update the available plant food in the watering hole.
 		wateringHole.displayWH(wateringHoleDisplay);
-		
+
 	}
 
 	/**

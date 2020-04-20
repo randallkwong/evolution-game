@@ -82,7 +82,7 @@ public class Card extends Parent{
 		valueofCard.setX(10);
 		valueofCard.setY(Card_height-10);
 		
-		Text indexOfCardInHand = new Text("[" + index + "]");
+		Text indexOfCardInHand = new Text("(" + index + ")");
 		indexOfCardInHand.setFont(Font.font(14));
 		indexOfCardInHand.setX(Card_width - 25);
 		indexOfCardInHand.setY(Card_height - 10);

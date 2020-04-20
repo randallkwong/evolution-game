@@ -296,8 +296,8 @@ public class GameRun extends Application {
 		btnPlay = new Button ("Select plant food");
 		btnPlay.setOnAction(e -> {
 			
-			currentGame.playWateringHoleCard(playerOne, handforPlayer1, wateringHole, wateringHoleDisplay);
-			currentGame.playWateringHoleCard(playerTwo, handforPlayer2, wateringHole, wateringHoleDisplay);
+			currentGame.playWateringHoleCard(playerOne, handforPlayer1, wateringHole, wateringHoleDisplay, pseudoConsoleLog);
+			currentGame.playWateringHoleCard(playerTwo, handforPlayer2, wateringHole, wateringHoleDisplay, pseudoConsoleLog);
 			pseudoConsoleLog.setText("\n" + "The food cards have been selected" + "\n" + "\n" + "Continue to \"Phase Three\"");
 		});
 			
