@@ -42,56 +42,33 @@ public class GameRun extends Application {
 	HBox player2Species = new HBox(20);
 	
 	
-	
+	/**
+	 *  The "start" function is the runner method that opens the application window and sets up the user interface,
+	 *  starting game conditions, and the buttons that initiate each portion of this event driven game.
+	 */
 	public void start(Stage primaryStage) throws Exception {
-		handforPlayer1 = new Hand(player1Cards.getChildren());	
-		handforPlayer2 = new Hand(player2Cards.getChildren());
+
+		// Sets up parts of the user interface for the game board and loads the starting conditions.
+		startNewGame(player1Cards, player2Cards, player1Species, player2Species);
 		
-		SpeciesBoard1 = new SpeciesBoard(player1Species.getChildren());
-		SpeciesBoard2 = new SpeciesBoard(player2Species.getChildren());
-		
-		// Updates the indicies of the Species.
-		SpeciesBoard1.displaySpeciesBoard();
-		SpeciesBoard2.displaySpeciesBoard();
-				
-		
+		// Sets the stage.
 		window = primaryStage;
 		window.setTitle("Evolution Game");
-	
-		startNewGame();	
 		
-		
-		//while(currentGame.gameIsNotFinished == false) {
-		
-
+		// Creates the play buttons. The play buttons trigger events that initiate each phase of the game.
 		createPlayButtons();
 		
-			// Layout
-			
-			BorderPane border = new BorderPane();
-			HBox P1Card = addHBox1();
-			HBox P2Card = addHBox2();
-			//HBox P1Species = addHBox3();
-			//HBox P2Species = addHBox4();
-			
-			
-			border.setTop(P1Card);
-			border.setBottom(P2Card);
-			//border.setLeft(P2Species);
-			//border.setRight(P1Species);
-			border.setCenter(addVBox());
-			border.setRight(Buttons());
-			
-			scene = new Scene(border, 1000, 900);
-			window.setScene(scene);
-			window.show();
-			
+		// Sets up the layout for the game application.
+		BorderPane border = new BorderPane();
+		loadLayout(border);
+
+		// Sets up the scene and applies it to the application window.
+		scene = new Scene(border, 1000, 900);
+		window.setScene(scene);
+		window.show();
 			
 		}
 
-		// End of game is not finished loop	
-
-	//}
 	public HBox addHBox1() {
 	    HBox hbox = new HBox();
 	    hbox.setPadding(new Insets(15, 12, 15, 12));
@@ -152,7 +129,18 @@ public class GameRun extends Application {
 	}
 	
 	
-	public static void startNewGame(){	
+	public static void startNewGame(HBox player1Cards, HBox player2Cards, HBox player1Species, HBox player2Species){	
+		
+		// Sets up the user interface for the players
+		handforPlayer1 = new Hand(player1Cards.getChildren());	
+		handforPlayer2 = new Hand(player2Cards.getChildren());
+		
+		SpeciesBoard1 = new SpeciesBoard(player1Species.getChildren());
+		SpeciesBoard2 = new SpeciesBoard(player2Species.getChildren());
+		
+		// Updates the indicies of the Species.
+		SpeciesBoard1.displaySpeciesBoard();
+		SpeciesBoard2.displaySpeciesBoard();
 		
 		// Create and shuffle deck
 		deck.loadDeck();
@@ -287,6 +275,23 @@ public class GameRun extends Application {
 
 		});
 		
+	}
+	
+	// Loads the layout for the game.
+	public void loadLayout(BorderPane border) {
+
+		HBox P1Card = addHBox1();
+		HBox P2Card = addHBox2();
+		//HBox P1Species = addHBox3();
+		//HBox P2Species = addHBox4();
+		
+		
+		border.setTop(P1Card);
+		border.setBottom(P2Card);
+		//border.setLeft(P2Species);
+		//border.setRight(P1Species);
+		border.setCenter(addVBox());
+		border.setRight(Buttons());
 	}
 	
 	public static void main(String[] args) {
