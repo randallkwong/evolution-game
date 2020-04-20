@@ -270,8 +270,8 @@ public class Game {
 			// Prompt the player to feed. If the selected species to feed is invalid, re-prompt the user for input.
 			TextInputDialog td_species1 = new TextInputDialog();
 				
-			td_species1.setHeaderText(currentPlayerName + ", \nEnter species for feeding. \nEnter 0 to skip one feeding. \nEnter -1 to skip all feeding");
-			td_species1.setContentText("Species");
+			td_species1.setHeaderText(currentPlayerName + ", you may choose to do one of the following: \nEnter [Species] to feed \nEnter 0 to skip one feeding. \nEnter -1 to skip all feeding");
+			td_species1.setContentText("Enter a number");
 			td_species1.showAndWait(); 
 			TextField speciesInput = td_species1.getEditor();
 			
