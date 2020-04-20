@@ -53,9 +53,7 @@ public class GameRun extends Application {
 		// Updates the indicies of the Species.
 		SpeciesBoard1.displaySpeciesBoard();
 		SpeciesBoard2.displaySpeciesBoard();
-		
-		//System.out.println("player 1 species created");
-		
+				
 		
 		window = primaryStage;
 		window.setTitle("Evolution Game");
@@ -65,62 +63,9 @@ public class GameRun extends Application {
 		
 		//while(currentGame.gameIsNotFinished == false) {
 		
-			btnContinue = new Button ("Start new round");
-			btnContinue.setOnAction(e -> {
-				startNewRound();
-			});
-			
-			
-			//Phase 2 - select food for watering hole
-			
-			btnPlay = new Button ("Select plant food");
-			btnPlay.setOnAction(e -> {
-				
-				currentGame.playWateringHoleCard(playerOne, handforPlayer1, wateringHole, wateringHoleDisplay);
-				currentGame.playWateringHoleCard(playerTwo, handforPlayer2, wateringHole, wateringHoleDisplay);
-				
-			});
-			
-			System.out.println("Finish of plant food selection");
-				
-			// Phase 3 - Play Cards
-			
-			
-			// Ready the players.
-			
-			// Player One plays Phase Three.
-			btnSubmit1 = new Button ("Player 1: Start Phase 3");
-			btnSubmit1.setOnAction(e -> {
-				playerOne.readyForPhaseThree();
-				currentGame.playPhaseThree(playerOne, handforPlayer1, SpeciesBoard1, pseudoConsoleLog);
-			});
-	
-			// Player Two plays Phase Three.
-			btnSubmit2 = new Button ("Player 2: Start Phase 3");
-			btnSubmit2.setOnAction(e -> {
-				playerTwo.readyForPhaseThree();
-				currentGame.playPhaseThree(playerTwo, handforPlayer2, SpeciesBoard2, pseudoConsoleLog);
-			});
-			
-			// Reveal Trait Cards
-			
-			System.out.println("Finish of phase 3");
-			
-			btnFeed = new Button ("Feed");
-			btnFeed.setOnAction(e -> {
-				feeding();
-			});
-			
-			System.out.println("Finish of feeding");
-			
-			btnScoreGame = new Button ("End Game");
-			btnScoreGame.setOnAction(e -> {
 
-				// Scores the game and displays the final score.
-				currentGame.scoreGame(playerOne, SpeciesBoard1, playerTwo, SpeciesBoard2);
-
-			});
-			
+		createPlayButtons();
+		
 			// Layout
 			
 			BorderPane border = new BorderPane();
@@ -208,18 +153,9 @@ public class GameRun extends Application {
 	
 	
 	public static void startNewGame(){	
+		
 		// Create and shuffle deck
-		
 		deck.loadDeck();
-		
-		// Create starting game species board
-		
-		System.out.print("Player 1 Board: ");
-//		SpeciesBoard1.displaySpeciesBoard();
-
-		
-		System.out.print("Player 2 Board: ");
-//		SpeciesBoard2.displaySpeciesBoard();
 		
 	}
 	
@@ -258,13 +194,7 @@ public class GameRun extends Application {
 
 		// Long Neck and Fertile handled first
 
-		// TODO: fix bug
-//		wateringHole.displayWH(wateringHoleDisplay);
-
 		// Regular feeding loop
-
-		System.out.println("Feeding starts!");
-		System.out.println("");
 
 		while ((playerOne.getIsFeeding() + playerTwo.getIsFeeding()) != 0) {
 
@@ -300,6 +230,63 @@ public class GameRun extends Application {
 		
 		System.out.println("The loop will restart to selecting cards for the watering hole now");
 		pseudoConsoleLog.setText("Feeding is complete. Start the next round!");
+	}
+	
+	public void createPlayButtons() {
+		
+		// Creates a button to start a new round each turn.
+		btnContinue = new Button ("Start new round");
+		btnContinue.setOnAction(e -> {
+			startNewRound();
+			pseudoConsoleLog.setText("\n" + "The cards have been dealt" + "\n" + "\n" + "Continue to \"Select plant food\"");
+		});
+		
+		
+		//Phase 2 - select food for watering hole
+		// Creates a button so players can select a food card to contribute to the watering hole.
+		btnPlay = new Button ("Select plant food");
+		btnPlay.setOnAction(e -> {
+			
+			currentGame.playWateringHoleCard(playerOne, handforPlayer1, wateringHole, wateringHoleDisplay);
+			currentGame.playWateringHoleCard(playerTwo, handforPlayer2, wateringHole, wateringHoleDisplay);
+			pseudoConsoleLog.setText("\n" + "The food cards have been selected" + "\n" + "\n" + "Continue to \"Phase Three\"");
+		});
+			
+		// Phase 3 - Play Cards
+		
+		// Player One plays Phase Three.
+		// Creates a button so Player 1 can initiate Phase Three.
+		btnSubmit1 = new Button ("Player 1: Start Phase 3");
+		btnSubmit1.setOnAction(e -> {
+			playerOne.readyForPhaseThree();
+			currentGame.playPhaseThree(playerOne, handforPlayer1, SpeciesBoard1, pseudoConsoleLog);
+		});
+
+		// Player Two plays Phase Three.
+		// Creates a button so Player 2 can initiate Phase Three.
+		btnSubmit2 = new Button ("Player 2: Start Phase 3");
+		btnSubmit2.setOnAction(e -> {
+			playerTwo.readyForPhaseThree();
+			currentGame.playPhaseThree(playerTwo, handforPlayer2, SpeciesBoard2, pseudoConsoleLog);
+		});
+		
+		// TODO: Game improvements - Reveal Trait Cards
+		
+		// Creates button to initiate feeding phase.
+		btnFeed = new Button ("Feed");
+		btnFeed.setOnAction(e -> {
+			feeding();
+		});
+		
+		// Create button to end the game.
+		btnScoreGame = new Button ("End Game");
+		btnScoreGame.setOnAction(e -> {
+
+			// Scores the game and displays the final score.
+			currentGame.scoreGame(playerOne, SpeciesBoard1, playerTwo, SpeciesBoard2);
+
+		});
+		
 	}
 	
 	public static void main(String[] args) {
