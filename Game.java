@@ -96,15 +96,6 @@ public class Game {
 						System.out.println(currentPlayerName + ", what would you like to do with your card " + selectedCardIndex + " ?");
 						//System.out.println("Press 1 to create a new species on the left; Press 2 to create new species on the right, Press 3 to increase body size, Press 4 to increase population size, Press 5 to attach " + currentCardTrait);
 						
-/*
-						TextInputDialog td_action = new TextInputDialog();
-						
-						td_action.setHeaderText("Enter action for this card: \nEnter 1 to create a new species on the left \nEnter 2 to create new species on the right \nEnter 3 to increase body size \nEnter 4 to increase population size \nEnter 5 to attach traits");
-						td_action.setContentText("Action");
-						TextField actionInput = td_action.getEditor();
-						td_action.showAndWait();
-*/
-						
 						
 						String userActionHeaderText = "Enter action for this card: \nEnter 1 to create a new species on the left \nEnter 2 to create new species on the right \nEnter 3 to increase body size \nEnter 4 to increase population size \nEnter 5 to attach traits";
 						String userActionContextText = "Action";
