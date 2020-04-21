@@ -19,5 +19,20 @@ class DeckTest {
 		assertEquals(testDeck.gameDeck.size(), deckStartingSize -1);
 		
 	}
+	
+	@Test
+	/*
+	 * Tests getGameDeck function works and return the same size of the deck.
+	 */
+	
+	void testGetGameDeck() {
+		Deck testDeck = new Deck();
+		testDeck.loadDeck();
+		
+		int deckSize = testDeck.gameDeck.size();
+		
+		assertEquals(deckSize, testDeck.getGameDeck().size());
+		
+	}
 
 }

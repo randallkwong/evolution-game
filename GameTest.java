@@ -1,26 +1,39 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 
 class GameTest {
 
+	ObservableList<Node> newPlayerBoard = FXCollections.observableArrayList();
+	Species newSpecies = new Species(1, 1, 1, 0, false, false, false, 0, new ArrayList<String>(), "1");
+	
+	
 	@Test
 	/*
 	 * Tests that a species that isn't fed will starve and be removed from the species board.
 	 */
 	void testStarvationAndSpeciesDeath() {
+		
+		// Species species;
 
 		Game currentGame = new Game();
-		
+
 		// Create player
 		Player playerOne = new Player(1);
 		
-		// Board creation creates one species
-		SpeciesBoard SpeciesBoard1 = new SpeciesBoard(null);
+		// Create species board
+
+		SpeciesBoard SpeciesBoard1 = new SpeciesBoard(newPlayerBoard);
 		
 		// Add one additional species to the board
 		SpeciesBoard1.addNewSpeciestoRight();
-
+		
 		// Two species are in play
 		assertEquals(SpeciesBoard1.numberOfSpeciesInPlay(), 2);
 		
@@ -32,14 +45,10 @@ class GameTest {
 		
 		// One species should starve and die off, leaving one species left
 		assertEquals(SpeciesBoard1.numberOfSpeciesInPlay(), 1);
-
-		// Move food consumed off of the species that was fed
-		SpeciesBoard1.moveFoodConsumed(1, 1);
-		
-		// Feed no species this time and handle starvation again. No species should be remaining
-		currentGame.starveSpecies(playerOne, SpeciesBoard1);
-		assertEquals(SpeciesBoard1.numberOfSpeciesInPlay(), 0);
-		
 	}
-
+	
+	
+	
+	
+	
 }
