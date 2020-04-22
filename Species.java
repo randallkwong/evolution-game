@@ -39,6 +39,7 @@ public class Species extends Parent implements Comparable{
 	boolean isCarnivore;
 	boolean hasFatTissue;
 	boolean hasClimbing;
+	int numberOfForagingCardsAttached;
 	
 	ArrayList<String> attachedTraitCards;
 	
@@ -94,12 +95,19 @@ public class Species extends Parent implements Comparable{
 		hasClimbing = Climbing;
 		numberOfTraits = Traits;
 		attachedTraitCards = AttachedTraitCards;
+		numberOfForagingCardsAttached = 0;
 		
 		hasFatTissue = false;
 		for(int i = 0; i < AttachedTraitCards.size(); i++) {
 			if(AttachedTraitCards.get(i).equals("Fat Tissue")){
 				hasFatTissue = true;
 			}
+			
+			// Count the number of Foraging cards attached
+			if(AttachedTraitCards.get(i).equals("Foraging")){
+				numberOfForagingCardsAttached = numberOfForagingCardsAttached + 1;
+			}
+			
 		}
 		
 		if(hasFatTissue == false) {
@@ -276,6 +284,15 @@ public class Species extends Parent implements Comparable{
 	 */
 	public void setIndex(String index) {
 		this.index = index;
+	}
+
+	/**
+	 * 
+	 * @return
+	 * Returns the number of Foraging trait cards attached to the species.
+	 */
+	public int getNumberOfForagingCardsAttached() {
+		return numberOfForagingCardsAttached;
 	}
 
 

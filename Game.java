@@ -314,11 +314,42 @@ public class Game {
 					// TODO: Refactor species boards to belong to players.
 					if((((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getFoodConsumed() < ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getFoodCapacity()) && (wateringHole.getCurrentFoodAvailable() > 0)) {
 
-						currentPlayersSpeciesBoard.updateFoodConsumed(speciesToFeed);
+						// Foraging is the only species trait with a plant food multiplier. Foraging doubles
+						// the amount of plant food an herbivore can take from the watering hole.
+						// We need to count the number of Foraging cards attached to a species to know
+						// how much food it should take from the watering hole.
+
+						int numberOfForagingCardsAttached = ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getNumberOfForagingCardsAttached();
+
+						int possibleFoodConsumed = 0;
+						int foodConsumed = 0;
+						
+						// When there are no foraging cards attached, this defaults to 1 plant food.
+						int plantFoodConsumptionAbility = (int) Math.pow(2, numberOfForagingCardsAttached);
+
+						// This is the effective food capacity remaining, the space left for food.
+						int spaceLeftForSpeciesToConsumeFood = ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getFoodCapacity() - ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getFoodConsumed();
+						
+
+						if(plantFoodConsumptionAbility > spaceLeftForSpeciesToConsumeFood) {
+							possibleFoodConsumed = spaceLeftForSpeciesToConsumeFood;
+						}
+						else {
+							possibleFoodConsumed = plantFoodConsumptionAbility;
+						}
+						
+						// Next, we compare the food that can possibly be consumed with the food available in the watering hole.
+						if(possibleFoodConsumed > wateringHole.getCurrentFoodAvailable()) {
+							foodConsumed = wateringHole.getCurrentFoodAvailable();
+						} else {
+							foodConsumed = possibleFoodConsumed;
+						}
+						
+						currentPlayersSpeciesBoard.updateFoodConsumed(speciesToFeed, foodConsumed);
 						currentPlayersSpeciesBoard.displaySpeciesBoard();
 						
 						// Decrement available food in the watering hole.
-						wateringHole.decrementFoodAvailable(1);
+						wateringHole.decrementFoodAvailable(foodConsumed);
 						wateringHole.displayWH(wateringHoleDisplay);
 						
 						ableToContinue = true;

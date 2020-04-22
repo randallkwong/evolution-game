@@ -219,12 +219,12 @@ public class SpeciesBoard {
 	 * @param pos
 	 * Takes the index of a Species on the SpeciesBoard from the player input.
 	 */
-	public void updateFoodConsumed(int pos) {
+	public void updateFoodConsumed(int pos, int newPoodConsumed) {
 		Species value = (Species) newPlayerBoard.get(pos);
 		int isAlive = value.getIsAlive();
 		int BodySize = value.getBodysize();
 		int population = value.getPopulation();
-		int foodconsumed = value.getFoodConsumed() + 1;
+		int foodconsumed = value.getFoodConsumed() + newPoodConsumed;
 		boolean carnivore = value.getCarnivore();
 		boolean fatTissue = value.getFatTissue();
 		boolean climbing = value.getClimbing();
