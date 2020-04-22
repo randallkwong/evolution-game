@@ -287,6 +287,11 @@ public class GameRun extends Application {
 		btnContinue.setOnAction(e -> {
 			startNewRound();
 			pseudoConsoleLog.setText("\n" + "The cards have been dealt" + "\n" + "\n" + "Continue to \"Select plant food\"");
+			
+			// Handles Fertile and Long Neck effects
+			currentGame.afterCardsDealtBeforeFoodCardsPlayedPhase(SpeciesBoard1, wateringHole, pseudoConsoleLog);
+			currentGame.afterCardsDealtBeforeFoodCardsPlayedPhase(SpeciesBoard2, wateringHole, pseudoConsoleLog);
+			
 		});
 		
 		

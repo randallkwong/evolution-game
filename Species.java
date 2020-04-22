@@ -40,6 +40,8 @@ public class Species extends Parent implements Comparable{
 	boolean hasFatTissue;
 	boolean hasClimbing;
 	int numberOfForagingCardsAttached;
+	int numberOfLongNeckCardsAttached;
+	int numberOfFertileCardsAttached;
 	
 	ArrayList<String> attachedTraitCards;
 	
@@ -96,6 +98,8 @@ public class Species extends Parent implements Comparable{
 		numberOfTraits = Traits;
 		attachedTraitCards = AttachedTraitCards;
 		numberOfForagingCardsAttached = 0;
+		numberOfLongNeckCardsAttached = 0;
+		numberOfFertileCardsAttached = 0;
 		
 		hasFatTissue = false;
 		for(int i = 0; i < AttachedTraitCards.size(); i++) {
@@ -106,6 +110,16 @@ public class Species extends Parent implements Comparable{
 			// Count the number of Foraging cards attached
 			if(AttachedTraitCards.get(i).equals("Foraging")){
 				numberOfForagingCardsAttached = numberOfForagingCardsAttached + 1;
+			}
+
+			// Count the number of Long Neck cards attached
+			if(AttachedTraitCards.get(i).equals("Long Neck")){
+				numberOfLongNeckCardsAttached = numberOfLongNeckCardsAttached + 1;
+			}
+			
+			// Count the number of Fertile cards attached
+			if(AttachedTraitCards.get(i).equals("Fertile")){
+				numberOfFertileCardsAttached = numberOfFertileCardsAttached + 1;
 			}
 			
 		}
@@ -295,7 +309,24 @@ public class Species extends Parent implements Comparable{
 		return numberOfForagingCardsAttached;
 	}
 
+	/**
+	 * 
+	 * @return
+	 * Returns the number of Long Neck trait cards attached to the species.
+	 */
+	public int getNumberOfLongNeckCardsAttached() {
+		return numberOfLongNeckCardsAttached;
+	}
 
+	/**
+	 * 
+	 * @return
+	 * Returns the number of Fertile trait cards attached to the species.
+	 */
+	public int getNumberOfFertileCardsAttached() {
+		return numberOfFertileCardsAttached;
+	}
+	
 	@Override
 	/**
 	 *  We need to create a way to compare species so that we can sort the observable list. This avoids

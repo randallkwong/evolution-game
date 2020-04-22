@@ -214,6 +214,117 @@ public class SpeciesBoard {
 	}
 	
 	/**
+	 * This method handles the consumption of plant food.
+	 * 
+	 * @param currentPlayersSpeciesBoard
+	 * Takes a current player's species board which it will use to update the species.
+	 * 
+	 * @param speciesToFeed
+	 * Takes a species to feed which is the index to modify.
+	 * 
+	 * @param wateringHole
+	 * Takes the watering hole so it can compare the amount of food available.
+	 * 
+	 * @return
+	 * Returns an integer representing the amount of food consumed.
+	 */
+	
+	public int consumePlantFood(SpeciesBoard currentPlayersSpeciesBoard, int speciesToFeed, WateringHole wateringHole) {
+		
+		// Foraging is the only species trait with a plant food multiplier. Foraging doubles
+		// the amount of plant food an herbivore can take from the watering hole.
+		// We need to count the number of Foraging cards attached to a species to know
+		// how much food it should take from the watering hole.
+
+		int numberOfForagingCardsAttached = ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getNumberOfForagingCardsAttached();
+
+		int possibleFoodConsumed = 0;
+		int foodConsumed = 0;
+		
+		// When there are no foraging cards attached, this defaults to 1 plant food.
+		int plantFoodConsumptionAbility = (int) Math.pow(2, numberOfForagingCardsAttached);
+
+		// This is the effective food capacity remaining, the space left for food.
+		int spaceLeftForSpeciesToConsumeFood = ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getFoodCapacity() - ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getFoodConsumed();
+		
+
+		if(plantFoodConsumptionAbility > spaceLeftForSpeciesToConsumeFood) {
+			possibleFoodConsumed = spaceLeftForSpeciesToConsumeFood;
+		}
+		else {
+			possibleFoodConsumed = plantFoodConsumptionAbility;
+		}
+		
+		// Next, we compare the food that can possibly be consumed with the food available in the watering hole.
+		if(possibleFoodConsumed > wateringHole.getCurrentFoodAvailable()) {
+			foodConsumed = wateringHole.getCurrentFoodAvailable();
+		} else {
+			foodConsumed = possibleFoodConsumed;
+		}
+		
+		currentPlayersSpeciesBoard.updateFoodConsumed(speciesToFeed, foodConsumed);
+		
+		// This returns the amount of food consumed so it may be decremented from the watering hole.
+		// Decrement from the watering hole is not included in this plant food consumption method
+		// because species with Long Neck may consume plant food separately from the watering hole.
+		return foodConsumed;
+		
+	}
+	
+	/**
+	 * This method handles the consumption of plant food for species with LongNeck. It is similar to consumePlantFood
+	 * but does not require a watering hole as an argument and a species may consume an amount of food greater than 
+	 * the food in the watering hole if able.
+	 * 
+	 * @param currentPlayersSpeciesBoard
+	 * Takes a current player's species board which it will use to update the species.
+	 * 
+	 * @param speciesToFeed
+	 * Takes a species to feed which is the index to modify.
+	 * 
+	 * @return
+	 * Returns an integer representing the amount of food consumed.
+	 */
+	public int consumePlantFoodLongNeck(SpeciesBoard currentPlayersSpeciesBoard, int speciesToFeed) {
+		
+		// Foraging is the only species trait with a plant food multiplier. Foraging doubles
+		// the amount of plant food an herbivore can take from the watering hole.
+		// We need to count the number of Foraging cards attached to a species to know
+		// how much food it should take from the watering hole.
+
+		int numberOfForagingCardsAttached = ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getNumberOfForagingCardsAttached();
+
+		int possibleFoodConsumed = 0;
+		int foodConsumed = 0;
+		
+		// When there are no foraging cards attached, this defaults to 1 plant food.
+		int plantFoodConsumptionAbility = (int) Math.pow(2, numberOfForagingCardsAttached);
+
+		// This is the effective food capacity remaining, the space left for food.
+		int spaceLeftForSpeciesToConsumeFood = ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getFoodCapacity() - ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getFoodConsumed();
+		
+
+		if(plantFoodConsumptionAbility > spaceLeftForSpeciesToConsumeFood) {
+			possibleFoodConsumed = spaceLeftForSpeciesToConsumeFood;
+		}
+		else {
+			possibleFoodConsumed = plantFoodConsumptionAbility;
+		}
+		
+		// Next, we feed and the food that can possibly be consumed does not rely on the watering hole.
+
+		foodConsumed = possibleFoodConsumed;
+		
+		currentPlayersSpeciesBoard.updateFoodConsumed(speciesToFeed, foodConsumed);
+		
+		// This returns the amount of food consumed so it may be decremented from the watering hole.
+		// Decrement from the watering hole is not included in this plant food consumption method
+		// because species with Long Neck may consume plant food separately from the watering hole.
+		return foodConsumed;
+		
+	}
+	
+	/**
 	 * This method updates the food consumed for a species.
 	 * 
 	 * @param pos

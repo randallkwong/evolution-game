@@ -29,6 +29,45 @@ public class Game {
 	}
 	
 	/**
+	 * This method increments species population for player's species with Fertile trait card attached if the watering hole has any food available.
+	 * This method feeds species with the Long Neck trait card attached from the food bank (not the watering hole) which
+	 * does not rely on available food in order to feed.
+	 * 
+	 * @param i
+	 * @param currentPlayer
+	 * @param currentPlayersSpeciesBoard
+	 * @param wateringHole
+	 * @param wateringHoleDisplay
+	 * @param pseudoConsoleLog
+	 */
+	public void afterCardsDealtBeforeFoodCardsPlayedPhase(SpeciesBoard currentPlayersSpeciesBoard, WateringHole wateringHole, Label pseudoConsoleLog) {
+	
+		// If there is food in the watering hole from the last round, species with Fertile attached may increase their population by one.
+		if(wateringHole.getCurrentFoodAvailable() > 0) {
+			for(int j = 0; j < currentPlayersSpeciesBoard.newPlayerBoard.size(); j++) {
+				if(((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(j)).getNumberOfFertileCardsAttached() > 0) {
+				// Increases the population by the number of Fertile cards attached.
+				currentPlayersSpeciesBoard.updatePopulation(j, ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(j)).getNumberOfFertileCardsAttached());
+				}
+			}
+		}
+		
+		// Loop through all the species on the species board.
+		for(int j = 0; j < currentPlayersSpeciesBoard.newPlayerBoard.size(); j++) {
+			
+			// For each species, for the number of Long Neck cards attached, calculate the plant food to consume
+			// then consume it.
+			int foodConsumed = 0;		
+			for(int k = 0; k < ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(j)).getNumberOfLongNeckCardsAttached(); k++) {	
+				foodConsumed = foodConsumed + currentPlayersSpeciesBoard.consumePlantFoodLongNeck(currentPlayersSpeciesBoard, j);
+			}
+
+		}
+
+		
+	}
+	
+	/**
 	 * 
 	 * This method handles Phase 3 of Evolution where players can discard cards to increase
 	 * population, increase body size, create new species, or attach a trait card to a species in play.
@@ -314,42 +353,14 @@ public class Game {
 					// TODO: Refactor species boards to belong to players.
 					if((((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getFoodConsumed() < ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getFoodCapacity()) && (wateringHole.getCurrentFoodAvailable() > 0)) {
 
-						// Foraging is the only species trait with a plant food multiplier. Foraging doubles
-						// the amount of plant food an herbivore can take from the watering hole.
-						// We need to count the number of Foraging cards attached to a species to know
-						// how much food it should take from the watering hole.
-
-						int numberOfForagingCardsAttached = ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getNumberOfForagingCardsAttached();
-
-						int possibleFoodConsumed = 0;
-						int foodConsumed = 0;
-						
-						// When there are no foraging cards attached, this defaults to 1 plant food.
-						int plantFoodConsumptionAbility = (int) Math.pow(2, numberOfForagingCardsAttached);
-
-						// This is the effective food capacity remaining, the space left for food.
-						int spaceLeftForSpeciesToConsumeFood = ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getFoodCapacity() - ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getFoodConsumed();
-						
-
-						if(plantFoodConsumptionAbility > spaceLeftForSpeciesToConsumeFood) {
-							possibleFoodConsumed = spaceLeftForSpeciesToConsumeFood;
-						}
-						else {
-							possibleFoodConsumed = plantFoodConsumptionAbility;
-						}
-						
-						// Next, we compare the food that can possibly be consumed with the food available in the watering hole.
-						if(possibleFoodConsumed > wateringHole.getCurrentFoodAvailable()) {
-							foodConsumed = wateringHole.getCurrentFoodAvailable();
-						} else {
-							foodConsumed = possibleFoodConsumed;
-						}
-						
-						currentPlayersSpeciesBoard.updateFoodConsumed(speciesToFeed, foodConsumed);
-						currentPlayersSpeciesBoard.displaySpeciesBoard();
+						// The amount of food to consume is calculated and subtracted from the watering hole.
+						int foodConsumed = currentPlayersSpeciesBoard.consumePlantFood(currentPlayersSpeciesBoard, speciesToFeed, wateringHole);
 						
 						// Decrement available food in the watering hole.
 						wateringHole.decrementFoodAvailable(foodConsumed);
+						
+						currentPlayersSpeciesBoard.displaySpeciesBoard();				
+
 						wateringHole.displayWH(wateringHoleDisplay);
 						
 						ableToContinue = true;
