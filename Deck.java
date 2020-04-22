@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 public class Deck {
 
-	String filename = "evolution_cards_actual_deck.csv";
+	String filename = "evolution_cards_small_deck.csv";
 	ArrayList<Card> gameDeck = new ArrayList<Card>();
 
 	/**
