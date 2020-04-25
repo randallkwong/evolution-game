@@ -137,7 +137,7 @@ public class Game {
 						pseudoConsoleLog.setText("");
 						
 						
-						String cardSelectionHeaderText = currentPlayerName + ", which card would you like to select?";
+						String cardSelectionHeaderText = currentPlayerName + ", which card \nwould you like to select?";
 						String cardSelectionContentText = "Card";
 
 						int selectedCardIndex = -1;
@@ -153,7 +153,7 @@ public class Game {
 						
 						String currentCardTrait = ((Card) currentPlayersHand.hand.get(selectedCardIndex-1)).getTrait();
 						
-						pseudoConsoleLog.setText(currentPlayerName + ", what would you like to do with your card " + "(" + selectedCardIndex + ")" + " ?");
+						pseudoConsoleLog.setText(currentPlayerName + ", what would you \nlike to do with your card " + "(" + selectedCardIndex + ")" + " ?");
 												
 						String userActionHeaderText = "Enter action for this card: \nEnter 1 to create a new species on the left \nEnter 2 to create new species on the right \nEnter 3 to increase body size \nEnter 4 to increase population size \nEnter 5 to attach traits";
 						String userActionContextText = "Action";
@@ -283,7 +283,7 @@ public class Game {
 	 * Takes the current player's species board so that changes to active species may be updated (ex: species receives food).
 	 * 
 	 * @param wateringHole
-	 * Takes the watering hole so that food consumed from the watering hold by herbivores can be updated as needed.
+	 * Takes the watering hole so that food consumed from the watering hole by herbivores can be updated as needed.
 	 * 
 	 * @param wateringHoleDisplay
 	 * Takes the watering hole display text to help player understand number of plant food in the watering hole. 

@@ -153,37 +153,37 @@ public class Species extends Parent implements Comparable{
 		}
 		
 		Text Trait1ofCard = new Text("T1:" + AttachedTraitCards.get(0));
-		Trait1ofCard.setFont(Font.font(18));
+		Trait1ofCard.setFont(Font.font(14));
 		Trait1ofCard.setX(10);
 		Trait1ofCard.setY(Trait1ofCard.getLayoutBounds().getHeight());
 		
 		Text Trait2ofCard = new Text("T2:" + AttachedTraitCards.get(1));
-		Trait2ofCard.setFont(Font.font(18));
+		Trait2ofCard.setFont(Font.font(14));
 		Trait2ofCard.setX(10);
-		Trait2ofCard.setY(45);
+		Trait2ofCard.setY(40);
 		
 		Text Trait3ofCard = new Text("T3:" + AttachedTraitCards.get(2));
-		Trait3ofCard.setFont(Font.font(18));
+		Trait3ofCard.setFont(Font.font(14));
 		Trait3ofCard.setX(10);
-		Trait3ofCard.setY(70);
+		Trait3ofCard.setY(65);
 
 		Text indexOfSpecies = new Text("[" + index + "]");
-		indexOfSpecies.setFont(Font.font(18));
+		indexOfSpecies.setFont(Font.font(14));
 		indexOfSpecies.setX(10);
 		indexOfSpecies.setY(Species_height-40);
 		
 		Text bodySizeofSpecies = new Text("B:" + String.valueOf(bodySize));
-		bodySizeofSpecies.setFont(Font.font(18));
+		bodySizeofSpecies.setFont(Font.font(14));
 		bodySizeofSpecies.setX(10);
 		bodySizeofSpecies.setY(Species_height-10);
 		
 		Text foodofSpecies = new Text("F:" + String.valueOf(currentFoodConsumed));
-		foodofSpecies.setFont(Font.font(18));
+		foodofSpecies.setFont(Font.font(14));
 		foodofSpecies.setX(50);
 		foodofSpecies.setY(Species_height-10);
 		
 		Text populationofSpecies = new Text("P:" + String.valueOf(population));
-		populationofSpecies.setFont(Font.font(18));
+		populationofSpecies.setFont(Font.font(14));
 		populationofSpecies.setX(90);
 		populationofSpecies.setY(Species_height-10);
 		

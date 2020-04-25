@@ -1,18 +1,13 @@
-import java.util.Scanner;
 import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.scene.control.Alert.AlertType;
 
 public class GameRun extends Application {
 	Stage window;
@@ -20,10 +15,11 @@ public class GameRun extends Application {
 	Button btnSubmit1,btnSubmit2, btnPlay, btnFeed, btnContinue, btnScoreGame;
 	
 	// This will serve as "console log" in the player facing frontend.
-	static Label pseudoConsoleLog = new Label("Player instructions");
+	static Text instructionBoard = new Text("Player Instruction Board:");	
+	static Label pseudoConsoleLog = new Label("");
 	static Game currentGame = new Game();
 	static WateringHole wateringHole = new WateringHole();
-	static Label wateringHoleDisplay = new Label("Watering Hold Plant Food Available: " + Integer.toString(wateringHole.getCurrentFoodAvailable()));
+	static Label wateringHoleDisplay = new Label("Watering Hole \nPlant Food Available: " + Integer.toString(wateringHole.getCurrentFoodAvailable()));
 	static Deck deck = new Deck();
 	static Player playerOne = new Player(1);
 	static Player playerTwo = new Player(2);
@@ -77,7 +73,7 @@ public class GameRun extends Application {
 	    HBox hbox = new HBox();
 	    hbox.setPadding(new Insets(15, 12, 15, 12));
 	    hbox.setSpacing(10);
-	    hbox.setStyle("-fx-background-color: #336699;");
+	    hbox.setStyle("-fx-background-color: #bdc2f0;");
 	    Text Player1CardInstruction = new Text ("Player 1 Cards:"); 
 	    hbox.getChildren().addAll(Player1CardInstruction, player1Cards);
 
@@ -93,7 +89,7 @@ public class GameRun extends Application {
 	    HBox hbox = new HBox();
 	    hbox.setPadding(new Insets(15, 12, 15, 12));
 	    hbox.setSpacing(10);
-	    hbox.setStyle("-fx-background-color: #336699;");
+	    hbox.setStyle("-fx-background-color: #bdc2f0;");
 	    Text Player2CardInstruction = new Text ("Player 2 Cards:"); 
 	    hbox.getChildren().addAll(Player2CardInstruction, player2Cards);
 
@@ -109,7 +105,6 @@ public class GameRun extends Application {
 	    HBox hbox = new HBox();
 	    hbox.setPadding(new Insets(15, 12, 15, 12));
 	    hbox.setSpacing(10);
-	    hbox.setStyle("-fx-background-color: #336699;");
 	    Text Player1SpeciesInstruction = new Text ("Player 1 Species:"); 
 	    hbox.getChildren().addAll(Player1SpeciesInstruction, player1Species);
 
@@ -125,7 +120,6 @@ public class GameRun extends Application {
 	    HBox hbox = new HBox();
 	    hbox.setPadding(new Insets(15, 12, 15, 12));
 	    hbox.setSpacing(10);
-	    hbox.setStyle("-fx-background-color: #336699;");
 	    Text Player2SpeciesInstruction = new Text ("Player 2 Species:"); 
 	    hbox.getChildren().addAll(Player2SpeciesInstruction, player2Species);
 
@@ -135,15 +129,30 @@ public class GameRun extends Application {
 	/**
 	 * 
 	 * @return
-	 * This method returns a vertical box that contains the game's buttons that initiate various phases of the game, as well
-	 * as player help text, and the current amount of food in the watering hole.
+	 * This method returns a vertical box that contains the game's buttons that initiate various phases of the game.
 	 */
 	public VBox Buttons() {
 		VBox layout = new VBox(10);
 		layout.setPadding(new Insets(20, 20, 20, 20));
-		layout.getChildren().addAll(btnContinue, btnPlay, btnSubmit1, btnSubmit2, btnFeed, wateringHoleDisplay, pseudoConsoleLog, btnScoreGame);
+		layout.getChildren().addAll(btnContinue, btnPlay, btnSubmit1, btnSubmit2, btnFeed, btnScoreGame);
+		layout.setStyle("-fx-background-color: #f5d47f;");
 		return layout;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 * This method returns a vertical box that contains player help text, and the current amount of food in the watering hole.
+	 */
+	
+	public VBox ConsoleLogs() {
+		VBox layout = new VBox(10);
+		layout.setPadding(new Insets(20, 20, 20, 20));
+		layout.getChildren().addAll(instructionBoard, pseudoConsoleLog,wateringHoleDisplay);
+		layout.setStyle("-fx-background-color: #f5d47f;");
+		return layout;
+	}
+	
 	
 	/**
 	 * 
@@ -158,6 +167,7 @@ public class GameRun extends Application {
 		layout.getChildren().addAll(Player1SpeciesInstruction, player1Species,Player2SpeciesInstruction,player2Species);
 		return layout;
 	}
+	
 	
 	/**
 	 * 
@@ -360,6 +370,7 @@ public class GameRun extends Application {
 		//border.setLeft(P2Species);
 		//border.setRight(P1Species);
 		border.setCenter(addVBox());
+		border.setLeft(ConsoleLogs());
 		border.setRight(Buttons());
 	}
 	

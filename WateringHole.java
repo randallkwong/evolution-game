@@ -71,7 +71,7 @@ public class WateringHole {
 	 * This method prints the current available plant food in the WateringHole.
 	 */
 	public void displayWH(Label wateringHoleDisplay) {
-		String wateringHoleFoodAvailable = "Watering Hold Plant Food Available: " + Integer.toString(getCurrentFoodAvailable());
+		String wateringHoleFoodAvailable = "Watering Hole \nPlant Food Available: " + Integer.toString(getCurrentFoodAvailable());
 		wateringHoleDisplay.setText(wateringHoleFoodAvailable);
 	}
 }
