@@ -359,10 +359,24 @@ public class Game {
 						// Calculate food consumed with Cooperation Trait Card. 
 						// Rule of Cooperation Card: Anytime this species takes food, if you have a species to the right of it, 
 						// that species takes 1 food from the same source (Watering Hole or Food Bank).
-						if (((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getNumberOfCooperationCardsAttached() > 0 && (currentPlayersSpeciesBoard.newPlayerBoard.size()-1) != speciesToFeed) {
-							for (i = 0; i < ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getNumberOfCooperationCardsAttached(); i++) {
-								foodConsumed = foodConsumed + currentPlayersSpeciesBoard.consumePlantFood(currentPlayersSpeciesBoard,speciesToFeed + 1, wateringHole);
+						
+						// Chain the cooperations together if multiple cooperation cards are in a row.
+						
+						// For the species moving to the right with each iteration, if the species has cooperation cards and the current species index isn't the farthest right (which would be null)
+						// then add the cooperation food to the food that should be decremented from the watering hole.
+						boolean cooperationChainContinue = true;
+						
+						for(int j = 0; ((((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed + j)).getNumberOfCooperationCardsAttached() > 0) && ((speciesToFeed + j) < currentPlayersSpeciesBoard.newPlayerBoard.size())) && (cooperationChainContinue == true); j++) {
+							
+							// Handle the current species cooperation effects followed by each subsequent species to the right that has cooperation attached.
+							for (i = 0; i < ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed + j)).getNumberOfCooperationCardsAttached(); i++) {
+								foodConsumed = foodConsumed + currentPlayersSpeciesBoard.consumePlantFood(currentPlayersSpeciesBoard,speciesToFeed + j + 1, wateringHole);
 							}
+							// If the cooperation chain is broken, set cooperationChainContinue to false which halts the loop.
+							if(((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed + j)).getNumberOfCooperationCardsAttached() == 0){
+								cooperationChainContinue = false;	
+							}
+							
 						}
 						
 						// Decrement available food in the watering hole.
