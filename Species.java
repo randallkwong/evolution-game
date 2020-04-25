@@ -42,6 +42,7 @@ public class Species extends Parent implements Comparable{
 	int numberOfForagingCardsAttached;
 	int numberOfLongNeckCardsAttached;
 	int numberOfFertileCardsAttached;
+	int numberOfCooperationCardsAttached;
 	
 	ArrayList<String> attachedTraitCards;
 	
@@ -100,11 +101,16 @@ public class Species extends Parent implements Comparable{
 		numberOfForagingCardsAttached = 0;
 		numberOfLongNeckCardsAttached = 0;
 		numberOfFertileCardsAttached = 0;
+		numberOfCooperationCardsAttached = 0;
 		
 		hasFatTissue = false;
 		for(int i = 0; i < AttachedTraitCards.size(); i++) {
 			if(AttachedTraitCards.get(i).equals("Fat Tissue")){
 				hasFatTissue = true;
+			}
+			
+			if(AttachedTraitCards.get(i).equals("Cooperation")){
+				numberOfCooperationCardsAttached = numberOfCooperationCardsAttached + 1;	
 			}
 			
 			// Count the number of Foraging cards attached
@@ -326,6 +332,17 @@ public class Species extends Parent implements Comparable{
 	public int getNumberOfFertileCardsAttached() {
 		return numberOfFertileCardsAttached;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 * Returns the number of Cooperation trait cards attached to the species.
+	 */
+	public int getNumberOfCooperationCardsAttached() {
+		return numberOfCooperationCardsAttached;
+	}
+	
+	
 	
 	@Override
 	/**
