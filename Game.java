@@ -357,15 +357,16 @@ public class Game {
 						int foodConsumed = currentPlayersSpeciesBoard.consumePlantFood(currentPlayersSpeciesBoard, speciesToFeed, wateringHole);
 						
 						// Calculate food consumed with Cooperation Trait Card. 
+						// Rule of Cooperation Card: Anytime this species takes food, if you have a species to the right of it, 
+						// that species takes 1 food from the same source (Watering Hole or Food Bank).
 						if (((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getNumberOfCooperationCardsAttached() > 0 && (currentPlayersSpeciesBoard.newPlayerBoard.size()-1) != speciesToFeed) {
 							for (i = 0; i < ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getNumberOfCooperationCardsAttached(); i++) {
-								currentPlayersSpeciesBoard.consumePlantFoodCooperation(currentPlayersSpeciesBoard,speciesToFeed,wateringHole);
+								foodConsumed = foodConsumed + currentPlayersSpeciesBoard.consumePlantFood(currentPlayersSpeciesBoard,speciesToFeed + 1, wateringHole);
 							}
 						}
 						
 						// Decrement available food in the watering hole.
-						else {wateringHole.decrementFoodAvailable(foodConsumed);
-						}
+						wateringHole.decrementFoodAvailable(foodConsumed);
 						
 						currentPlayersSpeciesBoard.displaySpeciesBoard();				
 

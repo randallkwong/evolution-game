@@ -307,30 +307,6 @@ public class SpeciesBoard {
 	}
 	
 	/**
-	 * This method handles the consumption of plant food when there is a cooperation trait card present
-	 * 
-	 * @param currentPlayersSpeciesBoard
-	 * Takes a current player's species board which it will use to update the species.
-	 * 
-	 * @param speciesToFeed
-	 * Takes a species to feed which is the index to modify.
-	 * 
-	 * @param wateringHole
-	 * Takes the watering hole so it can compare the amount of food available.
-	 * 
-	 * @return
-	 * Returns an integer representing the amount of food consumed.
-	 */
-	
-	public void consumePlantFoodCooperation(SpeciesBoard currentPlayersSpeciesBoard, int speciesToFeed, WateringHole wateringHole) {
-		// Rule of Cooperation Card: Anytime this species takes food, if you have a species to the right of it, 
-		// that species takes 1 food from the same source (Watering Hole or Food Bank).
-		int speciesToFeedontheRight = speciesToFeed + 1;
-		int foodConsumedCooperation = currentPlayersSpeciesBoard.consumePlantFood(currentPlayersSpeciesBoard, speciesToFeed, wateringHole) + currentPlayersSpeciesBoard.consumePlantFood(currentPlayersSpeciesBoard, speciesToFeedontheRight, wateringHole);
-		wateringHole.decrementFoodAvailable(foodConsumedCooperation);
-	}
-	
-	/**
 	 * This method updates the food consumed for a species.
 	 * 
 	 * @param pos
