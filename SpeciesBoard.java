@@ -30,7 +30,7 @@ public class SpeciesBoard {
 	/**
 	 * When the SpeciesBoard is first constructed at the game's start, each player begins with one Species.
 	 * @param observableList 
-	 * @param observableList 
+	 * ObservableList is used to allows listeners to track changes when they occur.
 	 */
 	public SpeciesBoard(ObservableList<Node> species){
 		newPlayerBoard = species;
@@ -105,19 +105,9 @@ public class SpeciesBoard {
 	 * Prints the active Species and their characteristics on the current SpeciesBoard.
 	 */
 	public void displaySpeciesBoard() {
-
-	
-	
-/*		
-		for(int i = 0; i < newPlayerBoard.size(); i++) {
-			((Species) newPlayerBoard.get(i)).setIndex(Integer.toString(i));
-		}
-*/
-	
-//		newPlayerBoard.sort(null);
 		
-		for(int i = 0; i < newPlayerBoard.size(); i++) {
-			
+		for (int i = 0; i < newPlayerBoard.size(); i++) {
+
 			int indexPlusOne = i + 1;
 			String newIndex = Integer.toString(indexPlusOne);
 			Species value = (Species) newPlayerBoard.get(0);
@@ -129,22 +119,14 @@ public class SpeciesBoard {
 			boolean fatTissue = value.getFatTissue();
 			boolean climbing = value.getClimbing();
 			int numoftraitcards = value.getTraitcard();
-			ArrayList<String>traitsArray = value.getAttachedTraitCards();
-			Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue, climbing, numoftraitcards, traitsArray, newIndex);
+			ArrayList<String> traitsArray = value.getAttachedTraitCards();
+			Species newSpecies = new Species(isAlive, population, BodySize, foodconsumed, carnivore, fatTissue,
+					climbing, numoftraitcards, traitsArray, newIndex);
 
 			newPlayerBoard.remove(0);
 			newPlayerBoard.add(newSpecies);
-			
-		}
-				
-/*
-			for(int i = 0; i < newPlayerBoard.size(); i++) {
-				((Species) newPlayerBoard.get(i)).setIndex(Integer.toString(i));
-				((Species) newPlayerBoard.get(i)).indexOfSpecies.setText("hello");
-			}
-*/
-				
-			
+
+		}					
 	}
 	
 	
@@ -329,6 +311,9 @@ public class SpeciesBoard {
 	 * 
 	 * @param pos
 	 * Takes the index of a Species on the SpeciesBoard from the player input.
+	 * 
+	 * @param newPoodConsumed
+	 * Takes in new food consumed from the feeding phase.
 	 */
 	public void updateFoodConsumed(int pos, int newPoodConsumed) {
 		Species value = (Species) newPlayerBoard.get(pos);
@@ -378,8 +363,8 @@ public class SpeciesBoard {
 	 * @param cardName
 	 * Takes the trait to update.
 	 * 
-	 * @param scan
-	 * Takes the active scanner to capture user input.
+	 * @param pseudoConsoleLog
+	 * Prints out helper text for the player. 
 	 * 
 	 */
 	public void updateTraitCard(int pos, String cardName, Label pseudoConsoleLog) {
