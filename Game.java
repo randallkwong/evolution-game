@@ -33,11 +33,8 @@ public class Game {
 	 * This method feeds species with the Long Neck trait card attached from the food bank (not the watering hole) which
 	 * does not rely on available food in order to feed.
 	 * 
-	 * @param i
-	 * @param currentPlayer
 	 * @param currentPlayersSpeciesBoard
 	 * @param wateringHole
-	 * @param wateringHoleDisplay
 	 * @param pseudoConsoleLog
 	 */
 	public void afterCardsDealtBeforeFoodCardsPlayedPhase(SpeciesBoard currentPlayersSpeciesBoard, WateringHole wateringHole, Label pseudoConsoleLog) {
@@ -81,9 +78,8 @@ public class Game {
 	 * @param currentPlayersSpeciesBoard
 	 * Takes a player's species board so that it may be updated according to a player's actions.
 	 * 
-	 * @param scan
-	 * Takes the current scanner to capture user input.
-	 * 
+	 * @param pseudoConsoleLog
+	 * Prints out helper text for the player
 	 */
 	
 	public void playPhaseThree(Player currentPlayer, Hand currentPlayersHand, SpeciesBoard currentPlayersSpeciesBoard, Label pseudoConsoleLog) {
@@ -289,8 +285,12 @@ public class Game {
 	 * @param wateringHole
 	 * Takes the watering hole so that food consumed from the watering hold by herbivores can be updated as needed.
 	 * 
-	 * @param scan
-	 * Takes the active scanner so we can capture user input and apply the right player actions.
+	 * @param wateringHoleDisplay
+	 * Takes the watering hole display text to help player understand number of plant food in the watering hole. 
+	 * 
+	 * @param pseudoConsoleLog
+	 * Prints out helper text for the player. 
+	 * 
 	 */
 	public void feedingPhase(int i, Player currentPlayer, SpeciesBoard currentPlayersSpeciesBoard, WateringHole wateringHole, Label wateringHoleDisplay, Label pseudoConsoleLog) {
 		
@@ -556,6 +556,9 @@ public class Game {
 	 * 
 	 * @param wateringHoleDisplay
 	 * Take's the watering hole label which displays the available plant food.
+	 * 
+	 * @param pseudoConsoleLog
+	 * Prints out helper text for the player. 
 	 */
 	public void playWateringHoleCard(Player currentPlayer, Hand currentHand, WateringHole wateringHole, Label wateringHoleDisplay, Label pseudoConsoleLog) {
 		
