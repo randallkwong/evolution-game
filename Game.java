@@ -357,14 +357,15 @@ public class Game {
 						int foodConsumed = currentPlayersSpeciesBoard.consumePlantFood(currentPlayersSpeciesBoard, speciesToFeed, wateringHole);
 						
 						// Calculate food consumed with Cooperation Trait Card. 
-						if (((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getNumberOfCooperationCardsAttached() > 0) {
+						if (((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getNumberOfCooperationCardsAttached() > 0 && (currentPlayersSpeciesBoard.newPlayerBoard.size()-1) != speciesToFeed) {
 							for (i = 0; i < ((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed)).getNumberOfCooperationCardsAttached(); i++) {
 								currentPlayersSpeciesBoard.consumePlantFoodCooperation(currentPlayersSpeciesBoard,speciesToFeed,wateringHole);
 							}
 						}
 						
 						// Decrement available food in the watering hole.
-						wateringHole.decrementFoodAvailable(foodConsumed);
+						else {wateringHole.decrementFoodAvailable(foodConsumed);
+						}
 						
 						currentPlayersSpeciesBoard.displaySpeciesBoard();				
 
