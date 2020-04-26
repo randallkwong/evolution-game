@@ -366,6 +366,8 @@ public class Game {
 						// then add the cooperation food to the food that should be decremented from the watering hole.
 						boolean cooperationChainContinue = true;
 						
+						if(speciesToFeed != currentPlayersSpeciesBoard.newPlayerBoard.size() -1) {
+						
 						for(int j = 0; ((((Species) currentPlayersSpeciesBoard.newPlayerBoard.get(speciesToFeed + j)).getNumberOfCooperationCardsAttached() > 0) && ((speciesToFeed + j) < currentPlayersSpeciesBoard.newPlayerBoard.size())) && (cooperationChainContinue == true); j++) {
 							
 							// Handle the current species cooperation effects followed by each subsequent species to the right that has cooperation attached.
@@ -377,6 +379,8 @@ public class Game {
 								cooperationChainContinue = false;	
 							}
 							
+						}
+						
 						}
 						
 						// Decrement available food in the watering hole.
