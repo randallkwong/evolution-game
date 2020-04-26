@@ -17,11 +17,11 @@ Step 3: click “Select plant food”. Each Player selects one card from their h
 
 Step 4: Click “Player 1: Start Phase 3”. In this phase, you will follow instructions to play each card. Players can use one card to do any of these 5 actions.
 
-Create a species on the left side of the Player board
-Create a species on the right side of the Player board
-Increase a species’ body size
-Increase a species’ population size
-Upgrade one of your species with a new ability by attaching the trait card to it
+1) Create a species on the left side of the Player board
+2) Create a species on the right side of the Player board
+3) Increase a species’ body size
+4) Increase a species’ population size
+5) Upgrade one of your species with a new ability by attaching the trait card to it
 
 Step 5: Click “Player 2: Start Phase 3.” Same as Step 4, but Player 2 does their actions. 
 
@@ -33,18 +33,18 @@ Additional Information
 
 Gameplay - Trait Cards Effects
 
-Foraging
+Foraging:
 This species receives an additional Plant Food from the same source (Watering Hole or Food Bank) anytime it takes Plant Food (unless it does not have a hungry population for the additional Food).
 
-Fertile
+Fertile:
 Before selecting Food Cards, this species gains 1 Population if there is Food on the Watering Hole (from the previous round).
 
-Long Neck
+Long Neck:
 Take 1 Plant Food from the Food Bank (not the Watering Hole) before Food Cards are played each round.
 
-Fat Tissue
+Fat Tissue:
 This species has the option to take Food even when it is not hungry up to the species’ Body Size.
 
-Cooperation
+Cooperation:
 Anytime this species takes food from the Watering Hole, if you have a species to the right of it, that species takes 1 food from the Watering Hole.
 
