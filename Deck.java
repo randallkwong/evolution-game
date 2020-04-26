@@ -65,15 +65,26 @@ public class Deck {
 	
 	}
 
+	
 	/**
 	 * 
 	 * @return - Returns the current card drawn.
 	 */
 	public Card drawCard() {
 		
-		Card currentCard = getGameDeck().get(0);
-		getGameDeck().remove(0);
-		return currentCard;
+		int sizeofDeck = getGameDeck().size();
+		
+		//Check size of the deck. If deck has no more card, then return null
+		if (sizeofDeck == 0) {
+			//System.out.println("There is no more card to draw.");
+			return null;
+		}
+		
+		else {
+			Card currentCard = getGameDeck().get(0);
+			getGameDeck().remove(0);
+			return currentCard;
+		}
 		
 	}
 	

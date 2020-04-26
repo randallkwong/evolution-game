@@ -38,7 +38,7 @@ class GameTest {
 		assertEquals(SpeciesBoard1.numberOfSpeciesInPlay(), 2);
 		
 		// Feed one of the species
-		SpeciesBoard1.updateFoodConsumed(1);
+		SpeciesBoard1.updateFoodConsumed(1,1);
 		
 		// Handle starvation
 		currentGame.starveSpecies(playerOne, SpeciesBoard1);
