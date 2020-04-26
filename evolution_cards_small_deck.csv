@@ -1,84 +1,84 @@
 Trait Card,Food Value
-Carnivore,1
+Cooperation,1
 Fertile,6
 Fertile,3
 Fertile,2
-Carnivore,3
-Carnivore,1
-Carnivore,4
+Cooperation,3
+Cooperation,1
+Cooperation,4
 Fat Tissue,5
-Carnivore,5
+Cooperation,5
 Long Neck,6
 Fat Tissue,0
 Foraging,2
 Fertile,5
-Carnivore,0
+Cooperation,0
 Foraging,3
-Carnivore,4
+Cooperation,4
 Foraging,6
-Carnivore,6
-Burrowing,5
-Symbiosis,1
-Defensive Herding,4
-Horns,5
-Climbing,4
+Cooperation,6
+Cooperation,5
+Cooperation,1
+Cooperation,4
+Cooperation,5
+Cooperation,4
 Fat Tissue,4
-Defensive Herding,3
-Symbiosis,3
-Carnivore,3
-Hard Shell,3
-Ambush,0
-Ambush,-1
-Climbing,5
-Defensive Herding,6
+Fertile,3
+Fertile,3
+Fertile,3
+Fertile,3
+Fertile,0
+Fertile,-1
+Fertile,5
+Fat Tissue,6
 Long Neck,9
 Cooperation,0
-Horns,4
+Fat Tissue,4
 Long Neck,5
-Hard Shell,4
-Intelligence,5
-Carnivore,2
+Fat Tissue,4
 Fat Tissue,5
-Hard Shell,4
-Ambush,-3
-Climbing,3
+Long Neck,2
+Fat Tissue,5
+Long Neck,4
+Long Neck,-3
+Long Neck,3
 Hard Shell,3
-Carnivore,5
-Carnivore,2
+Foraging,5
+Foraging,2
 Cooperation,3
 Foraging,6
-Warning Call,2
-Scavenger,4
-Symbiosis,2
-Burrowing,3
+Foraging,2
 Foraging,4
-Burrowing,3
-Warning Call,1
+Foraging,2
+Foraging,3
+Foraging,4
+Foraging,3
+Foraging,1
 Fat Tissue,-1
-Carnivore,3
-Burrowing,2
-Horns,3
+Foraging,3
+Foraging,2
+Foraging,3
 Fat Tissue,3
-Intelligence,7
-Carnivore,6
+Foraging,7
+Foraging,6
 Long Neck,3
-Pack Hunting,0
-Scavenger,5
+Foraging,0
+Foraging,5
 Long Neck,4
 Cooperation,5
-Carnivore,4
+Foraging,4
 Foraging,7
-Climbing,1
+Cooperation,1
 Cooperation,4
 Fertile,6
-Ambush,2
+Fertile,2
 Cooperation,3
 Fertile,4
 Foraging,5
 Fertile,7
-Carnivore,0
+Fertile,0
 Fat Tissue,4
-Carnivore,2
+Fat Tissue,2
 Long Neck,7
 Long Neck,8
 Cooperation,5
