@@ -35,9 +35,15 @@ public class Hand {
 		// Draws cards and adds them to the player's hand.	
 		for(int i = 0; i < numberOfCardsToDraw; i++) {	
 			Card cardDrawn = deck.drawCard();
-			int index = i + 1;
-			Card cardToAdd = new Card(cardDrawn.getCardValue(), cardDrawn.getTrait(), Integer.toString(index));
-			hand.add(cardToAdd);	
+			
+			if (cardDrawn == null) {
+				System.out.println("The deck has no more card to draw");
+			}
+			else {
+				int index = i + 1;
+				Card cardToAdd = new Card(cardDrawn.getCardValue(), cardDrawn.getTrait(), Integer.toString(index));
+				hand.add(cardToAdd);	
+			}
 		}	
 
 		//setHand(tempHand);	
