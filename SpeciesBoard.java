@@ -134,7 +134,6 @@ public class SpeciesBoard {
 	 * This method removes Species that have gone extinct. This occurs when a Species population goes to zero.
 	 * Those Species are removed from that player's SpeciesBoard.
 	 * 
-	 * TODO: Re-index the living species for a SpeciesBoard.
 	 */
 	public void extinctSpeciesBoard() {
 		Iterator<Node> iterator = newPlayerBoard.iterator();

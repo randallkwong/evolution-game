@@ -46,11 +46,13 @@ public class Species extends Parent implements Comparable{
 	int numberOfFertileCardsAttached;
 	int numberOfCooperationCardsAttached;
 	
+	// An ArrayList containing a species three attached traits.
 	ArrayList<String> attachedTraitCards;
 	
 	// The current number of trait cards on this species. A species can not have more than 3 trait cards;
 	int numberOfTraits;
 
+	// The index identifying a species.
 	String index;
 
 	
@@ -111,6 +113,7 @@ public class Species extends Parent implements Comparable{
 				hasFatTissue = true;
 			}
 			
+			// Count the number of Cooperation cards attached
 			if(AttachedTraitCards.get(i).equals("Cooperation")){
 				numberOfCooperationCardsAttached = numberOfCooperationCardsAttached + 1;	
 			}
@@ -153,6 +156,8 @@ public class Species extends Parent implements Comparable{
 				AttachedTraitCards.add("Empty");
 			}
 		}
+		
+		// Sets the various visual elements of a species card.
 		
 		Text Trait1ofCard = new Text("T1:" + AttachedTraitCards.get(0));
 		Trait1ofCard.setFont(Font.font(14));
@@ -351,6 +356,9 @@ public class Species extends Parent implements Comparable{
 	/**
 	 *  We need to create a way to compare species so that we can sort the observable list. This avoids
 	 *  the error we were having with duplicate children when species were added to the species board.
+	 *  
+	 *  @param otherSpecies
+	 *  Takes a species to compare with the current species.
 	 */
 	public int compareTo(Object otherSpecies) {
 		Species myOtherSpecies = (Species) otherSpecies;

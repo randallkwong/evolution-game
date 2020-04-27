@@ -12,6 +12,11 @@ import javafx.stage.Stage;
 
 import java.util.HashMap;
 
+/**
+ * 
+ * The Game class contains the different play phases and methods for various game effects.
+ *
+ */
 public class Game {
 	
 	//Button btnEndRound;
@@ -549,6 +554,7 @@ public class Game {
 	 * This is the content text that will populate in the dialog box.
 	 * 
 	 * @return
+	 * Returns the user input as an integer.
 	 */
 	public static int promptUserInputForInteger(String headerText, String contentText) {
 		

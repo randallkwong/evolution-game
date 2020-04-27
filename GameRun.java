@@ -9,6 +9,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * The GameRun class contains the overall main function for the program which runs the logic for the game.
+ * It initializes all of the graphical user interface elements including the buttons which
+ * trigger various stages of the game play.
+ *
+ */
 public class GameRun extends Application {
 	Stage window;
 	Scene scene;
