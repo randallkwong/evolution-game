@@ -58,7 +58,7 @@ public class GameRun extends Application {
 		loadLayout(border);
 
 		// Sets up the scene and applies it to the application window.
-		scene = new Scene(border, 1000, 900);
+		scene = new Scene(border, 1800, 1400);
 		window.setScene(scene);
 		window.show();
 			
@@ -319,7 +319,7 @@ public class GameRun extends Application {
 		
 		// Player One plays Phase Three.
 		// Creates a button so Player 1 can initiate Phase Three.
-		btnSubmit1 = new Button ("Player 1: Start Phase 3");
+		btnSubmit1 = new Button ("Player 1: Play Cards");
 		btnSubmit1.setOnAction(e -> {
 			playerOne.readyForPhaseThree();
 			currentGame.playPhaseThree(playerOne, handforPlayer1, SpeciesBoard1, pseudoConsoleLog);
@@ -327,7 +327,7 @@ public class GameRun extends Application {
 
 		// Player Two plays Phase Three.
 		// Creates a button so Player 2 can initiate Phase Three.
-		btnSubmit2 = new Button ("Player 2: Start Phase 3");
+		btnSubmit2 = new Button ("Player 2: Play Cards");
 		btnSubmit2.setOnAction(e -> {
 			playerTwo.readyForPhaseThree();
 			currentGame.playPhaseThree(playerTwo, handforPlayer2, SpeciesBoard2, pseudoConsoleLog);
@@ -361,14 +361,9 @@ public class GameRun extends Application {
 
 		HBox P1Card = addHBox1();
 		HBox P2Card = addHBox2();
-		//HBox P1Species = addHBox3();
-		//HBox P2Species = addHBox4();
-		
 		
 		border.setTop(P1Card);
 		border.setBottom(P2Card);
-		//border.setLeft(P2Species);
-		//border.setRight(P1Species);
 		border.setCenter(addVBox());
 		border.setLeft(ConsoleLogs());
 		border.setRight(Buttons());

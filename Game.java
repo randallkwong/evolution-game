@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
@@ -552,6 +553,8 @@ public class Game {
 	public static int promptUserInputForInteger(String headerText, String contentText) {
 		
 		TextInputDialog td_species = new TextInputDialog();
+		//Disable "Cancel" button in the Text input dialog since the button has no active purpose. 
+		td_species.getDialogPane().lookupButton(ButtonType.CANCEL).setDisable(true);
 		td_species.setHeaderText(headerText);
 		td_species.setContentText(contentText);
 		TextField textInput = td_species.getEditor();

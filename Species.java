@@ -5,6 +5,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.Parent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 
 /**
@@ -186,6 +188,7 @@ public class Species extends Parent implements Comparable{
 		populationofSpecies.setFont(Font.font(14));
 		populationofSpecies.setX(90);
 		populationofSpecies.setY(Species_height-10);
+		
 		
 		getChildren().addAll(background, Trait1ofCard, Trait2ofCard, Trait3ofCard, indexOfSpecies, bodySizeofSpecies,foodofSpecies,populationofSpecies);		
 		
