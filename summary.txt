@@ -1,0 +1,68 @@
+﻿Final Project Work Summary  - Randy Wong and Rita Shen, Team 71 MCIT Evolution
+
+
+Github Insights
+Randy: 88 commits
+Rita: 48 commits (note: both ritashen and ritasheny are the same contributor). 
+
+
+* Game Logic - Randy
+   * Create and load Deck
+   * Draw Cards
+   * Watering Hole and food card selection
+   * Player Phase Three logic
+      * Add species to player board
+      * Attach and display trait cards
+      * Update trait card effects
+      * Discard trait card
+      * Input validation
+   * Players feeding phase
+      * Take turns
+      * Consume valid amount of food and calculations for food consumption with attached traits
+      * Update watering hole
+      * Input validation
+   * Move consumed food for later scoring
+   * Starvation
+   * Display board
+   * Spawn new species if extinct
+   * Trait Cards
+      * Long neck - all logic, including pre-food selection phase
+      * Fertile - all logic, including pre-food selection phase
+      * Foraging - all logic
+      * Fat tissue - feeding logic
+      * Cooperation - chain together species feeding logic
+   * Score game and end game
+* Game Logic - Rita
+   * Initial play food card to watering hole
+   * Created GameRun class
+   * Initial version of the SpeciesBoard class, conversion for JavaFx compatibility
+   * Update Species Board with body size and population increases
+   * Fixed bug with trait display
+   * Remove extinct species from board
+   * Trait Card 
+      * Cooperation - feed right side adjacent species logic
+* GUI Setup - Rita
+   * Proposed initial GUI design of the evolution game
+   * Add JavaFX to display cards and species rectangles
+   * Show buttons, link buttons to initiate play phases
+   * Initial dialog box blocks to accept user input
+* GUI Refinement - Randy
+   * Usability
+      * Player text
+      * Input validation
+      * Card and species display characteristics
+      * Instructions for each play phase
+      * End game
+   * Refactor
+      * User input, dialog boxes
+      * Button creation
+      * Species display
+      * Main game running function
+* JUnit test - Both
+* Javadocs - Both
+
+
+There are many improvements to usability and bug fixes that were made to the project with efforts from both teammates. 
+
+
+Please refer to the github file for specific commits. https://github.com/randallkwong/evolution-game
