@@ -1,5 +1,7 @@
 Hello, welcome to MCIT Evolution. This project is a simplified version of the Evolution board game implemented in Java.
 
+**Introduction & Setup:** 
+
 The object of the game is to score the most points to win. Players can earn points by 1) spawning species and using them to consume food and 2) by growing their species’ population, which will be tallied at the end of the game. During gameplay, players may use cards they are dealt to generate new species or to evolve their existing species so they can gain various advantages. Players take turns feeding their species until the end of a round at which point the species that did not feed starve off and shrink in population or go extinct. For the purposes of this demo, you may end the game and tally up the final score after four rounds to declare a winner.
 
 Please follow the instructions below to play and score the game. This is a two player game and we would ask you to pretend to be two different players at the same time. As noted, rules differ slightly from the real game.
@@ -8,6 +10,10 @@ To get started, first download our github project repository and install JavaFx 
 http://www.eclipse.org/efxclipse/install.html
 
 If you have trouble getting JavaFx working, please visit this thread https://stackoverflow.com/questions/27913114/cannot-get-javafx-to-work-in-eclipse
+
+**How does the game work:** 
+
+*Note: you can also watch 5 min video that explains our game: https://youtu.be/uDEX1TvRihQ*
 
 Step 1: run the program. Once you hit run for “GameRun.java”, a GUI window should pop up. 
 
@@ -27,9 +33,11 @@ Step 5: Click “Player 2: Start Phase 3.” Same as Step 4, but Player 2 does t
 
 Step 6: Click “Feed”. Each Player will take turns choosing one of their species to feed. By default, species cannot consume more food than their population size (which is the P: number on the bottom right corner). Some traits allow species to consume additional food. After each Player has indicated they are finished feeding, a new round can begin by repeating steps 2-6.
 
+It’s important to note that after feeding ends, species that did not feed will go into extinction from the species board. 
+
 Step 7: After round 4, you should click “End Game”. By clicking “End Game”, it will calculate the scores for each player and declare a winner. 
 
-Additional Information
+**Additional Information**
 
 Gameplay - Trait Cards Effects
 
@@ -47,4 +55,6 @@ This species has the option to take Food even when it is not hungry up to the sp
 
 Cooperation:
 Anytime this species takes food from the Watering Hole, if you have a species to the right of it, that species takes 1 food from the Watering Hole.
+
+Enjoy the game!
 
