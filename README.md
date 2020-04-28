@@ -41,19 +41,19 @@ Step 7: After round 4, you should click “End Game”. By clicking “End Game�
 
 Gameplay - Trait Cards Effects
 
-Foraging:
+*Foraging:*
 This species receives an additional Plant Food from the same source (Watering Hole or Food Bank) anytime it takes Plant Food (unless it does not have a hungry population for the additional Food).
 
-Fertile:
+*Fertile:*
 Before selecting Food Cards, this species gains 1 Population if there is Food on the Watering Hole (from the previous round).
 
-Long Neck:
+*Long Neck:*
 Take 1 Plant Food from the Food Bank (not the Watering Hole) before Food Cards are played each round.
 
-Fat Tissue:
+*Fat Tissue:*
 This species has the option to take Food even when it is not hungry up to the species’ Body Size.
 
-Cooperation:
+*Cooperation:*
 Anytime this species takes food from the Watering Hole, if you have a species to the right of it, that species takes 1 food from the Watering Hole.
 
 Enjoy the game!
