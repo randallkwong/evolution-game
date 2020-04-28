@@ -7,22 +7,25 @@ Rita: 48 commits (note: both ritashen and ritasheny are the same contributor).
 
 
 * Game Logic - Randy
-   * Create and load Deck
-   * Draw Cards
-   * Watering Hole and food card selection
-   * Player Phase Three logic
+   * Create and load Deck, including input file creation
+   * Draw Cards (Start New Round)
+   * Card effects that trigger after hand is dealt due to species with attached traits
+   * Watering Hole logic and food card selection (Select Plant Food)
+   * Player Phase Three (Play Cards Phase) logic
       * Add species to player board
       * Attach and display trait cards
       * Update trait card effects
       * Discard trait card
       * Input validation
-   * Players feeding phase
+   * Players Feeding phase (Feed)
       * Take turns
-      * Consume valid amount of food and calculations for food consumption with attached traits
+      * Consume valid amounts of food
+      * Calculations for food consumption with attached traits
+      * Trait synergies
       * Update watering hole
       * Input validation
-   * Move consumed food for later scoring
-   * Starvation
+   * Move consumed food to food bag for later scoring
+   * Starvation and related changes to population size
    * Display board
    * Spawn new species if extinct
    * Trait Cards
@@ -31,7 +34,7 @@ Rita: 48 commits (note: both ritashen and ritasheny are the same contributor).
       * Foraging - all logic
       * Fat tissue - feeding logic
       * Cooperation - chain together species feeding logic
-   * Score game and end game
+   * Score game and end game (End Game)
 * Game Logic - Rita
    * Initial play food card to watering hole
    * Created GameRun class
@@ -62,7 +65,7 @@ Rita: 48 commits (note: both ritashen and ritasheny are the same contributor).
       * User input, dialog boxes
       * Button creation
       * Species display
-      * Main game running function
+      * Main game running function and various elements of GameRun
 * JUnit test - Both
 * Javadocs - Both
 
