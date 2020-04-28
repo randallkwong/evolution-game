@@ -35,7 +35,12 @@ Rita: 48 commits (note: both ritashen and ritasheny are the same contributor).
 * Game Logic - Rita
    * Initial play food card to watering hole
    * Created GameRun class
-   * Initial version of the SpeciesBoard class, conversion for JavaFx compatibility
+   * Initial version of the SpeciesBoard class
+      * Update Species Board with body size and population increases
+      * Initial display of Species Board
+      * Add new species to the right 
+      * Update Trait Card (before logic is added to replace traits)
+      * Conversion for JavaFx compatibility
    * Update Species Board with body size and population increases
    * Fixed bug with trait display
    * Remove extinct species from board
