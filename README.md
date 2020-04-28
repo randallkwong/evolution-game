@@ -37,7 +37,7 @@ It’s important to note that after feeding ends, species that did not feed will
 
 Step 7: After round 4, you should click “End Game”. By clicking “End Game”, it will calculate the scores for each player and declare a winner. 
 
-**Additional Information**
+**Additional Information:**
 
 Gameplay - Trait Cards Effects
 
