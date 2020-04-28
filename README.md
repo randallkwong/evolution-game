@@ -21,7 +21,7 @@ Step 2: click “Start new round”. After clicking, you should expect to see ne
 
 Step 3: click “Select plant food”. Each Player selects one card from their hand which will add food to the Watering Hole. The card’s food value is displayed in each card’s lower left hand corner. The card’s (index), which you’ll use to enter your selection, is in the bottom right corner. The card you select will be discarded and its value added to the total available plant food in the Watering Hole from which species can feed.
 
-Step 4: Click “Player 1: Start Phase 3”. In this phase, you will follow instructions to play each card. Players can use one card to do any of these 5 actions.
+Step 4: Click “Player 1: Play Cards”. In this phase, you will follow instructions to play each card. Players can use one card to do any of these 5 actions.
 
 1) Create a species on the left side of the Player board
 2) Create a species on the right side of the Player board
@@ -29,7 +29,7 @@ Step 4: Click “Player 1: Start Phase 3”. In this phase, you will follow inst
 4) Increase a species’ population size
 5) Upgrade one of your species with a new ability by attaching the trait card to it
 
-Step 5: Click “Player 2: Start Phase 3.” Same as Step 4, but Player 2 does their actions. 
+Step 5: Click “Player 2: Play Cards.” Same as Step 4, but Player 2 does their actions. 
 
 Step 6: Click “Feed”. Each Player will take turns choosing one of their species to feed. By default, species cannot consume more food than their population size (which is the P: number on the bottom right corner). Some traits allow species to consume additional food. After each Player has indicated they are finished feeding, a new round can begin by repeating steps 2-6.
 
